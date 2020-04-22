@@ -11,11 +11,10 @@ import com.team4.bookreview.vo.ReviewVO;
 
 @Controller
 public class TestController {
-	
 	@Autowired
 	private TestService service;
-	@Autowired
-//	private ReviewDAOImpl r;
+	
+	
 	
 	@RequestMapping(value="/selTest")
 	public void selTest() {
@@ -28,14 +27,5 @@ public class TestController {
 		String[] result = service.showTable();
 		for(String table : result) System.out.println(table);
 	}
-//	
-//	@RequestMapping(value="/reviewTest")
-//	public void showReview() {
-//		List<ReviewVO> result = r.selectAll();
-//		System.out.println("------ showReview ------");
-//		for(ReviewVO re : result) {
-//			System.out.println(re);
-//		}
-//	}
 	
 }
