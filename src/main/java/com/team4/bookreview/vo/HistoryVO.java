@@ -3,13 +3,14 @@ package com.team4.bookreview.vo;
 import java.util.Date;
 
 public class HistoryVO {
-	// time 
+	// 작성 시간 
 	Date date;
-	// name of book
+	// 책 제목 
 	String book;
-	// author
+	// 책 저자 
 	String book_author;
-	// user
+	// 사용자 id
 	int user;
+	// 사용자 별 검색 기록 
 	int hist_no;
 }
