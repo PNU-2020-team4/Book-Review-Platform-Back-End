@@ -23,7 +23,7 @@ public class UserImplTest {
 	public void test() {
 		UserVO uv = new UserVO();
 		
-		uv.setAge(11);
+		uv.setAge("11");
 		uv.setBirthday(new Date(11));
 		uv.setEmail("test@naver.com");
 		uv.setGender('M');
