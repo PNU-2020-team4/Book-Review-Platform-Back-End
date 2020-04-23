@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd   
+    http://www.springframework.org/schema/mvc">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
@@ -10,7 +15,7 @@
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://13.124.231.234:3306/br?serverTimezone=UTC" />
+			value="jdbc:mysql://13.124.231.234:3306/br?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true" />
 		<property name="username" value="root" />
 		<property name="password" value="Qwer1234!" />
 	</bean>
@@ -33,5 +38,4 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.team4.bookreview" />
 	</bean>
-
 </beans>

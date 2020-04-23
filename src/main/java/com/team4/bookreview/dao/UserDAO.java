@@ -7,4 +7,6 @@ import com.team4.bookreview.vo.UserVO;
 public interface UserDAO {
 	public List<UserVO> selectAll();
 	public UserVO select(int id);
+	public String selectID(int id);
+	public void insert(UserVO uv);
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team4.bookreview.dao.UserDAO">
+    <select id="selectAll" resultType="UserVO">
+        SELECT *
+        FROM user
+    </select>
+    
+    <select id="select" resultType="UserVO" parameterType="int">
+    	SELECT * 
+    	FROM user
+    	WHERE id = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="UserVO">
+    	insert into user(id, email, name, nick, age, gender, hist_cnt, birth) values(#{id}, #{email}, #{name}, #{nick}, #{age}, #{gender}, #{hist_cnt}, #{birthday})
+    </insert>
+    
+    <select id="selectID" resultType="String" parameterType="int">
+    	select id from user where id=#{id}
+    </select>
+</mapper>
