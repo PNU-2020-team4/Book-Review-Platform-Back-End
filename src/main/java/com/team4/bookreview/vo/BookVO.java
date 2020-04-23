@@ -7,4 +7,11 @@ public class BookVO {
 	String author;
 	// 책 인덱스 
 	int idx;
+	@Override
+	public String toString() {
+		return "BookVO [name=" + name + ", author=" + author + ", idx=" + idx + "]";
+	}
+	
+	
+	
 }
