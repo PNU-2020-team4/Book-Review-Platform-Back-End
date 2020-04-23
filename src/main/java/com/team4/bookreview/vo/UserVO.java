@@ -3,21 +3,13 @@ package com.team4.bookreview.vo;
 import java.sql.Date;
 
 public class UserVO {
-	// �꽕�씠踰꾩뿉�꽌 �젣怨듬맂 �븘�씠�뵒
 	int id;
-	// �씠硫붿씪 
 	String email;
-	// �씠由� 
 	String name;
-	// �땳�꽕�엫 
 	String nick;
-	// �굹�씠 
 	String age;
-	// �꽦蹂� 
 	char gender;
-	// 寃��깋湲곕줉 �닔 
 	int hist_cnt;
-	// �깮�씪 
 	Date birthday;
 	public int getId() {
 		return id;

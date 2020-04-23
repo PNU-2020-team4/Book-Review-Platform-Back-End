@@ -18,5 +18,4 @@
         <property name="context-root" value="bookreview"/>
         	
     </wb-module>
-    
 </project-modules>
