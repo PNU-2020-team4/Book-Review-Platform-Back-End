@@ -24,7 +24,7 @@ public class UserImplTest {
 		UserVO uv = new UserVO();
 		
 		uv.setAge("11");
-		uv.setBirth("dfdf");
+//		uv.setBirth("dfdf");
 		uv.setEmail("test@naver.com");
 		uv.setGender('M');
 		uv.setHist_cnt(0);
@@ -32,7 +32,7 @@ public class UserImplTest {
 		uv.setName("����");
 		uv.setNick("jjang");
 		
-		userDaoImpl.insert(uv);
+//		userDaoImpl.insert(uv);
 		
 		List<UserVO> lu = userDaoImpl.selectAll();
 		for(UserVO user : lu) System.out.println(user);

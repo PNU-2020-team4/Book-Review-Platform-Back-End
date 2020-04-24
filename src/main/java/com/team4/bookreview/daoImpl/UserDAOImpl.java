@@ -24,6 +24,7 @@ public class UserDAOImpl implements UserDAO{
 		List<UserVO> lu = sqlSession.selectList(namespace+".selectAll");
 		return lu;
 	}
+	
 	public UserVO select(int id) {
 		UserVO user = sqlSession.selectOne(namespace+".select", id);
 		return user;
@@ -43,5 +44,4 @@ public class UserDAOImpl implements UserDAO{
 		int res = sqlSession.update(namespace+".updateNick", uv);
 		return res;
 	}
-
 }
