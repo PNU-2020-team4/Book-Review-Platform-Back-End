@@ -41,79 +41,8 @@ public class LoginController {
 		UserVO user = objectMapper.readValue(data, UserVO.class);
 		
 		
+	
+		
 		return "login";
 	}
-	
-	@RequestMapping(value="/callback", produces="application/json; charset=UTF-8")
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
-		System.out.println("callback");
-		OAuth2AccessToken oauthToken;
-		
-		oauthToken = naverLoginBO.getAccessToken(session,  code,  state);
-		apiResult = naverLoginBO.getUserProfile(oauthToken);
-		
-		System.out.println(apiResult);
-		
-		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(apiResult);
-		JSONObject jsonObj = (JSONObject) obj;
-		
-		JSONObject response_obj = (JSONObject)jsonObj.get("response");
-		
-		
-		UserVO uv = new UserVO();
-		setUserVO(response_obj, uv);
-		
-//		if(userDaoImpl.selectID(uv.getId())==null) 
-//			userDaoImpl.insert(uv);
-		
-		userDaoImpl.updateUser(uv);
-		
-		
-		System.out.println(uv.getName());
-		
-		session.setAttribute("sessionId",  uv.getNick());
-		
-		model.addAttribute("result", apiResult);
-		
-		return "login";
-		
-	}
-	
-	@RequestMapping(value="/showUser")
-	public void showUser() {
-		List<UserVO> lu = userDaoImpl.selectAll();
-		
-		for(UserVO user : lu) System.out.println(user);
-	}
-	
-	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session)throws IOException {
-		System.out.println("����� logout");
-		session.invalidate();
-		return "redirect:index.jsp";
-	}
-	
-	private void setUserVO(JSONObject response_obj, UserVO uv) {
-		String nickname = (String)response_obj.get("nickname");
-		int id = Integer.parseInt((String)response_obj.get("id"));
-		String age = (String)response_obj.get("age");
-		char gender = ((String)response_obj.get("gender")).charAt(0);
-		String email = (String)response_obj.get("email");
-		String birth = (String)response_obj.get("birth");
-		int hist_cnt = 0;
-		String name = (String)response_obj.get("name");
-		
-		uv.setId(id);
-		uv.setBirth(birth);
-		uv.setEmail(email);
-		uv.setHist_cnt(hist_cnt);
-		uv.setName(name);
-		uv.setAge(age);
-		uv.setGender(gender);
-		uv.setNick(nickname);
-	}
-
-	
-	
 }
