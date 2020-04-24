@@ -24,18 +24,24 @@ public class UserDAOImpl implements UserDAO{
 		List<UserVO> lu = sqlSession.selectList(namespace+".selectAll");
 		return lu;
 	}
+	
 	public UserVO select(int id) {
 		UserVO user = sqlSession.selectOne(namespace+".select", id);
 		return user;
-	}
-	
-	public void insert(UserVO uv) {
-		sqlSession.insert(namespace+".insert", uv);
 	}
 	
 	public String selectID(int id) {
 		String res = sqlSession.selectOne(namespace+".selectID", id);
 		return res;
 	}
-
+	
+	public int updateUser(UserVO uv) {
+		int res = sqlSession.insert(namespace+".updateUser", uv);
+		return res;
+	}
+	
+	public int updateNick(UserVO uv) {
+		int res = sqlSession.update(namespace+".updateNick", uv);
+		return res;
+	}
 }

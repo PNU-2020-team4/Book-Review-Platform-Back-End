@@ -26,6 +26,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public List<ReviewVO> select(int idx) {
 		return sqlSession.selectList("com.team4.bookreview.reviewMapper.select");
 	}
+	
+	
 
 	@Override
 	public int insert(ReviewVO rv) {
