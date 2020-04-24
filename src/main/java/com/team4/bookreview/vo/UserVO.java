@@ -1,8 +1,10 @@
 package com.team4.bookreview.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class UserVO {
+public class UserVO implements Serializable {
+	
 	int id;
 	String email;
 	String name;
@@ -56,12 +58,12 @@ public class UserVO {
 	public String getBirthday() {
 		return birth;
 	}
-	public void setBirthday(String birthday) {
-		this.birth = birthday;
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", email=" + email + ", name=" + name + ", nick=" + nick + ", age=" + age
-				+ ", gender=" + gender + ", hist_cnt=" + hist_cnt + ", birthday=" + birth + "]";
+				+ ", gender=" + gender + ", hist_cnt=" + hist_cnt + ", birth=" + birth + "]";
 	}
 }

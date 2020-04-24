@@ -13,8 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.team4.bookreview.api.NaverLoginBO;
 import com.team4.bookreview.daoImpl.UserDAOImpl;
@@ -31,13 +35,11 @@ public class LoginController {
 	
 	private String apiResult = null;
 	
-	@RequestMapping(value="/login")
-	public String login(Model model, HttpSession session) {
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		UserVO user = objectMapper.readValue(data, UserVO.class);
 		
-		System.out.println("���̹� : " + naverAuthUrl);
-		
-		model.addAttribute("url", naverAuthUrl);
 		
 		return "login";
 	}
@@ -48,7 +50,6 @@ public class LoginController {
 		OAuth2AccessToken oauthToken;
 		
 		oauthToken = naverLoginBO.getAccessToken(session,  code,  state);
-		
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 		
 		System.out.println(apiResult);
@@ -99,12 +100,12 @@ public class LoginController {
 		String age = (String)response_obj.get("age");
 		char gender = ((String)response_obj.get("gender")).charAt(0);
 		String email = (String)response_obj.get("email");
-		String birth = (String)response_obj.get("birthday");
+		String birth = (String)response_obj.get("birth");
 		int hist_cnt = 0;
 		String name = (String)response_obj.get("name");
 		
 		uv.setId(id);
-		uv.setBirthday(birth);
+		uv.setBirth(birth);
 		uv.setEmail(email);
 		uv.setHist_cnt(hist_cnt);
 		uv.setName(name);

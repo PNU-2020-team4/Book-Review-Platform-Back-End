@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.team4.bookreview.dao.BookDAO;
 import com.team4.bookreview.vo.BookVO;
-import com.team4.bookreview.vo.ReviewVO;
-
 @Service
 @Repository
 public class BookDAOImpl implements BookDAO {
