@@ -35,7 +35,7 @@ public class LoginController {
 	public String login(Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		
-		System.out.println("³×ÀÌ¹ö : " + naverAuthUrl);
+		System.out.println("ï¿½ï¿½ï¿½Ì¹ï¿½ : " + naverAuthUrl);
 		
 		model.addAttribute("url", naverAuthUrl);
 		
@@ -88,7 +88,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session)throws IOException {
-		System.out.println("¿©±â´Â logout");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ logout");
 		session.invalidate();
 		return "redirect:index.jsp";
 	}
