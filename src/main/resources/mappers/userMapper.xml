@@ -16,8 +16,12 @@
     	select id from user where id=#{id}
     </select>
     
-    <insert id="updateUser" parameterType="UserVO">
+    <insert id="updateUser" parameterType="UserVO" >
     	insert into user(id, email, name, nick, age, gender, hist_cnt, birth) values(#{id}, #{email}, #{name}, #{nick}, #{age}, #{gender}, #{hist_cnt}, #{birth})
     	on duplicate key update age=#{age}
     </insert>
+    
+    <update id="updateNick" parameterType="UserVO" >
+    	update user set nick=#{nick} where id=#{id}
+    </update>
 </mapper>
