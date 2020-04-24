@@ -63,8 +63,10 @@ public class LoginController {
 		UserVO uv = new UserVO();
 		setUserVO(response_obj, uv);
 		
-		if(userDaoImpl.selectID(uv.getId())==null) 
-			userDaoImpl.insert(uv);
+//		if(userDaoImpl.selectID(uv.getId())==null) 
+//			userDaoImpl.insert(uv);
+		
+		userDaoImpl.updateUser(uv);
 		
 		
 		System.out.println(uv.getName());
@@ -97,7 +99,7 @@ public class LoginController {
 		String age = (String)response_obj.get("age");
 		char gender = ((String)response_obj.get("gender")).charAt(0);
 		String email = (String)response_obj.get("email");
-		Date birth = new Date(3);
+		String birth = (String)response_obj.get("birthday");
 		int hist_cnt = 0;
 		String name = (String)response_obj.get("name");
 		

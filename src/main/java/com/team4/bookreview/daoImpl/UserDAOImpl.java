@@ -29,13 +29,13 @@ public class UserDAOImpl implements UserDAO{
 		return user;
 	}
 	
-	public void insert(UserVO uv) {
-		sqlSession.insert(namespace+".insert", uv);
-	}
-	
 	public String selectID(int id) {
 		String res = sqlSession.selectOne(namespace+".selectID", id);
 		return res;
+	}
+	
+	public void updateUser(UserVO uv) {
+		sqlSession.insert(namespace+".updateUser", uv);
 	}
 
 }
