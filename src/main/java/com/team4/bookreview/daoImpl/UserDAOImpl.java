@@ -34,8 +34,14 @@ public class UserDAOImpl implements UserDAO{
 		return res;
 	}
 	
-	public void updateUser(UserVO uv) {
-		sqlSession.insert(namespace+".updateUser", uv);
+	public int updateUser(UserVO uv) {
+		int res = sqlSession.insert(namespace+".updateUser", uv);
+		return res;
+	}
+	
+	public int updateNick(UserVO uv) {
+		int res = sqlSession.update(namespace+".updateNick", uv);
+		return res;
 	}
 
 }

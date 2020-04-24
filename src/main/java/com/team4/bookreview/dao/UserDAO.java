@@ -8,5 +8,6 @@ public interface UserDAO {
 	public List<UserVO> selectAll();
 	public UserVO select(int id);
 	public String selectID(int id);
-	public void updateUser(UserVO uv);
+	public int updateUser(UserVO uv);
+	public int updateNick(UserVO uv);
 }
