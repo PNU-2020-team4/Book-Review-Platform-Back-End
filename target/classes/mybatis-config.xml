@@ -10,6 +10,8 @@
 
     <typeAliases>
     	<typeAlias type="com.team4.bookreview.vo.UserVO" alias="UserVO"/>
+    	<typeAlias type="com.team4.bookreview.vo.ReviewVO" alias="ReviewVO"/>
     </typeAliases>    
+
     
 </configuration>     
