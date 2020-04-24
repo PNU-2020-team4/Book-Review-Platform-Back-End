@@ -21,4 +21,15 @@ public class MyPageController {
 		
 		System.out.println(user);
 	}
+	
+	@RequestMapping(value="/mypage/changeNick", method=RequestMethod.POST)
+	public void changeNick(@RequestParam int id, @RequestParam String nick)
+	{
+		UserVO user = new UserVO();
+		user.setId(id);
+		user.setNick(nick);		
+		
+		int res = userDaoImpl.updateNick(user);
+		if(res == 1) System.out.println("complete");
+	}
 }
