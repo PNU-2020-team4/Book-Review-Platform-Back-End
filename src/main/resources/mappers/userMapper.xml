@@ -12,11 +12,12 @@
     	WHERE id = #{id}
     </select>
     
-    <insert id="insert" parameterType="UserVO">
-    	insert into user(id, email, name, nick, age, gender, hist_cnt, birth) values(#{id}, #{email}, #{name}, #{nick}, #{age}, #{gender}, #{hist_cnt}, #{birthday})
-    </insert>
-    
     <select id="selectID" resultType="String" parameterType="int">
     	select id from user where id=#{id}
     </select>
+    
+    <insert id="updateUser" parameterType="UserVO">
+    	insert into user(id, email, name, nick, age, gender, hist_cnt, birth) values(#{id}, #{email}, #{name}, #{nick}, #{age}, #{gender}, #{hist_cnt}, #{birth})
+    	on duplicate key update age=#{age}
+    </insert>
 </mapper>
