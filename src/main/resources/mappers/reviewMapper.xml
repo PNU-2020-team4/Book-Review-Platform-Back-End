@@ -3,15 +3,22 @@
  
 <mapper namespace="com.team4.bookreview.reviewMapper">
  
-    <select id="selectAll" resultType="com.team4.bookreview.vo.ReviewVO">
+    <select id="selectAll" resultType="ReviewVO">
         SELECT *
         FROM review
     </select>
     
-    <select id="select" resultType="com.team4.bookreview.vo.ReviewVO">
-    	SELECT * 
+    <select id="selectByWriter" parameterType="int" resultType="ReviewVO">
+    	SELECT *
     	FROM review
-    	WHERE idx = ${idx}
+    	WHERE writer = #{writer}
     </select>
+    
+    <insert id="insert" parameterType = "ReviewVO">
+    	INSERT INTO review( writer, content, star, book, date)
+    	VALUE (#{writer}, #{content}, #{star}, #{book}, #{date})
+    </insert>
+    
+
     
 </mapper>

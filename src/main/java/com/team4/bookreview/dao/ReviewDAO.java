@@ -6,5 +6,8 @@ import com.team4.bookreview.vo.ReviewVO;
 
 public interface ReviewDAO {
 	public List<ReviewVO> selectAll();
-	public ReviewVO select(int idx);
+	public List<ReviewVO> selectByWriter(int writer);
+	public int insert(ReviewVO rv);
+	public int delete(int idx);
+	public int update(ReviewVO rv);
 }
