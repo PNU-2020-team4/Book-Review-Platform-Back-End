@@ -23,8 +23,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<ReviewVO> select(int idx) {
-		return sqlSession.selectList("com.team4.bookreview.reviewMapper.select");
+	public List<ReviewVO> selectByWriter(int writer) {
+		return sqlSession.selectList("com.team4.bookreview.reviewMapper.selectByWriter", writer);
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.team4.bookreview.vo;
 
+import java.sql.Timestamp;
+
 /**
  * @author KwanwooKim
  * @date 2020-04-22
@@ -11,10 +13,20 @@ public class ReviewVO {
 	String content;
 	int star;
 	int book;
-	String date;
+	Timestamp date;
 	
-	public ReviewVO(int writer, String content, int star, int book, String date) {
+	public ReviewVO(int writer, String content, int star, int book, Timestamp date) {
 		super();
+		this.writer = writer;
+		this.content = content;
+		this.star = star;
+		this.book = book;
+		this.date = date;
+	}
+	
+	public ReviewVO(int idx, int writer, String content, int star, int book, Timestamp date) {
+		super();
+		this.idx = idx;
 		this.writer = writer;
 		this.content = content;
 		this.star = star;
@@ -24,8 +36,9 @@ public class ReviewVO {
 	
 	@Override
 	public String toString() {
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return "ReviewVO [idx=" + idx + ", writer=" + writer + ", content=" + content + ", star=" + star + ", book="
-				+ book + ", date=" + date+ "]";
+				+ book + ", date=" + sdf.format(date) + "]";
 	}
 
 	public int getIdx() {
@@ -68,11 +81,11 @@ public class ReviewVO {
 		this.book = book;
 	}
 	
-	public String getDate() {
+	public Timestamp getDate() {
 		return date ;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 }
