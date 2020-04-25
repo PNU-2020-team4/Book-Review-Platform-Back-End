@@ -14,8 +14,6 @@ public class ReviewTestController {
 	@Autowired
 	private ReviewDAOImpl r;
 	
-	
-
 	@RequestMapping(value="/reviewTest")
 	public void showReview() {
 		List<ReviewVO> result = r.selectAll();

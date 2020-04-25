@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -57,12 +59,18 @@ public class reviewController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<HashMap<String, Object>> recordList = new ArrayList<HashMap<String, Object>>();
 		
-		int queryBookIdx = Integer.parseInt(req.getParameter("book"));
-		List<ReviewVO> result = r.select(queryBookIdx);
+		int writer = Integer.parseInt(req.getParameter("writer"));
+		System.out.println("Received data : " + writer);
+		List<ReviewVO> result = (r.selectByWriter(writer));
+		
+		
 		if(result == null) map.put("result", "false");
 		else {
-			
+			System.out.println("Queried data : " + result.size());
+
 			for(ReviewVO record : result) {
+				System.out.println(record);
+
 				HashMap<String, Object> rec = new HashMap<String, Object>();
 				rec.put("idx", record.getIdx());
 				rec.put("writer", record.getWriter());
@@ -73,9 +81,10 @@ public class reviewController {
 				recordList.add(rec);
 			}
 			map.put("result", "true");
+			map.put("record list", recordList);
 			
 		}
-
+		
 		String JSONValue =  obj.writeValueAsString(map);
 		System.out.println(JSONValue);
 		return JSONValue;
@@ -96,7 +105,11 @@ public class reviewController {
 	private ReviewVO renderVO(HttpServletRequest req) {
 		return new ReviewVO(Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
 							Integer.parseInt(req.getParameter("book")), Integer.parseInt(req.getParameter("star")),
-							req.getParameter("date"));
+							getTimestamp(req.getParameter("date")));
+	}
+	
+	public Timestamp getTimestamp(String str){
+		return Timestamp.valueOf(str);
 	}
 	
 }
