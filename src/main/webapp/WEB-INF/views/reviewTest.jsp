@@ -30,6 +30,7 @@ pageEncoding="UTF-8"%>
 
 <br>
 
+
 <form action="/bookreview/reviewUpdate" method="post" name="ufrm" style="width:470px;">
 <h2>수정 테스트</h2>
 <input type="text" name="idx" id="idx" class="w3-input w3-border" placeholder="리뷰 인덱스" > <br>

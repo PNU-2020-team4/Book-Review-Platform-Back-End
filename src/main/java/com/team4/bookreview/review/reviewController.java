@@ -44,7 +44,7 @@ public class reviewController {
 //	@RequestMapping(value="/reviewInsertTest", method = RequestMethod.GET)
 //	public void reviewInsertTest() {
 //		
-//		ReviewVO record = new ReviewVO(1, "³»¿ë", 1, 3, "2020-04-24");
+//		ReviewVO record = new ReviewVO(1, "Â³Â»Â¿Ã«", 1, 3, "2020-04-24");
 //		int result = r.insert(record);
 //		if(result != 0)
 //			System.out.println("ok");
@@ -124,6 +124,7 @@ public class reviewController {
 	}
 	
 	private ReviewVO renderVO(HttpServletRequest req) {
+
 		if(req.getParameter("idx")=="0")
 			return new ReviewVO(Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
 					Integer.parseInt(req.getParameter("star")),Integer.parseInt(req.getParameter("book")),
@@ -131,6 +132,7 @@ public class reviewController {
 		else return new ReviewVO(Integer.parseInt(req.getParameter("idx")), Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
 				Integer.parseInt(req.getParameter("star")),Integer.parseInt(req.getParameter("book")),
 				getTimestamp(req.getParameter("date")));
+
 	}
 	
 	public Timestamp getTimestamp(String str){
