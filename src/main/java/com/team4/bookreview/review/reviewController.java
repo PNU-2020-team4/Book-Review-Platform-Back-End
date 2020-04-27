@@ -90,22 +90,47 @@ public class reviewController {
 		return JSONValue;
 	}
 	
-//	@RequestMapping(value="/reviewDelete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public String reviewDelete() {
-//	
-//		
-//	}
-//
-//	@RequestMapping(value="/reviewUp)date", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public String reviewUpdate() {
-//	
-//		
-//	}
+	@RequestMapping(value="/reviewDelete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String reviewDelete(HttpServletRequest req) throws JsonProcessingException {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		int idx = Integer.parseInt(req.getParameter("idx"));
+		int result = r.delete(idx);
+		if(result != 0)
+			map.put("result", "true");
+		else map.put("result", "false");
+		
+		String JSONValue =  obj.writeValueAsString(map);
+		System.out.println(JSONValue);
+		return JSONValue;
+		
+	}
+
+	@RequestMapping(value="/reviewUpdate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String reviewUpdate(HttpServletRequest req) throws JsonProcessingException{
+	// update content, date
+		HashMap<String, String> map  = new HashMap<String, String>();
+		ReviewVO record = renderVO(req);
+		int result = r.update(record);
+		if(result != 0)
+			map.put("result", "true");
+		else map.put("result", "false");
+		
+		String JSONValue =  obj.writeValueAsString(map);
+		System.out.println(JSONValue);
+		return JSONValue;
+		
+	}
 	
 	private ReviewVO renderVO(HttpServletRequest req) {
-		return new ReviewVO(Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
-							Integer.parseInt(req.getParameter("book")), Integer.parseInt(req.getParameter("star")),
-							getTimestamp(req.getParameter("date")));
+		if(req.getParameter("idx")=="0")
+			return new ReviewVO(Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
+					Integer.parseInt(req.getParameter("star")),Integer.parseInt(req.getParameter("book")),
+					getTimestamp(req.getParameter("date")));
+		else return new ReviewVO(Integer.parseInt(req.getParameter("idx")), Integer.parseInt(req.getParameter("writer")), req.getParameter("content"),
+				Integer.parseInt(req.getParameter("star")),Integer.parseInt(req.getParameter("book")),
+				getTimestamp(req.getParameter("date")));
 	}
 	
 	public Timestamp getTimestamp(String str){
