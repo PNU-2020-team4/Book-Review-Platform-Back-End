@@ -27,8 +27,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.selectList("com.team4.bookreview.reviewMapper.selectByWriter", writer);
 	}
 	
-	
-
 	@Override
 	public int insert(ReviewVO rv) {
 		return sqlSession.insert("com.team4.bookreview.reviewMapper.insert", rv);
@@ -43,6 +41,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int update(ReviewVO rv) {
 		return sqlSession.update("com.team4.bookreview.reviewMapper.update", rv);
 	}
+
+
 	
 	
 

@@ -19,6 +19,16 @@
     	VALUE (#{writer}, #{content}, #{star}, #{book}, #{date})
     </insert>
     
+    <delete id="delete" parameterType = "int">
+    	DELETE 
+    	FROM review
+    	WHERE idx = #{idx}
+    </delete>
 
-    
+	<update id = "update" parameterType = "ReviewVO">
+		UPDATE review SET 
+		content = #{content}, star = #{star}, date = #{date}
+		WHERE idx = #{idx}
+	</update>
+     
 </mapper>
