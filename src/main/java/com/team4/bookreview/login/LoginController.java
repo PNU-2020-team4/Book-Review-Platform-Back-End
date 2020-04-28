@@ -17,7 +17,6 @@ import com.team4.bookreview.vo.UserVO;
 @Controller
 public class LoginController {
 	
-	
 	@Autowired
 	private UserDAOImpl userDaoImpl;
 	
