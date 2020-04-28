@@ -8,11 +8,13 @@ public class UserVO implements Serializable {
 	int id;
 	String email;
 	String name;
-	String nick;
+	String nickname;
 	String age;
-	char gender;
+	String profile_image;
+	String gender;
 	int hist_cnt;
-	String birth;
+	
+	String birthday;
 	public int getId() {
 		return id;
 	}
@@ -31,11 +33,11 @@ public class UserVO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getNick() {
-		return nick;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setNick(String nick) {
-		this.nick = nick;
+	public void setNick(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getAge() {
 		return age;
@@ -43,10 +45,10 @@ public class UserVO implements Serializable {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public int getHist_cnt() {
@@ -56,14 +58,23 @@ public class UserVO implements Serializable {
 		this.hist_cnt = hist_cnt;
 	}
 	public String getBirthday() {
-		return birth;
+		return birthday;
 	}
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
+	public String getProfile_image() {
+		return profile_image;
+	}
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", email=" + email + ", name=" + name + ", nick=" + nick + ", age=" + age
-				+ ", gender=" + gender + ", hist_cnt=" + hist_cnt + ", birth=" + birth + "]";
+		return "UserVO [id=" + id + ", email=" + email + ", name=" + name + ", nickname=" + nickname + ", age=" + age
+				+ ", gender=" + gender + ", hist_cnt=" + hist_cnt + ", birthday=" + birthday + "]";
 	}
 }
