@@ -26,7 +26,7 @@ public class UserImplTest {
 		uv.setAge("11");
 //		uv.setBirth("dfdf");
 		uv.setEmail("test@naver.com");
-		uv.setGender('M');
+		uv.setGender("M");
 		uv.setHist_cnt(0);
 		uv.setId(335);
 		uv.setName("����");
