@@ -1,7 +1,6 @@
 package com.team4.bookreview.vo;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class UserVO implements Serializable {
 	

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team4.bookreview.daoImpl.UserDAOImpl;
 import com.team4.bookreview.vo.UserVO;
@@ -16,6 +17,7 @@ public class MyPageController {
 	private UserDAOImpl userDaoImpl;
 	
 	@RequestMapping(value="/mypage", method=RequestMethod.POST)
+	@ResponseBody
 	public void seeMyPage(@RequestParam int id) {
 		UserVO user = userDaoImpl.select(id);
 		
@@ -23,6 +25,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="/mypage/changeNick", method=RequestMethod.POST)
+	@ResponseBody
 	public void changeNick(@RequestParam int id, @RequestParam String nick)
 	{
 		UserVO user = new UserVO();

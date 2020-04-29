@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,12 +24,15 @@ public class LoginController {
 	private String apiResult = null;
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@ResponseBody
 	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
 		System.out.println("=========== [/login] request ==========");
 		System.out.println("data : " + data);
 		ObjectMapper objectMapper = new ObjectMapper();
 		UserVO user = objectMapper.readValue(data, UserVO.class);
-		
+	
+		System.out.println(user.toString());
+	
 		HashMap<String, String> map = new HashMap<String, String>();
 		ObjectMapper obj = new ObjectMapper();
 		
@@ -38,6 +42,7 @@ public class LoginController {
 		try {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
+			e.printStackTrace();
 			map.put("resultCode", "500");
 			map.put("message", "Data not satisfied");
 			System.out.println("Data not satisfied");

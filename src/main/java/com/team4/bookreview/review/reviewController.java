@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -27,6 +28,7 @@ public class reviewController {
 	ObjectMapper obj = new ObjectMapper();
 	
 	@RequestMapping(value="/reviewInsert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public String reviewInsert(HttpServletRequest req) throws JsonProcessingException {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -54,6 +56,7 @@ public class reviewController {
 //	}
 	
 	@RequestMapping(value="/reviewSelect", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public String reviewSelect(HttpServletRequest req) throws JsonProcessingException {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -91,6 +94,7 @@ public class reviewController {
 	}
 	
 	@RequestMapping(value="/reviewDelete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public String reviewDelete(HttpServletRequest req) throws JsonProcessingException {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -108,6 +112,7 @@ public class reviewController {
 	}
 
 	@RequestMapping(value="/reviewUpdate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public String reviewUpdate(HttpServletRequest req) throws JsonProcessingException{
 	// update content, date
 		HashMap<String, String> map  = new HashMap<String, String>();
