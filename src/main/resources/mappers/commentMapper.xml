@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.team4.bookreview.dao.CommentDAO">
+
+	<select id="selectAll" resultType="CommentVO">
+		SELECT * from comment
+	</select>
+	
+	<select id="select" parameterType="hashmap" resultType="CommentVO">
+		select * from comment where post=#{post} and cmt_no=#{cmt_no}
+	</select>
+	
+	<insert id="insertComment" parameterType="CommentVO">
+		insert into comment(post, cmt_no, writer, content, date, parent) VALUES(#{post}, #{cmt_no}, #{writer}, #{content}, #{date}, #{parent})
+	</insert>
+	
+	<update id="updateComment" parameterType="hashmap">
+		update comment set content=#{content} where writer=#{writer} and cmt_no=#{cmt_no} and post=#{post}
+	</update>
+	
+	<delete id="deleteComment" parameterType="hashmap">
+		update comment set delFlag=#{delFlag} where writer=#{writer} and cmt_no=#{cmt_no} and post=#{post}
+	</delete>
+</mapper>
