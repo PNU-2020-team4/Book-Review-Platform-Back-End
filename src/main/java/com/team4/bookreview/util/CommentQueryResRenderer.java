@@ -9,25 +9,25 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
-	public String getInsertRes(String data) throws JsonProcessingException, IOException {
+	public String getInsertRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getDeleteRes(String data) throws JsonProcessingException, IOException {
+	public String getDeleteRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException {
+	public String getSelectRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getUpdateRes(String data) throws JsonProcessingException, IOException {
+	public String getUpdateRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

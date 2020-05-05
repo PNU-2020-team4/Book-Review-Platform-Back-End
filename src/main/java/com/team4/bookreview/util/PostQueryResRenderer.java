@@ -21,7 +21,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 	private PostDAOImpl postDAOImpl;
 
 	@Override
-	public String getInsertRes(String data) throws JsonProcessingException, IOException {
+	public String getInsertRes(String data) {
 		System.out.println("----- getInsertRes -----");
 		PostVO post = obj.readValue(data, PostVO.class);
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -72,7 +72,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 	}
 
 	@Override
-	public String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException {
+	public String getSelectRes(String data) {
 		System.out.println("----- getSelectRes -----");
 		HashMap<String, String> map = new HashMap<String, String>();
 
@@ -117,7 +117,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 	}
 
 	@Override
-	public String getUpdateRes(String data) throws JsonProcessingException, IOException {
+	public String getUpdateRes(String data) {
 		System.out.println("----- getUpdateRes -----");
 
 		PostVO post = obj.readValue(data, PostVO.class);
