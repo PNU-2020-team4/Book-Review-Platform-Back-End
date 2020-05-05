@@ -7,8 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface DBQueryResRenderer {
-	String getInsertRes(String data) throws JsonProcessingException, IOException;
-	String getDeleteRes(String data) throws JsonProcessingException, IOException;
-	String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException;
-	String getUpdateRes(String data) throws JsonProcessingException, IOException;
+	String getInsertRes(String data);
+	String getDeleteRes(String data);
+	String getSelectRes(String data);
+	String getUpdateRes(String data);
 }

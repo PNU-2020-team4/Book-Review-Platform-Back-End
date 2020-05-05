@@ -21,25 +21,25 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	UserDAOImpl userDaoImpl;
 	
 	@Override
-	public String getInsertRes(String data) throws JsonProcessingException, IOException {
+	public String getInsertRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getDeleteRes(String data) throws JsonProcessingException, IOException {
+	public String getDeleteRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException {
+	public String getSelectRes(String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getUpdateRes(String data) throws JsonProcessingException, IOException {
+	public String getUpdateRes(String data) {
 		UserVO user = obj.readValue(data, UserVO.class);
 		
 		System.out.println(user.toString());

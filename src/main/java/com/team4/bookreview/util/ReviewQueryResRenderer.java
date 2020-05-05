@@ -1,14 +1,11 @@
 package com.team4.bookreview.util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.daoImpl.ReviewDAOImpl;
@@ -22,7 +19,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	ReviewDAOImpl r;
 	
 	@Override
-	public String getInsertRes(String data) throws IOException {
+	public String getInsertRes(String data) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		ReviewVO record;
 		record = obj.readValue(data, ReviewVO.class);
@@ -60,7 +57,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	}
 
 	@Override
-	public String getDeleteRes(String data) throws IOException {
+	public String getDeleteRes(String data) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		ObjectNode nodes = obj.readValue(data, ObjectNode.class);
@@ -102,7 +99,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 
 
 	@Override
-	public String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException {
+	public String getSelectRes(String data) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<HashMap<String, Object>> recordList = new ArrayList<HashMap<String, Object>>();
 		ObjectNode nodes = obj.readValue(data, ObjectNode.class);
@@ -152,7 +149,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 
 
 	@Override
-	public String getUpdateRes(String data) throws IOException {
+	public String getUpdateRes(String data) {
 		// update content, date
 		HashMap<String, String> map  = new HashMap<String, String>();
 		ReviewVO record = obj.readValue(data, ReviewVO.class);
