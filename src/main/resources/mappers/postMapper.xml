@@ -13,19 +13,19 @@
     	WHERE idx = ${idx}
     </select>
     
-    <udpate id="update" parameterType="com.team4.bookreview.vo.PostVO" resultType="int">
+    <update id="update" parameterType="com.team4.bookreview.vo.PostVO">
         UPDATE post 
         SET title = #{title},
             content = #{content}
         WHERE idx = #{idx}
     </update>
 
-    <insert id="insert" parameterType="com.team4.bookreview.vo.PostVO" useGeneratedKey="true" keyProperty="idx">
+    <insert id="insert" parameterType="com.team4.bookreview.vo.PostVO" useGeneratedKeys="true" keyProperty="idx">
         INSERT INTO post (title, writer, content, cmt_cnt, view_cnt, date)
         VALUES (#{title}, #{writer}, #{content}, 0, 0, NOW());
     </insert>
 
-    <delete id="delete" parameterType="int" resultType="int">
+    <delete id="delete" parameterType="int">
         DELETE 
         FROM post
         WHERE idx = #{idx}
