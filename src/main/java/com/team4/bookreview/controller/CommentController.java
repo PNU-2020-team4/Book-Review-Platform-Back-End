@@ -80,7 +80,7 @@ public class CommentController {
 		List<CommentVO> listComment = commentDAOImpl.selectAll();
 		
 		for(CommentVO cmt : listComment) {
-			if(cmt.getdelFlag()) cmt.setContent("»èÁ¦µÈ ´ñ±ÛÀÔ´Ï´Ù.");
+			if(cmt.getdelFlag()) cmt.setContent("ì‚­ì œëœ ëŒ“ê¸€ì…ë‹ˆë‹¤.");
 		}
 		
 		Gson gson = new Gson();
