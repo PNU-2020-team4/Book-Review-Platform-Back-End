@@ -11,17 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-
-import com.team4.bookreview.util.DBQueryResRenderer;
-import com.team4.bookreview.util.QueryResRendererGetter;
 import com.team4.bookreview.util.UserQueryResRenderer;
-import com.team4.bookreview.util.tableIDs;
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	UserQueryResRenderer renderer;
+	private UserQueryResRenderer renderer;
 		
 	private String apiResult = null;
 	

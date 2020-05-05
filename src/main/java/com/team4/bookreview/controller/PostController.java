@@ -1,7 +1,5 @@
 package com.team4.bookreview.controller;
 
-import com.team4.bookreview.util.PostQueryResRenderer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team4.bookreview.util.PostQueryResRenderer;
+
 @Controller
 public class PostController {
-    @Autowired
-    PostQueryResRenderer renderer;
+
+    
+	@Autowired
+	private PostQueryResRenderer renderer;
 
     @RequestMapping(value="/post/get", method=RequestMethod.GET)
     @ResponseBody
