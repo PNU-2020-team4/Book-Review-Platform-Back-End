@@ -1,4 +1,4 @@
-package com.team4.bookreview.controller;
+package com.team4.bookreview;
 
 import java.text.DateFormat;
 import java.util.Date;
