@@ -1,4 +1,4 @@
-package com.team4.bookreview.user;
+package com.team4.bookreview.controller;
 
 import java.util.HashMap;
 

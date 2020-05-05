@@ -1,4 +1,4 @@
-package com.team4.bookreview.login;
+package com.team4.bookreview.controller;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.team4.bookreview.review;
+package com.team4.bookreview.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
