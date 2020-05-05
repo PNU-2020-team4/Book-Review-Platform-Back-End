@@ -11,7 +11,7 @@ import com.team4.bookreview.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class PostQueryResRenderer implements DBQueryResRenderer {
-	@Autowired
+	
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
 	private PostDAOImpl postDAOImpl;
@@ -66,6 +66,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		int idx = 0;
 		try {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
+			System.out.println("---df0-df");
 			idx = node.get("idx").asInt();
 		} catch (Exception e) {
 			e.printStackTrace();

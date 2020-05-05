@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team4.bookreview.daoImpl.ReviewDAOImpl;
 import com.team4.bookreview.daoImpl.UserDAOImpl;
+import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.UserVO;
 
 public class UserQueryResRenderer implements DBQueryResRenderer {
@@ -40,13 +41,11 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getUpdateRes(String data) {
-		UserVO user = obj.readValue(data, UserVO.class);
+		Response r = new Response();
+		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 		
 		System.out.println(user.toString());
 	
-		HashMap<String, String> map = new HashMap<String, String>();
-		ObjectMapper obj = new ObjectMapper();
-		
 		user.setHist_cnt(0);
 		int result = 0;
 		
@@ -54,32 +53,28 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("resultCode", "500");
-			map.put("message", "Data not satisfied");
-			System.out.println("Data not satisfied");
-			System.out.println("Return : " + obj.writeValueAsString(map));
-			return obj.writeValueAsString(map);
+			r.setResultCode(500);
+			r.setMessage("Data not satisfied");
+			return r.toJsonString();
 		}
 		
 		switch(result) {
 		case 1:
-			map.put("resultCode", "200");
-			map.put("user", obj.writeValueAsString(user));
+			r.setResultCode(100);
+			r.setData(user);
 			System.out.println("Success");
 			break;
 		case 0:
-			map.put("resultCode", "400");
-			System.out.println("DB Insertion error");
+			r.setResultCode(400);
+			r.setMessage("DB Insertion Error");
 			break;
 		default:
-			map.put("resultCode", "300");
-			map.put("message", "Internal Error");
+			r.setResultCode(400);
+			r.setMessage("Internal Error");
 			System.out.println("Return value is not 0 or 1");
 		}
 
-		String JSONValue =  obj.writeValueAsString(map);
-		return JSONValue;
-		
+		return r.toJsonString();
 	}
 
 
