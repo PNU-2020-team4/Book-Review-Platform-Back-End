@@ -74,19 +74,42 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 	@Override
 	public String getSelectRes(String data) throws JsonParseException, JsonMappingException, IOException {
 		System.out.println("----- getSelectRes -----");
-
 		HashMap<String, String> map = new HashMap<String, String>();
+
 		int resultCode = 500;
-		List<PostVO> result;
+
+		ObjectNode node = obj.readValue(data, ObjectNode.class);
+		if(node.get("idx") == null) {
+			List<PostVO> result;
+			try {
+				result = postDAOImpl.selectAll();
+				resultCode = 100;
+				map.put("posts", obj.writeValueAsString(result));
+			} catch (Exception e) {
+				e.printStackTrace();
+				resultCode = 200;
+				map.put("message", "Something's wrong");
+			}
+			map.put("resultCode", String.valueOf(resultCode));
+			System.out.println("return : " + obj.writeValueAsString(map));
+	
+			return obj.writeValueAsString(map);
+		}
+
+		int idx = node.get("idx").asInt();
+		PostVO result = null;
 		try {
-			result = postDAOImpl.selectAll();
-			resultCode = 100;
-			map.put("posts", obj.writeValueAsString(result));
+			result = postDAOImpl.select(idx);
+			if (result != null) {
+				resultCode = 100;
+				map.put("post", obj.writeValueAsString(result));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultCode = 200;
 			map.put("message", "Something's wrong");
 		}
+
 		map.put("resultCode", String.valueOf(resultCode));
 		System.out.println("return : " + obj.writeValueAsString(map));
 
@@ -115,31 +138,4 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 
 		return obj.writeValueAsString(map);
 	}
-
-	public String getSelectOneRes(String data) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("----- getSelectOneRes -----");
-
-		HashMap<String, String> map = new HashMap<String, String>();
-		ObjectNode node = obj.readValue(data, ObjectNode.class);
-		int idx = node.get("idx").asInt();
-		int resultCode = 500;
-		PostVO result = null;
-		try {
-			result = postDAOImpl.select(idx);
-			if (result != null) {
-				resultCode = 100;
-				map.put("post", obj.writeValueAsString(result));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			resultCode = 200;
-			map.put("message", "Something's wrong");
-		}
-
-		map.put("resultCode", String.valueOf(resultCode));
-		System.out.println("return : " + obj.writeValueAsString(map));
-
-		return obj.writeValueAsString(map);
-	}
-
 }

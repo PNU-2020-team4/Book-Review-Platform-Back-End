@@ -36,22 +36,22 @@ public class PostController {
         }
     }
 
-    // @RequestMapping(value="/post/getOne", method=RequestMethod.POST)
-    // @ResponseBody
-    // public String postSelect(@RequestParam String data) {
-    //     System.out.println("=========== [/post/getOne] request ==========");
-    //     try {
-    // 		String JSONValue = renderer.getSelect(data);
-    // 		System.out.println("Return : " + JSONValue);
-    //         return JSONValue;
-    //     } catch(JsonParseException e) {
-    //         return "";
-    //     } catch(JsonMappingException e) {
-    //         return "";
-    //     } catch(Exception e) {
-    //         return "";
-    //     }
-    // }
+    @RequestMapping(value="/post/getone", method=RequestMethod.POST)
+    @ResponseBody
+    public String postSelect(@RequestParam String data) {
+        System.out.println("=========== [/post/getOne] request ==========");
+        try {
+    		String JSONValue = renderer.getSelectRes(data);
+    		System.out.println("Return : " + JSONValue);
+            return JSONValue;
+        } catch(JsonParseException e) {
+            return "";
+        } catch(JsonMappingException e) {
+            return "";
+        } catch(Exception e) {
+            return "";
+        }
+    }
 
     @RequestMapping(value="/post/insert", method=RequestMethod.POST)
     @ResponseBody
