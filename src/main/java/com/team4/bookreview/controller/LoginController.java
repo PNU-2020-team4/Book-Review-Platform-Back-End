@@ -14,12 +14,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import com.team4.bookreview.util.DBQueryResRenderer;
 import com.team4.bookreview.util.QueryResRendererGetter;
+import com.team4.bookreview.util.UserQueryResRenderer;
 import com.team4.bookreview.util.tableIDs;
 
 @Controller
 public class LoginController {
+
 	@Autowired
-	DBQueryResRenderer renderer = QueryResRendererGetter.getQueryResRenderer(tableIDs.USER);
+	UserQueryResRenderer renderer;
 		
 	private String apiResult = null;
 	

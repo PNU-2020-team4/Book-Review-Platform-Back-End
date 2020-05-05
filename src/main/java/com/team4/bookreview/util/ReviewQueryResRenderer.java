@@ -5,17 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.daoImpl.ReviewDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.ReviewVO;
-
+@Service
 public class ReviewQueryResRenderer implements DBQueryResRenderer {
-
-	@Autowired
 	private ObjectMapper obj = new ObjectMapper();
+
 	@Autowired
 	ReviewDAOImpl reviewDAOImpl;
 	

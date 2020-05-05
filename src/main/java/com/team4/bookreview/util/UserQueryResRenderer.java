@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,10 +14,9 @@ import com.team4.bookreview.daoImpl.ReviewDAOImpl;
 import com.team4.bookreview.daoImpl.UserDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.UserVO;
-
+@Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
 
-	@Autowired
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
 	UserDAOImpl userDaoImpl;

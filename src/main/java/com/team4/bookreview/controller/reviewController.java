@@ -15,12 +15,13 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.team4.bookreview.util.DBQueryResRenderer;
 import com.team4.bookreview.util.QueryResRendererGetter;
+import com.team4.bookreview.util.ReviewQueryResRenderer;
 import com.team4.bookreview.util.tableIDs;
 
 @Controller
 public class reviewController {
 	@Autowired
-	DBQueryResRenderer renderer = QueryResRendererGetter.getQueryResRenderer(tableIDs.REVIEW);
+	ReviewQueryResRenderer renderer;
 	 	
 	@RequestMapping(value="/reviewInsert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

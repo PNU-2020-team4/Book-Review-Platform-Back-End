@@ -9,9 +9,10 @@ import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.PostVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
-	
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
 	private PostDAOImpl postDAOImpl;

@@ -1,10 +1,6 @@
 package com.team4.bookreview.controller;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.team4.bookreview.util.DBQueryResRenderer;
-import com.team4.bookreview.util.QueryResRendererGetter;
-import com.team4.bookreview.util.tableIDs;
+import com.team4.bookreview.util.PostQueryResRenderer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,9 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PostController {
-
-    
-	DBQueryResRenderer renderer = QueryResRendererGetter.getQueryResRenderer(tableIDs.POST);
+    @Autowired
+    PostQueryResRenderer renderer;
 
     @RequestMapping(value="/post/get", method=RequestMethod.GET)
     @ResponseBody
