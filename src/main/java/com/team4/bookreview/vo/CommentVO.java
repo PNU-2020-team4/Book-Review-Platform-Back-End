@@ -2,7 +2,7 @@ package com.team4.bookreview.vo;
 
 import java.util.Date;
 
-public class CommentVO {
+public class CommentVO extends DataVO{
 	int post;
 	int cmt_no;
 	int writer;

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * @author KwanwooKim
  * @date 2020-04-22
  */
-public class ReviewVO {
+public class ReviewVO extends DataVO {
 	
 	int idx;
 	int writer;

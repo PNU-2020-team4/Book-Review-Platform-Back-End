@@ -2,7 +2,7 @@ package com.team4.bookreview.vo;
 
 import java.io.Serializable;
 
-public class UserVO implements Serializable {
+public class UserVO extends DataVO implements Serializable {
 	
 	int id;
 	String email;
