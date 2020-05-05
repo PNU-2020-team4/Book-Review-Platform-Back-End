@@ -68,14 +68,6 @@ public class Response {
 		}
 	}
 
-    public static ObjectMapper getObj() {
-        return obj;
-    }
-
-    public static void setObj(ObjectMapper obj) {
-        Response.obj = obj;
-    }
-
     public List<? extends DataVO> getDataList() {
         return dataList;
     }

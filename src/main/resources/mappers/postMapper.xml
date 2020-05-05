@@ -10,7 +10,7 @@
     <select id="select" parameterType="int" resultType="com.team4.bookreview.vo.PostVO">
     	SELECT * 
     	FROM post
-    	WHERE idx = ${idx}
+    	WHERE idx = #{idx}
     </select>
     
     <update id="update" parameterType="com.team4.bookreview.vo.PostVO">

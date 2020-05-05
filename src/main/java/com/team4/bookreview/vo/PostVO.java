@@ -67,5 +67,11 @@ public class PostVO extends DataVO {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return "PostVO [cmt_cnt=" + cmt_cnt + ", content=" + content + ", date=" + date + ", idx=" + idx + ", title="
+				+ title + ", view_cnt=" + view_cnt + ", writer=" + writer + "]";
+	}
+
 	
 }

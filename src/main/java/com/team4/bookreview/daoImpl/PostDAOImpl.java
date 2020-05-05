@@ -25,23 +25,24 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public PostVO select(int idx) {
-		return sqlSession.selectOne(mapper + ".select");
+		return sqlSession.selectOne(mapper + ".select", idx);
 	}
 
 	@Override
 	public int update(int idx, PostVO post) {
-		return sqlSession.update(mapper + ".update");
+		return sqlSession.update(mapper + ".update", post);
 	}
 
 	@Override
 	public int delete(int idx) {
-		return sqlSession.delete(mapper + ".delete");
+		return sqlSession.delete(mapper + ".delete", idx);
 	}
 
 	// return idx
 	@Override
 	public int insert(PostVO post) {
-		return sqlSession.insert(mapper + ".insert");
+		System.out.println(post + "");
+		return sqlSession.insert(mapper + ".insert", post);
 	}
 	
 	
