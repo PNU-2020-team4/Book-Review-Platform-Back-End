@@ -16,7 +16,8 @@
     <update id="update" parameterType="com.team4.bookreview.vo.PostVO">
         UPDATE post 
         SET title = #{title},
-            content = #{content}
+            content = #{content},
+            modified = NOW()
         WHERE idx = #{idx}
     </update>
 
