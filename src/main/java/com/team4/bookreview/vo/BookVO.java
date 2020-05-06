@@ -1,6 +1,6 @@
 package com.team4.bookreview.vo;
 
-public class BookVO {
+public class BookVO extends DataVO {
 	String name;
 	String author;
 	int idx;

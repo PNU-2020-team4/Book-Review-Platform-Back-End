@@ -26,30 +26,31 @@ public class CommentDAOImpl implements CommentDAO{
 	}
 
 	@Override
-	public CommentVO select(HashMap<String, Object> map) {
+	public CommentVO select(CommentVO cmt) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertComment(CommentVO cmt) {
+	public int insertComment(CommentVO cmt) {
 		// TODO Auto-generated method stub
-		
+		int res = sqlSession.insert(namespace+".insertComment", cmt);
+		return res;
 	}
 
 	@Override
-	public int updateComment(HashMap<String, Object> map) {
+	public int updateComment(CommentVO cmt) {
 		// TODO Auto-generated method stub
-		int res = sqlSession.update(namespace+".updateComment", map);
+		int res = sqlSession.update(namespace+".updateComment", cmt);
 		System.out.println(res);
 		return res;
 	}
 
 	@Override
-	public int deleteComment(HashMap<String, Object> map) {
+	public int deleteComment(CommentVO cmt) {
 		// TODO Auto-generated method stub
-		int res = sqlSession.update(namespace+".deleteComment", map);
+		int res = sqlSession.update(namespace+".deleteComment", cmt);
 		System.out.println(res);
-		return 0;
+		return res;
 	}
 }

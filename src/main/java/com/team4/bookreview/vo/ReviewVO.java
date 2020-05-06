@@ -1,45 +1,45 @@
 package com.team4.bookreview.vo;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author KwanwooKim
  * @date 2020-04-22
  */
-public class ReviewVO {
+public class ReviewVO extends DataVO {
 	
 	int idx;
 	int writer;
 	String content;
 	int star;
 	int book;
-	Timestamp date;
+	Date date;
 	
-	public ReviewVO(int writer, String content, int star, int book, Timestamp date) {
-		super();
-		this.writer = writer;
-		this.content = content;
-		this.star = star;
-		this.book = book;
-		this.date = date;
-	}
+//	public ReviewVO(int writer, String content, int star, int book, String date) {
+//		super();
+//		this.writer = writer;
+//		this.content = content;
+//		this.star = star;
+//		this.book = book;
+//		this.date = Timestamp.valueOf(date);
+//	}
+//	
+//	public ReviewVO(int idx, int writer, String content, int star, int book, Timestamp date) {
+//		super();
+//		this.idx = idx;
+//		this.writer = writer;
+//		this.content = content;
+//		this.star = star;
+//		this.book = book;
+//		this.date = date;
+//	}
 	
-	public ReviewVO(int idx, int writer, String content, int star, int book, Timestamp date) {
-		super();
-		this.idx = idx;
-		this.writer = writer;
-		this.content = content;
-		this.star = star;
-		this.book = book;
-		this.date = date;
-	}
-	
-	@Override
-	public String toString() {
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return "ReviewVO [idx=" + idx + ", writer=" + writer + ", content=" + content + ", star=" + star + ", book="
-				+ book + ", date=" + sdf.format(date) + "]";
-	}
+//	@Override
+//	public String toString() {
+//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		return "ReviewVO [idx=" + idx + ", writer=" + writer + ", content=" + content + ", star=" + star + ", book="
+//				+ book + ", date=" + sdf.format(date) + "]";
+//	}
 
 	public int getIdx() {
 		return idx;
@@ -81,11 +81,11 @@ public class ReviewVO {
 		this.book = book;
 	}
 	
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date ;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }

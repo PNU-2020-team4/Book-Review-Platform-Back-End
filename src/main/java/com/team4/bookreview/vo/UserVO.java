@@ -2,7 +2,7 @@ package com.team4.bookreview.vo;
 
 import java.io.Serializable;
 
-public class UserVO implements Serializable {
+public class UserVO extends DataVO implements Serializable {
 	
 	int id;
 	String email;
@@ -35,7 +35,7 @@ public class UserVO implements Serializable {
 	public String getNickname() {
 		return nickname;
 	}
-	public void setNick(String nickname) {
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 	public String getAge() {

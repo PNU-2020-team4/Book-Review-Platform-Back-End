@@ -8,7 +8,7 @@
 		SELECT * from comment
 	</select>
 	
-	<select id="select" parameterType="hashmap" resultType="CommentVO">
+	<select id="select" parameterType="CommentVO" resultType="CommentVO">
 		select * from comment where post=#{post} and cmt_no=#{cmt_no}
 	</select>
 	
@@ -16,11 +16,11 @@
 		insert into comment(post, cmt_no, writer, content, date, parent) VALUES(#{post}, #{cmt_no}, #{writer}, #{content}, #{date}, #{parent})
 	</insert>
 	
-	<update id="updateComment" parameterType="hashmap">
+	<update id="updateComment" parameterType="CommentVO">
 		update comment set content=#{content} where writer=#{writer} and cmt_no=#{cmt_no} and post=#{post}
 	</update>
 	
-	<delete id="deleteComment" parameterType="hashmap">
+	<delete id="deleteComment" parameterType="CommentVO">
 		update comment set delFlag=#{delFlag} where writer=#{writer} and cmt_no=#{cmt_no} and post=#{post}
 	</delete>
 </mapper>

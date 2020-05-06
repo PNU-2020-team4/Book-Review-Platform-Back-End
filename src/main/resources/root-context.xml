@@ -49,5 +49,5 @@
 	<context:component-scan base-package="com.team4.bookreview.api" />
 	<context:component-scan base-package="com.team4.bookreview.auth" />
 	<context:component-scan base-package="com.team4.bookreview.review" />
-	
+	<context:component-scan base-package="com.team4.bookreview.model" />
 </beans>

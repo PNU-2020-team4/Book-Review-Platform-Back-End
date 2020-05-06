@@ -1,22 +1,17 @@
 package com.team4.bookreview.util;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.team4.bookreview.daoImpl.ReviewDAOImpl;
+import com.google.gson.Gson;
 import com.team4.bookreview.daoImpl.UserDAOImpl;
+import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.UserVO;
 
-public class UserQueryResRenderer implements DBQueryResRenderer {
 
-	@Autowired
-	private ObjectMapper obj = new ObjectMapper();
+@Service
+public class UserQueryResRenderer implements DBQueryResRenderer {
+	
 	@Autowired
 	UserDAOImpl userDaoImpl;
 	
@@ -35,18 +30,78 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	@Override
 	public String getSelectRes(String data) {
 		// TODO Auto-generated method stub
-		return null;
+		Gson gson = new Gson();
+		Response r = new Response();
+		UserVO user = gson.fromJson(data,  UserVO.class);
+		
+		UserVO selected_user = null;
+		
+		try {
+			selected_user = userDaoImpl.select(user.getId());
+		} catch(Exception e) {
+			e.printStackTrace();
+			r.setResultCode(500);
+			r.setMessage("Can not select Data");
+			return r.toJsonString();
+		}
+		
+		if(selected_user != null) {
+			r.setResultCode(100);
+			r.setData(selected_user);
+			r.setMessage("Success");
+			System.out.println("Success");
+		} else {
+			r.setResultCode(400);
+			r.setMessage("Some Error occur while selecting");
+		}
+		return r.toJsonString();
+	}
+	
+	public String getUpdateNickRes(String data) {
+		Gson gson = new Gson();
+		Response r = new Response();
+		UserVO user = gson.fromJson(data,  UserVO.class);
+		
+		System.out.println(user.toString());
+		int result = 0;
+		
+		try {
+			result = userDaoImpl.updateNick(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setResultCode(500);
+			r.setMessage("Data not satisfied");
+		}
+		
+		switch(result) {
+		case 0:
+			r.setResultCode(400);
+			r.setMessage("DB Update Error");
+			break;
+		
+		case 1:
+			r.setResultCode(100);
+			r.setMessage("Success");
+			r.setData(userDaoImpl.select(user.getId()));
+			break;
+		default:
+			r.setResultCode(400);
+			r.setMessage("Internal Error");
+			System.out.println("Return value is not 0 or 1");
+		}
+		
+		return r.toJsonString();
 	}
 
 	@Override
 	public String getUpdateRes(String data) {
-		UserVO user = obj.readValue(data, UserVO.class);
+		Response r = new Response();
+		UserVO user = (UserVO) r.readValue(data, UserVO.class);
+		
+		System.out.println(user);
 		
 		System.out.println(user.toString());
 	
-		HashMap<String, String> map = new HashMap<String, String>();
-		ObjectMapper obj = new ObjectMapper();
-		
 		user.setHist_cnt(0);
 		int result = 0;
 		
@@ -54,32 +109,28 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put("resultCode", "500");
-			map.put("message", "Data not satisfied");
-			System.out.println("Data not satisfied");
-			System.out.println("Return : " + obj.writeValueAsString(map));
-			return obj.writeValueAsString(map);
+			r.setResultCode(500);
+			r.setMessage("Data not satisfied");
+			return r.toJsonString();
 		}
 		
 		switch(result) {
 		case 1:
-			map.put("resultCode", "200");
-			map.put("user", obj.writeValueAsString(user));
+			r.setResultCode(100);
+			r.setData(user);
 			System.out.println("Success");
 			break;
 		case 0:
-			map.put("resultCode", "400");
-			System.out.println("DB Insertion error");
+			r.setResultCode(400);
+			r.setMessage("DB Insertion Error");
 			break;
 		default:
-			map.put("resultCode", "300");
-			map.put("message", "Internal Error");
+			r.setResultCode(400);
+			r.setMessage("Internal Error");
 			System.out.println("Return value is not 0 or 1");
 		}
 
-		String JSONValue =  obj.writeValueAsString(map);
-		return JSONValue;
-		
+		return r.toJsonString();
 	}
 
 

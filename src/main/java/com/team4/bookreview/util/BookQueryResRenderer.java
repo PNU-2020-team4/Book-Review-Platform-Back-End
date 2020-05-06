@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import org.springframework.stereotype.Service;
+@Service
 public class BookQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
