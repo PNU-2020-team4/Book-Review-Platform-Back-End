@@ -1,1 +1,1 @@
-web: java -jar target/br.war
+web: java -jar target/br-1.0.0.war
