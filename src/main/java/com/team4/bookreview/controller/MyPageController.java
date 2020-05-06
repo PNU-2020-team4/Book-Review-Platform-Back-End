@@ -23,8 +23,14 @@ public class MyPageController {
 	@RequestMapping(value="/mypage", produces="text/plain; charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String seeMyPage(@RequestParam String data) throws JsonProcessingException {
+
+		System.out.println("=============/mypage=============");
+		System.out.println("data : " + data);
+
 		String resJson = renderer.getSelectRes(data);
 		
+		System.out.println("result : " + resJson);
+
 		return resJson;
 	}
 	
@@ -32,8 +38,13 @@ public class MyPageController {
 	@ResponseBody
 	public String changeNick(@RequestParam String data)
 	{
+		System.out.println("=============/mypage/changeNick=============");
+		System.out.println("data : " + data);
+
 		String resJson = renderer.getUpdateNickRes(data);
 		
+		System.out.println("result : " + resJson);
+
 		return resJson;
 	}
 }
