@@ -17,24 +17,37 @@ public class CommentController {
 	@RequestMapping(value="/comment/insert", method=RequestMethod.POST)
 	@ResponseBody
 	public String writeComment(@RequestParam String data) {
+
+		System.out.println("=============/comment/insert=============");
+		System.out.println("data" + data);
 		String resJson = renderer.getInsertRes(data);
 
+		System.out.println("result : " + resJson);
 		return resJson;
 	}
 	
 	@RequestMapping(value="/comment/update", method=RequestMethod.POST)
 	@ResponseBody
 	public String updateComment(@RequestParam String data) {
+
+		System.out.println("=============/comment/update=============");
+		System.out.println("data : " + data);
+
 		String resJson = renderer.getUpdateRes(data);
 		
+		System.out.println("result : " + resJson);
 		return resJson;
 	}
 	
 	@RequestMapping(value="/comment", produces="text/plain; charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
 	public String showComments() {
+
+		System.out.println("=============/comment=============");
 		String resJson = renderer.getAllSelectRes();
 		
+		System.out.println("result : " + resJson);
+
 		return resJson;
 		
 	}
@@ -42,8 +55,12 @@ public class CommentController {
 	@RequestMapping(value="/comment/delete", method=RequestMethod.POST)
 	@ResponseBody
 	public String deleteComment(@RequestParam String data) {
+
+		System.out.println("=============/comment/delete=============");
+		System.out.println("data : " + data);
 		String resJson = renderer.getDeleteRes(data);
 		
+		System.out.println("result : " + resJson);
 		return resJson;
 	}
 	
