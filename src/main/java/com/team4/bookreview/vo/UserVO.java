@@ -35,7 +35,7 @@ public class UserVO extends DataVO implements Serializable {
 	public String getNickname() {
 		return nickname;
 	}
-	public void setNick(String nickname) {
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 	public String getAge() {

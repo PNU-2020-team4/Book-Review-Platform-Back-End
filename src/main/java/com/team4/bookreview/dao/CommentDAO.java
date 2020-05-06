@@ -7,9 +7,9 @@ import com.team4.bookreview.vo.CommentVO;
 
 public interface CommentDAO {
 	public List<CommentVO> selectAll();
-	public CommentVO select(HashMap<String, Object> map);
-	public void insertComment(CommentVO cmt);
-	public int updateComment(HashMap<String, Object> map);
-	public int deleteComment(HashMap<String, Object> map);
+	public CommentVO select(CommentVO cmt);
+	public int insertComment(CommentVO cmt);
+	public int updateComment(CommentVO cmt);
+	public int deleteComment(CommentVO cmt);
 
 }

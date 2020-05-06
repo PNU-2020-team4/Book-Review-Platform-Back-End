@@ -11,39 +11,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.team4.bookreview.daoImpl.UserDAOImpl;
+import com.team4.bookreview.util.UserQueryResRenderer;
 import com.team4.bookreview.vo.UserVO;
 
 @Controller
 public class MyPageController {
 	
 	@Autowired
-	private UserDAOImpl userDaoImpl;
+	private UserQueryResRenderer renderer;
 	
-	@RequestMapping(value="/mypage", method=RequestMethod.POST)
+	@RequestMapping(value="/mypage", produces="text/plain; charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String seeMyPage(@RequestParam int id) throws JsonProcessingException {
-		UserVO user = userDaoImpl.select(id);
+	public String seeMyPage(@RequestParam String data) throws JsonProcessingException {
+		String resJson = renderer.getSelectRes(data);
 		
-		ObjectMapper objMapper = new ObjectMapper();
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		map.put("user",objMapper.writeValueAsString(user));
-		
-		System.out.println(user);
-		
-		return objMapper.writeValueAsString(map);
+		return resJson;
 	}
 	
 	@RequestMapping(value="/mypage/changeNick", method=RequestMethod.POST)
 	@ResponseBody
-	public void changeNick(@RequestParam int id, @RequestParam String nick)
+	public String changeNick(@RequestParam String data)
 	{
-		UserVO user = new UserVO();
-		user.setId(id);
-		user.setNick(nick);		
+		String resJson = renderer.getUpdateNickRes(data);
 		
-		int res = userDaoImpl.updateNick(user);
-		if(res == 1) System.out.println("complete");
+		return resJson;
 	}
 }
