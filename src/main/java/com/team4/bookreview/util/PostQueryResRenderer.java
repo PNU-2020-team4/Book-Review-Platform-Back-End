@@ -46,7 +46,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
 		int result;
 		try {
-			result = postDAOImpl.delete(post.getIdx());
+			result = postDAOImpl.delete(post);
 			if (result == 1) {
 				r.setResultCode(100);
 			} else {
@@ -77,6 +77,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} 
 
 		if(idx == 0) {
+			System.out.println("[SELECT ALL POST]");
 			List<PostVO> result;
 			try {
 				result = postDAOImpl.selectAll();
@@ -90,6 +91,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			return r.toJsonString();
 		}
 
+		System.out.println("[SELECT ONE POST]");
 		PostVO result = null;
 		try {
 			result = postDAOImpl.select(idx);
