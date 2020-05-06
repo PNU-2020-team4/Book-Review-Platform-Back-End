@@ -28,5 +28,5 @@
 	<context:component-scan base-package="com.team4.bookreview.daoImpl" />
 	<context:component-scan base-package="com.team4.bookreview.vo" />
 	<context:component-scan base-package="com.team4.bookreview.auth" />
-	
+	<context:component-scan base-package="com.team4.bookreview.model" />
 </beans:beans>

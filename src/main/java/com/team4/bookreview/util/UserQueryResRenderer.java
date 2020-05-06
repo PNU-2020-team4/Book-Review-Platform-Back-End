@@ -10,7 +10,6 @@ import com.team4.bookreview.vo.UserVO;
 
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
-
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;

@@ -14,7 +14,6 @@ import com.team4.bookreview.vo.PostVO;
 
 @Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
-	
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
 	private PostDAOImpl postDAOImpl;
@@ -69,8 +68,9 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		int idx = 0;
 		try {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
-			System.out.println("---df0-df");
-			idx = node.get("idx").asInt();
+			if(node.get("idx") != null) {
+				idx = node.get("idx").asInt();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			idx = 0;

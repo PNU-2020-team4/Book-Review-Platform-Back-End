@@ -15,6 +15,7 @@ import com.team4.bookreview.util.UserQueryResRenderer;
 
 @Controller
 public class LoginController {
+
 	@Autowired
 	private UserQueryResRenderer renderer;
 		

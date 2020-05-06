@@ -12,8 +12,8 @@ import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.ReviewVO;
 @Service
 public class ReviewQueryResRenderer implements DBQueryResRenderer {
-
 	private ObjectMapper obj = new ObjectMapper();
+
 	@Autowired
 	ReviewDAOImpl reviewDAOImpl;
 	
