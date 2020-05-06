@@ -10,6 +10,8 @@ public class PostVO extends DataVO {
 	int cmt_cnt;
 	int view_cnt;
 	Date date;
+	Date modified;
+	boolean delFlag;
 
 	public int getIdx() {
 		return idx;
@@ -67,10 +69,27 @@ public class PostVO extends DataVO {
 		this.date = date;
 	}
 
+	public Date getModified() {
+		return modified;
+	}
+
+	public void setModified(Date modified) {
+		this.modified = modified;
+	}
+
+	public boolean isDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(boolean delFlag) {
+		this.delFlag = delFlag;
+	}
+
 	@Override
 	public String toString() {
-		return "PostVO [cmt_cnt=" + cmt_cnt + ", content=" + content + ", date=" + date + ", idx=" + idx + ", title="
-				+ title + ", view_cnt=" + view_cnt + ", writer=" + writer + "]";
+		return "PostVO [cmt_cnt=" + cmt_cnt + ", content=" + content + ", date=" + date + ", delFlag=" + delFlag
+				+ ", idx=" + idx + ", modified=" + modified + ", title=" + title + ", view_cnt=" + view_cnt
+				+ ", writer=" + writer + "]";
 	}
 
 	

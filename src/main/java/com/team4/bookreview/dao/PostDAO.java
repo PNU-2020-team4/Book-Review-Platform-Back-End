@@ -9,5 +9,5 @@ public interface PostDAO {
 	public PostVO select(int idx);
 	public int insert(PostVO post);
 	public int update(int idx, PostVO post);
-	public int delete(int idx);
+	public int delete(PostVO post);
 }

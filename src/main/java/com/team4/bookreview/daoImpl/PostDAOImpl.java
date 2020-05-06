@@ -34,8 +34,8 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public int delete(int idx) {
-		return sqlSession.delete(mapper + ".delete", idx);
+	public int delete(PostVO post) {
+		return sqlSession.delete(mapper + ".delete", post);
 	}
 
 	// return idx

@@ -5,12 +5,15 @@
     <select id="selectAll" resultType="com.team4.bookreview.vo.PostVO">
         SELECT *
         FROM post
+        WHERE delFlag = 0
+        ORDER BY date DESC;
     </select>
     
     <select id="select" parameterType="int" resultType="com.team4.bookreview.vo.PostVO">
     	SELECT * 
     	FROM post
     	WHERE idx = #{idx}
+        AND delFlag = 0
     </select>
     
     <update id="update" parameterType="com.team4.bookreview.vo.PostVO">
@@ -23,14 +26,15 @@
     </update>
 
     <insert id="insert" parameterType="com.team4.bookreview.vo.PostVO" useGeneratedKeys="true" keyProperty="idx">
-        INSERT INTO post (title, writer, content, cmt_cnt, view_cnt, date)
-        VALUES (#{title}, #{writer}, #{content}, 0, 0, NOW());
+        INSERT INTO post (title, writer, content, cmt_cnt, view_cnt, date, modified, delFlag)
+        VALUES (#{title}, #{writer}, #{content}, 0, 0, NOW(), NOW(), 0);
     </insert>
 
-    <delete id="delete" parameterType="int">
-        DELETE 
-        FROM post
+    <update id="delete" parameterType="com.team4.bookreview.vo.PostVO">
+        UPDATE post
+        SET delFlag = 1
         WHERE idx = #{idx}
-    </delete>
+        AND writer = #{writer}
+    </update>
 
 </mapper>
