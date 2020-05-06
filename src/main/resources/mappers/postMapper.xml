@@ -18,6 +18,7 @@
         SET title = #{title},
             content = #{content}
         WHERE idx = #{idx}
+        AND writer = #{writer}
     </update>
 
     <insert id="insert" parameterType="com.team4.bookreview.vo.PostVO" useGeneratedKeys="true" keyProperty="idx">
