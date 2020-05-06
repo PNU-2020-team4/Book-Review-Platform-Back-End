@@ -26,7 +26,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/getone", method=RequestMethod.POST)
+    @RequestMapping(value="/post/getone", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postSelect(@RequestParam String data) {
         System.out.println("=========== [/post/getOne] request ==========");
