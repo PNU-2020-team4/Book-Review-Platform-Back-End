@@ -40,6 +40,7 @@ public class Response {
     
     public String toJsonString() {
         try {
+        	System.out.println("MAKE RESULT INTO JSON...");
             return obj.writeValueAsString(this);
         } catch (Exception e) {
             e.printStackTrace();

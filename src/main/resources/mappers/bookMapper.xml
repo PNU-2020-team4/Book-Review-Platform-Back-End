@@ -7,9 +7,20 @@
         FROM book
     </select>
     
-    <select id="select" resultType="com.team4.bookreview.vo.BookVO">
+    <select id="select" parameterType="int" resultType="com.team4.bookreview.vo.BookVO">
     	SELECT * 
     	FROM book
-    	WHERE idx = ${idx}
+    	WHERE idx = #{idx};
     </select>
+
+    <insert id="insert" parameterType="com.team4.bookreview.vo.BookVO" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO book (name, author)
+        VALUES (#{name}, #{author});
+    </insert>
+
+    <update id="delete" parameterType="int">
+        DELETE 
+        FROM book
+        WHERE idx = #{idx};
+    </update>
 </mapper>

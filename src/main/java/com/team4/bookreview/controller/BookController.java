@@ -1,7 +1,6 @@
 package com.team4.bookreview.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,56 +12,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.team4.bookreview.util.BookQueryResRenderer;
 import com.team4.bookreview.util.ReviewQueryResRenderer;
 
 @Controller
-public class reviewController {
+public class BookController {
 	
-	@Autowired
-	private ReviewQueryResRenderer renderer;
+    @Autowired
+	private BookQueryResRenderer renderer;
 	 	
-	@RequestMapping(value="/review/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String reviewInsert(@RequestParam String data) {
-        System.out.println("=========== [/review/insert] request ==========");
+	public String bookInsert(@RequestParam String data)  {
+        System.out.println("=========== [/book/insert] request ==========");
 		String JSONValue = renderer.getInsertRes(data);
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
-
-
 	
-	@RequestMapping(value="/review/get", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String reviewSelect() {
+        System.out.println("=========== [/book/get] request ==========");
+        String JSONValue = renderer.getSelectRes("");
+        System.out.println("Return : " + JSONValue);
+        return JSONValue;
+	}
+	
+	@RequestMapping(value="/book/getone", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
-		System.out.println("=========== [/review/get] request ==========");
+        System.out.println("=========== [/book/getone] request ==========");
 		String JSONValue = renderer.getSelectRes(data);
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/review/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String reviewDelete(@RequestParam String data)  {
-        System.out.println("=========== [/review/delete] request ==========");
+        System.out.println("=========== [/book/delete] request ==========");
 		String JSONValue = renderer.getDeleteRes(data);
 		System.out.println(JSONValue);
 		return JSONValue;
 		
 	}
 
-	@RequestMapping(value="/review/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String reviewUpdate(@RequestParam String data)  {
-        System.out.println("=========== [/review/update] request ==========");
+        System.out.println("=========== [/book/update] request ==========");
 		String JSONValue = renderer.getUpdateRes(data);
 		System.out.println(JSONValue);
 		return JSONValue;
 		
 	}
 	
-	// public Timestamp getTimestamp(String str){
-	// 	return Timestamp.valueOf(str);
-	// }
 	
 }
