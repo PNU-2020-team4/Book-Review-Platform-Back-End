@@ -16,7 +16,7 @@
     
     <insert id="insert" parameterType = "ReviewVO">
     	INSERT INTO review( writer, content, star, book, date)
-    	VALUE (#{writer}, #{content}, #{star}, #{book}, #{date})
+    	VALUE (#{writer}, #{content}, #{star}, #{book}, NOW())
     </insert>
     
     <delete id="delete" parameterType = "int">
