@@ -22,6 +22,16 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public BookVO select(int idx) {
-		return sqlSession.selectOne("com.team4.bookreview.bookMapper.select");
+		return sqlSession.selectOne("com.team4.bookreview.bookMapper.select", idx);
+	}
+
+	@Override
+	public int insert(BookVO book){
+		return sqlSession.insert("com.team4.bookreview.bookMapper.insert", book);
+	}
+	
+	@Override
+	public int delete(int idx){
+		return sqlSession.delete("com.team4.bookreview.bookMapper.delete", idx);
 	}
 }

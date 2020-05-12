@@ -85,7 +85,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 				break;
 			case 0:
 				r.setResultCode(400);
-				r.setMessage("DB Insertion error");
+				r.setMessage("DB Deletion error");
 				break;
 			default:
 				r.setResultCode(300);
