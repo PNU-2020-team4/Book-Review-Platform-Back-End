@@ -37,4 +37,17 @@
         AND writer = #{writer}
     </update>
 
+    <select id="searchWriter" parameterType="com.team4.bookreview.vo.PostVO" resultType="com.team4.bookreview.vo.PostVO">
+        SELECT *
+        FROM user A
+        INNER JOIN post B
+        ON A.id = B.writer 
+        WHERE A.nickname LIKE #{writer} 
+    </select>
+
+    <select id="searchTitle" parameterType="com.team4.bookreview.vo.PostVO" resultType="com.team4.bookreview.vo.PostVO">
+        SELECT *
+        FROM post
+        WHERE title LIKE #{title};
+    </select>
 </mapper>

@@ -10,4 +10,6 @@ public interface PostDAO {
 	public int insert(PostVO post);
 	public int update(int idx, PostVO post);
 	public int delete(PostVO post);
+	public List<PostVO> searchByWriter(PostVO post);
+	public List<PostVO> searchByTitle(PostVO post);
 }

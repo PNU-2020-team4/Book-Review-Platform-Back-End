@@ -44,6 +44,14 @@ public class PostDAOImpl implements PostDAO {
 		System.out.println(post + "");
 		return sqlSession.insert(mapper + ".insert", post);
 	}
-	
-	
+
+	@Override
+	public List<PostVO> searchByWriter(PostVO post) {
+		return sqlSession.selectList(mapper + ".searchWriter", post);
+	}
+
+	@Override
+	public List<PostVO> searchByTitle(PostVO post) {
+		return sqlSession.selectList(mapper + ".searchTitle", post);
+	}
 }

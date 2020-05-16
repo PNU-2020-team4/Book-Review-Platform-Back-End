@@ -123,4 +123,44 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		}
 		return r.toJsonString();
 	}
+
+	public String getSearchByWriterRes(String data){
+		System.out.println("----- getSearchByWriterRes -----");
+		Response r = new Response();	
+		PostVO post = (PostVO) r.readValue(data, PostVO.class);
+		List<PostVO> result;
+		try {
+			post.setWriter(Util.toSearchString(post.getWriter()));
+
+			result = postDAOImpl.searchByWriter(post);
+			r.setDataList(result);
+			r.setResultCode(100);
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Something's wrong");
+		}
+
+		return r.toJsonString();
+	}
+
+	public String getSearchByTitleRes(String data){
+		System.out.println("----- getSearchByTitleRes -----");
+		Response r = new Response();	
+		PostVO post = (PostVO) r.readValue(data, PostVO.class);
+		List<PostVO> result;
+		try {
+			post.setTitle(Util.toSearchString(post.getTitle()));
+
+			result = postDAOImpl.searchByTitle(post);
+			r.setDataList(result);
+			r.setResultCode(100);
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Something's wrong");
+		}
+
+		return r.toJsonString();
+	}
 }
