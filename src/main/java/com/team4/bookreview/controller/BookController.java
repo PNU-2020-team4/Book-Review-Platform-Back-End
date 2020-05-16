@@ -1,7 +1,5 @@
 package com.team4.bookreview.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.team4.bookreview.util.BookQueryResRenderer;
-import com.team4.bookreview.util.ReviewQueryResRenderer;
 
 @Controller
 public class BookController {
@@ -65,7 +60,24 @@ public class BookController {
 		String JSONValue = renderer.getUpdateRes(data);
 		System.out.println(JSONValue);
 		return JSONValue;
-		
+	}
+
+	@RequestMapping(value="/book/search/author", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String searchByAuthor(@RequestParam String data)  {
+        System.out.println("=========== [/book/search/author] request ==========");
+		String JSONValue = renderer.getSearchByAuthorRes(data);
+		System.out.println(JSONValue);
+		return JSONValue;
+	}
+	
+	@RequestMapping(value="/book/search/name", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String searchByBookName(@RequestParam String data)  {
+        System.out.println("=========== [/book/search/name] request ==========");
+		String JSONValue = renderer.getSearchByNameRes(data);
+		System.out.println(JSONValue);
+		return JSONValue;
 	}
 	
 	

@@ -23,4 +23,16 @@
         FROM book
         WHERE idx = #{idx};
     </update>
+
+    <select id="searchAuthor" parameterType="com.team4.bookreview.vo.BookVO" resultType="com.team4.bookreview.vo.BookVO">
+        SELECT *
+        FROM book
+        WHERE author LIKE #{author};
+    </select>
+
+    <select id="searchName" parameterType="com.team4.bookreview.vo.BookVO" resultType="com.team4.bookreview.vo.BookVO">
+        SELECT *
+        FROM book
+        WHERE name LIKE #{name};
+    </select>
 </mapper>

@@ -1,11 +1,7 @@
 package com.team4.bookreview.util;
 
-import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.daoImpl.BookDAOImpl;
@@ -175,6 +171,59 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String getSearchByAuthorRes(String data){
+		System.out.println("----- getSearchByAuthorRes -----");
+		Response r = new Response();
+		BookVO record = (BookVO)r.readValue(data, BookVO.class);
+		
+		List<BookVO> result;
+		try{
+			record.setAuthor(toSearchString(record.getAuthor()));
+
+			result = bookDAOImpl.searchByAuthor(record);
+			r.setResultCode(100);
+			r.setDataList(result);
+		} catch(Exception e){
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Data not satisfied");
+			System.out.println("Return : " + r.toJsonString());
+			return r.toJsonString();			
+		}
+
+		return r.toJsonString();
+	}
+
+	public String getSearchByNameRes(String data){
+		System.out.println("----- getSearchByAuthorRes -----");
+
+		Response r = new Response();
+		BookVO record = (BookVO)r.readValue(data, BookVO.class);
+		
+		List<BookVO> result;
+		try{
+			record.setName(toSearchString(record.getName()));
+			result = bookDAOImpl.searchByName(record);
+			r.setResultCode(100);
+			r.setDataList(result);
+		} catch(Exception e){
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Data not satisfied");
+			System.out.println("Return : " + r.toJsonString());
+			return r.toJsonString();			
+		}
+
+		return r.toJsonString();
+	}
+
+	private String toSearchString(String s) {
+		s.replace(' ', '%');
+		s = "%" + s + "%";
+		return s;
+	} 
+
 
 
 }
