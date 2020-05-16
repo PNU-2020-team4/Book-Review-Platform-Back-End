@@ -12,26 +12,37 @@ import com.team4.bookreview.vo.BookVO;
 @Service
 @Repository
 public class BookDAOImpl implements BookDAO {
+	
+	
 	@Autowired
     protected SqlSessionTemplate sqlSession;
-	
+	private String namespace = "com.team4.bookreview.bookMapper";
+
 	@Override
 	public List<BookVO> selectAll() {
-		return sqlSession.selectList("com.team4.bookreview.bookMapper.selectAll");
+		return sqlSession.selectList(namespace + ".selectAll");
 	}
 
 	@Override
 	public BookVO select(int idx) {
-		return sqlSession.selectOne("com.team4.bookreview.bookMapper.select", idx);
+		return sqlSession.selectOne(namespace + ".select", idx);
 	}
 
 	@Override
 	public int insert(BookVO book){
-		return sqlSession.insert("com.team4.bookreview.bookMapper.insert", book);
+		return sqlSession.insert(namespace + ".insert", book);
 	}
 	
 	@Override
 	public int delete(int idx){
-		return sqlSession.delete("com.team4.bookreview.bookMapper.delete", idx);
+		return sqlSession.delete(namespace + ".delete", idx);
+	}
+
+	public List<BookVO> searchByAuthor(BookVO book) {
+		return sqlSession.selectList(namespace + ".searchAuthor", book); 
+	}
+
+	public List<BookVO> searchByName(BookVO book) {
+		return sqlSession.selectList(namespace + ".searchName", book); 
 	}
 }
