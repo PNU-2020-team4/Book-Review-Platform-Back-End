@@ -62,5 +62,24 @@ public class PostController {
         return JSONValue;
     }
 
+    @RequestMapping(value="/post/search/writer", method=RequestMethod.POST)
+    @ResponseBody
+    public String postSearchByWriter(@RequestParam String data) {
+        System.out.println("=========== [/post/search/writer] request ==========");
+        String JSONValue = renderer.getSearchByWriterRes(data);
+        System.out.println("Return : " + JSONValue);
+        return JSONValue;
+    }
+
+    @RequestMapping(value="/post/search/title", method=RequestMethod.POST)
+    @ResponseBody
+    public String postSearchByTitle(@RequestParam String data) {
+        System.out.println("=========== [/post/search/title] request ==========");
+        String JSONValue = renderer.getSearchByTitleRes(data);
+        System.out.println("Return : " + JSONValue);
+        return JSONValue;
+    }
+
+
 
 }

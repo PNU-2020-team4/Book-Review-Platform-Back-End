@@ -179,7 +179,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		
 		List<BookVO> result;
 		try{
-			record.setAuthor(toSearchString(record.getAuthor()));
+			record.setAuthor(Util.toSearchString(record.getAuthor()));
 
 			result = bookDAOImpl.searchByAuthor(record);
 			r.setResultCode(100);
@@ -203,7 +203,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		
 		List<BookVO> result;
 		try{
-			record.setName(toSearchString(record.getName()));
+			record.setName(Util.toSearchString(record.getName()));
 			result = bookDAOImpl.searchByName(record);
 			r.setResultCode(100);
 			r.setDataList(result);
@@ -217,13 +217,4 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 		return r.toJsonString();
 	}
-
-	private String toSearchString(String s) {
-		s.replace(' ', '%');
-		s = "%" + s + "%";
-		return s;
-	} 
-
-
-
 }
