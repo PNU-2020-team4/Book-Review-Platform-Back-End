@@ -11,5 +11,4 @@ public interface CommentDAO {
 	public int insertComment(CommentVO cmt);
 	public int updateComment(CommentVO cmt);
 	public int deleteComment(CommentVO cmt);
-
-}
+	}

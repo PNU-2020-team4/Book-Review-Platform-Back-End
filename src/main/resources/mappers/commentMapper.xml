@@ -23,4 +23,5 @@
 	<delete id="deleteComment" parameterType="CommentVO">
 		update comment set delFlag=#{delFlag} where writer=#{writer} and cmt_no=#{cmt_no} and post=#{post}
 	</delete>
+	
 </mapper>

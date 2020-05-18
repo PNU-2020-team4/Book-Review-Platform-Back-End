@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team4.bookreview.dao.HistoryDAO">    
+    <select id="selectAll" resultType="HistoryVO">
+    	select * from history;
+    </select>
+    
+    <select id="selectAllbyUser" resultType="HistoryVO" parameterType="HistoryVO">
+    	select * from history where user=#{user}
+    </select>
+    
+    <insert id="insertHistory" parameterType="HistoryVO">
+    	insert into history(date, book, book_author, user, hist_no) values(#{date}, #{book}, #{book_author}, #{user}, #{hist_no})
+    </insert>
+    
+    <delete id="deleteHistory"  parameterType="HistoryVO">
+    	delete from history where user=#{user} and hist_no=#{hist_no}
+    </delete>
+    
+    
+</mapper>
