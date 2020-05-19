@@ -14,8 +14,8 @@
     </select>
 
     <insert id="insert" parameterType="com.team4.bookreview.vo.BookVO" useGeneratedKeys="true" keyProperty="idx">
-        INSERT INTO book (name, author)
-        VALUES (#{name}, #{author});
+        INSERT INTO book (name, author, genre)
+        VALUES (#{name}, #{author}, #{genre});
     </insert>
 
     <update id="delete" parameterType="int">
@@ -34,5 +34,46 @@
         SELECT *
         FROM book
         WHERE name LIKE #{name};
+    </select>
+    
+    <select id="getUserReviewBasedRecommend" parameterType = "int" resultType = "com.team4.bookreview.vo.BookwithstarVO">
+	    select A.idx, A.name, A.author, A.genre, AVG(B.star) star 
+		from book A
+		INNER JOIN (select distinct book, star 
+				from review 
+	            where writer in ( select writer 
+					from br.review 
+	                                where book in 
+	                                ( select book 
+	                                from review 
+	                                where writer= #{writer}
+	                                and star >= 3 ))
+	                                and star >= 3 
+	                                order by star desc) B ON A.idx = B.book group by idx order by star desc;
+    </select>
+    
+        
+    <select id="getUserHistoryBasedRecommend" parameterType = "int" resultType = "com.team4.bookreview.vo.BookwithstarVO">
+	   SELECT A.idx, A.name, A.author, A.genre, AVG(B.star) star 
+		FROM br.book A
+		INNER JOIN 
+			(SELECT book, star
+			FROM br.review
+			WHERE book in	
+				(SELECT book 
+				FROM br.history
+				WHERE user IN (SELECT DISTINCT user  
+				FROM br.history h, (SELECT book
+									FROM br.history 
+									WHERE user = #{writer}
+									ORDER BY date desc
+									LIMIT 5) myb                    
+				WHERE h.book = myb.book 
+				AND user != 52442996)
+				ORDER BY date DESC)
+			) B
+		ON A.idx = B.book 
+		GROUP BY idx ORDER BY star DESC
+		LIMIT 5;
     </select>
 </mapper>

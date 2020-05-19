@@ -79,6 +79,21 @@ public class BookController {
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
+	@RequestMapping(value="/recommend/user/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String getUserReviewBasedRecommend(@RequestParam String data)  {
+        System.out.println("=========== [/recommend/user/review] request ==========");
+		String JSONValue = renderer.getSearchByUserReview(data);
+		System.out.println(JSONValue);
+		return JSONValue;
+	}
 	
-	
+	@RequestMapping(value="/recommend/user/history", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String getUserHistoryBasedRecommend(@RequestParam String data)  {
+        System.out.println("=========== [/recommend/user/history] request ==========");
+		String JSONValue = renderer.getSearchByUserHistory(data);
+		System.out.println(JSONValue);
+		return JSONValue;
+	}
 }

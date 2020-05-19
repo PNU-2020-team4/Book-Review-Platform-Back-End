@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.daoImpl.BookDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.BookVO;
+import com.team4.bookreview.vo.BookwithstarVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -213,6 +214,93 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			r.setMessage("Data not satisfied");
 			System.out.println("Return : " + r.toJsonString());
 			return r.toJsonString();			
+		}
+
+		return r.toJsonString();
+	}
+
+	public String getSearchByUserReview(String data) {
+		System.out.println("----- getSearchByUserReview -----");
+
+		Response r = new Response();
+		int writer = 0;
+		try {
+			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
+			writer = nodes.get("writer").asInt();
+		} catch (Exception e) {
+			e.printStackTrace();
+			writer = 0;
+		}
+		
+		if(writer != 0){
+			System.out.println("[GET RECOMMENDATION BASED ON USER REVIEW]");
+			List<BookwithstarVO> result;
+			try {
+				result = bookDAOImpl.getRecommendBasedUserReview(writer);
+			} catch (Exception e) {
+				e.printStackTrace();
+				r.setResultCode(200);
+				r.setMessage("Something's wrong");
+				return r.toJsonString();
+			} 
+			
+			if(result == null) {
+				r.setResultCode(400);
+				r.setMessage("DB Selection Failure");
+			} else {
+				System.out.println("Queried data : " + result.size());
+				r.setResultCode(100);
+				r.setDataList(result);
+				System.out.println("Success");			
+			}
+		}
+		else {
+			r.setResultCode(210);
+			r.setMessage("Wrong Request");
+		}
+
+		return r.toJsonString();
+	}
+	
+	
+	public String getSearchByUserHistory(String data) {
+		System.out.println("----- getSearchByUserHistory -----");
+
+		Response r = new Response();
+		int writer = 0;
+		try {
+			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
+			writer = nodes.get("writer").asInt();
+		} catch (Exception e) {
+			e.printStackTrace();
+			writer = 0;
+		}
+		
+		if(writer != 0){
+			System.out.println("[GET RECOMMENDATION BASED ON USER HISTORY]");
+			List<BookwithstarVO> result;
+			try {
+				result = bookDAOImpl.getRecommendBasedUserHistory(writer);
+			} catch (Exception e) {
+				e.printStackTrace();
+				r.setResultCode(200);
+				r.setMessage("Something's wrong");
+				return r.toJsonString();
+			} 
+			
+			if(result == null) {
+				r.setResultCode(400);
+				r.setMessage("DB Selection Failure");
+			} else {
+				System.out.println("Queried data : " + result.size());
+				r.setResultCode(100);
+				r.setDataList(result);
+				System.out.println("Success");			
+			}
+		}
+		else {
+			r.setResultCode(210);
+			r.setMessage("Wrong Request");
 		}
 
 		return r.toJsonString();
