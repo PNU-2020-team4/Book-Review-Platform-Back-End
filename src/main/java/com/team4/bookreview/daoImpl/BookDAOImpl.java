@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.team4.bookreview.dao.BookDAO;
 import com.team4.bookreview.vo.BookVO;
+import com.team4.bookreview.vo.BookwithstarVO;
 @Service
 @Repository
 public class BookDAOImpl implements BookDAO {
@@ -45,4 +46,11 @@ public class BookDAOImpl implements BookDAO {
 	public List<BookVO> searchByName(BookVO book) {
 		return sqlSession.selectList(namespace + ".searchName", book); 
 	}
-}
+	
+	public List<BookwithstarVO> getRecommendBasedUserReview(int writer){
+		return sqlSession.selectList(namespace + ".getUserReviewBasedRecommend", writer);
+	}
+	public List<BookwithstarVO> getRecommendBasedUserHistory(int writer){
+		return sqlSession.selectList(namespace + ".getUserHistoryBasedRecommend", writer);
+	}
+} 

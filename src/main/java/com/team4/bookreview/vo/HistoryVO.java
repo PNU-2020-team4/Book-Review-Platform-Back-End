@@ -4,8 +4,7 @@ import java.util.Date;
 
 public class HistoryVO extends DataVO{
 	Date date;
-	String book;
-	String book_author;
+	int book;
 	int user;
 	int hist_no;
 	public Date getDate() {
@@ -14,17 +13,11 @@ public class HistoryVO extends DataVO{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getBook() {
+	public int getBook() {
 		return book;
 	}
-	public void setBook(String book) {
+	public void setBook(int book) {
 		this.book = book;
-	}
-	public String getBook_author() {
-		return book_author;
-	}
-	public void setBook_author(String book_author) {
-		this.book_author = book_author;
 	}
 	public int getUser() {
 		return user;

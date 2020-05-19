@@ -19,12 +19,20 @@ public class BookVO extends DataVO {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 	String name;
 	String author;
 	int idx;
+	String genre;
+	
 	@Override
 	public String toString() {
-		return "BookVO [name=" + name + ", author=" + author + ", idx=" + idx + "]";
+		return "BookVO [name=" + name + ", author=" + author + ", idx=" + idx + ", genre=" + genre +"]";
 	}
 	
 	

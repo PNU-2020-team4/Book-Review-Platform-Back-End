@@ -10,7 +10,7 @@
     </select>
     
     <insert id="insertHistory" parameterType="HistoryVO">
-    	insert into history(date, book, book_author, user, hist_no) values(#{date}, #{book}, #{book_author}, #{user}, #{hist_no})
+    	insert into history(date, book, user, hist_no) values(#{date}, #{book}, #{user}, #{hist_no})
     </insert>
     
     <delete id="deleteHistory"  parameterType="HistoryVO">
