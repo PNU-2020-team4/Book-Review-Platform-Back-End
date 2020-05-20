@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.team4.bookreview.dao.ReviewDAO;
+import com.team4.bookreview.vo.ReviewExpandVO;
 import com.team4.bookreview.vo.ReviewVO;
 
 @Service
@@ -18,12 +19,12 @@ public class ReviewDAOImpl implements ReviewDAO {
     protected SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<ReviewVO> selectAll() {
+	public List<ReviewExpandVO> selectAll() {
 		return sqlSession.selectList("com.team4.bookreview.reviewMapper.selectAll");
 	}
 
 	@Override
-	public List<ReviewVO> selectByWriter(int writer) {
+	public List<ReviewExpandVO> selectByWriter(int writer) {
 		return sqlSession.selectList("com.team4.bookreview.reviewMapper.selectByWriter", writer);
 	}
 	
