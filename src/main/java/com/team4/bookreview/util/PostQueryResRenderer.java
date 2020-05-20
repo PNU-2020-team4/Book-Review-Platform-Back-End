@@ -29,7 +29,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			result = postDAOImpl.insert(post);
 			System.out.println("Idx of new Row : " + result);
 			r.setResultCode(100);
-			r.setData(post);
+			r.setDataObject(post);
 		} catch (Exception e) {
 			e.printStackTrace();
 			r.setResultCode(200);
@@ -97,7 +97,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			result = postDAOImpl.select(idx);
 			if (result != null) {
 				r.setResultCode(100);
-				r.setData(result);
+				r.setDataObject(result);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -28,12 +28,12 @@ public class Response {
         this.message = message;
     }
 
-    public DataVO getData() {
+    public DataVO getDataObject() {
         return dataObject;
     }
 
-    public void setData(DataVO data) {
-        this.dataObject = data;
+    public void setDataObject(DataVO dataObject) {
+        this.dataObject = dataObject;
     }    
 
     

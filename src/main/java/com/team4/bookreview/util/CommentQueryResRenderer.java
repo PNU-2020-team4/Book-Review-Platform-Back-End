@@ -42,7 +42,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setMessage("Success");
-			r.setData(to_Insert_Comment);
+			r.setDataObject(to_Insert_Comment);
 			break;
 		default:
 			r.setResultCode(400);
@@ -77,7 +77,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setMessage("Success");
-			r.setData(to_Delete_Comment);
+			r.setDataObject(to_Delete_Comment);
 			break;
 		default:
 			r.setResultCode(400);
@@ -143,7 +143,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setMessage("Success");
-			r.setData(commentDaoImpl.select(to_Update_Comment));
+			r.setDataObject(commentDaoImpl.select(to_Update_Comment));
 			break;
 		default:
 			r.setResultCode(400);

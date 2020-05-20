@@ -38,7 +38,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 		case 1:
 			r.setResultCode(100);
-			r.setData(record);
+			r.setDataObject(record);
 			System.out.println("Success");
 			break;
 		case 0:
@@ -162,7 +162,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 		case 1:
 			r.setResultCode(100);
-			r.setData(record);
+			r.setDataObject(record);
 			System.out.println("Success");
 			break;
 		case 0:

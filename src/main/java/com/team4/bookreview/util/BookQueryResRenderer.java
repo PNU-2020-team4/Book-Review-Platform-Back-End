@@ -40,7 +40,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 		case 1:
 			r.setResultCode(100);
-			r.setData(record);
+			r.setDataObject(record);
 			System.out.println("Success");
 			break;
 		case 0:
@@ -156,7 +156,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} else {
 				System.out.println("Queried data");
 				r.setResultCode(100);
-				r.setData(result);
+				r.setDataObject(result);
 				System.out.println("Success");			
 			}
 			

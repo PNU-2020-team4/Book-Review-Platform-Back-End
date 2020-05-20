@@ -46,7 +46,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		
 		case 1:
 			r.setResultCode(100);
-			r.setData(hv);
+			r.setDataObject(hv);
 			System.out.println("Success");
 			break;
 			
@@ -89,7 +89,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		
 		case 1:
 			r.setResultCode(100);
-			r.setData(hv);
+			r.setDataObject(hv);
 			r.setMessage("Success");
 			System.out.println("Success");
 			break;
