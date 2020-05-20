@@ -9,7 +9,7 @@ public class Response {
     private static ObjectMapper obj = new ObjectMapper();
     int resultCode = 500;
     String message = "";
-    DataVO data = null;
+    DataVO dataObject = null;
     List<? extends DataVO> dataList = null;
 
     public int getResultCode() {
@@ -29,11 +29,11 @@ public class Response {
     }
 
     public DataVO getData() {
-        return data;
+        return dataObject;
     }
 
     public void setData(DataVO data) {
-        this.data = data;
+        this.dataObject = data;
     }    
 
     

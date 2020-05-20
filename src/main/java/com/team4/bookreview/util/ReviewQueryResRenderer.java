@@ -100,6 +100,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	@Override
 	public String getSelectRes(String data) {
 		Response r = new Response();
+		
 		int writer = -1;
 		try {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
@@ -113,7 +114,11 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		List<ReviewVO> result;
 		
 		try {
-			result = (reviewDAOImpl.selectByWriter(writer));
+			if (writer == -1) {
+				result = (reviewDAOImpl.selectAll());
+			} else {
+				result = (reviewDAOImpl.selectByWriter(writer));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			r.setResultCode(200);

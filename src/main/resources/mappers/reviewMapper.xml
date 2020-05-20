@@ -3,14 +3,22 @@
  
 <mapper namespace="com.team4.bookreview.reviewMapper">
  
-    <select id="selectAll" resultType="ReviewVO">
-        SELECT *
-        FROM review
+    <select id="selectAll" resultType="ReviewExpandVO">
+        SELECT A.idx, A.writer, B.nickname, A.content, A.star, A.book, C.name bookName, C.author bookAuthor, C.genre bookGenre A.date 
+        FROM review A 
+		LEFT JOIN user B
+		ON A.writer = B.id
+		LEFT JOIN book C
+		ON A.book = C.idx
     </select>
     
     <select id="selectByWriter" parameterType="int" resultType="ReviewVO">
-    	SELECT *
-    	FROM review
+    	SELECT A.idx, A.writer, B.nickname, A.content, A.star, A.book, C.name bookName, C.author bookAuthor, C.genre bookGenre A.date 
+        FROM review A 
+		LEFT JOIN user B
+		ON A.writer = B.id
+		LEFT JOIN book C
+		ON A.book = C.idx
     	WHERE writer = #{writer}
     </select>
     
