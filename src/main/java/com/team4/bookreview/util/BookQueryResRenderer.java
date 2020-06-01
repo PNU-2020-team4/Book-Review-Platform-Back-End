@@ -57,6 +57,25 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		return  r.toJsonString();
 	}
 
+
+	public int getInsertNoDup(BookVO record){
+		System.out.println("----- getInsertNoDupResByRecord -----");
+		System.out.println("----- BOOK INFO-----");
+		System.out.println(record.getAuthor());
+		System.out.println(record.getName());
+		
+		int result = 0; 
+		try{
+			result = bookDAOImpl.insertNoDup(record);
+		
+		} catch(Exception e){
+			e.printStackTrace();		
+		}
+ 
+		System.out.println("Return : " + result);
+		return result;
+	}
+	
 	@Override
 	public String getDeleteRes(String data){
 		System.out.println("----- getDeleteRes -----");
@@ -219,6 +238,20 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
+	public int getIndexByNameAndAuthorRes(String name, String author) {
+		System.out.println("----- getIndexByNameAndAuthorRes -----");
+		
+		int index = -1;
+		try{
+			index = bookDAOImpl.getIndexByAuthorAndName(author, name);
+		} catch(Exception e){
+			System.out.println("Search Error With Author And Name.");
+			e.printStackTrace();
+		}
+
+		return index;
+	}
+	
 	public String getSearchByUserReview(String data) {
 		System.out.println("----- getSearchByUserReview -----");
 

@@ -1,7 +1,10 @@
 package com.team4.bookreview.daoImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +37,18 @@ public class BookDAOImpl implements BookDAO {
 		return sqlSession.insert(namespace + ".insert", book);
 	}
 	
+	public int insertNoDup(BookVO book){
+		System.out.println("BOOK INFO");
+		
+		System.out.println(book.getAuthor());
+		System.out.println(book.getName());
+		
+		int result = 0;
+		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result =-1;
+		System.out.println(result);
+		return result;
+	}
+	
 	@Override
 	public int delete(int idx){
 		return sqlSession.delete(namespace + ".delete", idx);
@@ -53,4 +68,13 @@ public class BookDAOImpl implements BookDAO {
 	public List<BookwithstarVO> getRecommendBasedUserHistory(int writer){
 		return sqlSession.selectList(namespace + ".getUserHistoryBasedRecommend", writer);
 	}
+	
+	public int getIndexByAuthorAndName(String author, String name) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("author", author);
+		param.put("name", name);
+		return sqlSession.selectOne(namespace + ".getIndexByAuthorAndName", param);
+				
+	}
+
 } 

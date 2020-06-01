@@ -60,6 +60,45 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
+	public String getInsertResByRecord(HistoryVO hv) {
+		// TODO Auto-generated method stub
+		System.out.println("=======getInsertRes========");
+		Response r = new Response();
+		hv.setDate(new Date());
+		int result = 0;
+		
+		try {
+			result = historyDaoImpl.insertHistory(hv);
+		} catch(Exception e) {
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Data not satisfied");
+			System.out.println("Return : " + r.toJsonString());
+			return r.toJsonString();
+		}
+		
+		switch(result) {
+		case 0:
+			r.setResultCode(400);
+			r.setMessage("DB Insertion Error");
+			break;
+		
+		case 1:
+			r.setResultCode(100);
+			r.setData(hv);
+			System.out.println("Inserted");
+			break;
+			
+		default:
+			r.setResultCode(300);
+			r.setMessage("Updated");
+			System.out.println("Update Date Of History Item");
+		}
+		
+		System.out.println("Return : " + r.toJsonString());
+		return r.toJsonString();
+	}
+	
 	@Override
 	public String getDeleteRes(String data) {
 		// TODO Auto-generated method stub

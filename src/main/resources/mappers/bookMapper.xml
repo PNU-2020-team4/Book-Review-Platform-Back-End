@@ -17,6 +17,13 @@
         INSERT INTO book (name, author, genre)
         VALUES (#{name}, #{author}, #{genre});
     </insert>
+    
+    <select id="insertNoDup" parameterType="com.team4.bookreview.vo.BookVO"  resultType ="int" >
+        INSERT INTO book (name, author)
+		 SELECT #{name}, #{author} FROM DUAL 
+		 WHERE NOT EXISTS (SELECT idx FROM book WHERE name=#{name} AND author=#{author})
+
+    </select>
 
     <update id="delete" parameterType="int">
         DELETE 
@@ -34,6 +41,14 @@
         SELECT *
         FROM book
         WHERE name LIKE #{name};
+    </select>
+    
+      <select id="getIndexByAuthorAndName" parameterType="HashMap" resultType="int">
+        SELECT IFNULL(
+			(SELECT idx
+			FROM book
+			WHERE name = #{name}
+			AND author = #{author}), -1) as idx;
     </select>
     
     <select id="getUserReviewBasedRecommend" parameterType = "int" resultType = "com.team4.bookreview.vo.BookwithstarVO">
