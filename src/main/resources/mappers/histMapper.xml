@@ -11,6 +11,7 @@
     
     <insert id="insertHistory" parameterType="HistoryVO">
     	insert into history(date, book, user, hist_no) values(#{date}, #{book}, #{user}, #{hist_no})
+    	on duplicate key update date = #{date}
     </insert>
     
     <delete id="deleteHistory"  parameterType="HistoryVO">
