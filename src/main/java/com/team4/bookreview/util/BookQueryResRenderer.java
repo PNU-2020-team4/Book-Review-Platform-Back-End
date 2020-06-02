@@ -26,7 +26,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		BookVO record = (BookVO)r.readValue(data, BookVO.class);
 		int result;
-
+		
 		try{
 			result = bookDAOImpl.insert(record);
 		} catch(Exception e){

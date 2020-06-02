@@ -38,16 +38,18 @@ public class HistController {
 	@RequestMapping(value="/hist/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String HistInsert(@RequestParam String data) {
-		System.out.println("=============[/hist/HistInsert] request ===============");
+		System.out.println("=============[/hist/insert] request ===============");
 		System.out.println("data : " + data);
 		String JSONValue;
 		ObjectMapper obj = new ObjectMapper();
 		String name;
 		String author;
+		int idx;
 		int userId; 
 		
 		try {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
+			idx = node.get("idx").asInt();
 			name = node.get("name").asText();
 			author = node.get("author").asText();
 			userId = node.get("id").asInt();
@@ -57,12 +59,14 @@ public class HistController {
 			return new Response().toJsonString();
 		} 
 		
+		System.out.println("Book IDX : " + idx);
 		System.out.println("Book Name : " + name);
 		System.out.println("Book Author : " + author);
 		System.out.println("User ID : " + userId);
 		
 		
 		BookVO bv = new BookVO();
+		bv.setIdx(idx);
 		bv.setAuthor(author);
 		bv.setName(name);
 		int bookInsertResult = brenderer.getInsertNoDup(bv); 

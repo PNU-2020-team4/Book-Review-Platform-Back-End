@@ -14,15 +14,13 @@
     </select>
 
     <insert id="insert" parameterType="com.team4.bookreview.vo.BookVO" useGeneratedKeys="true" keyProperty="idx">
-        INSERT INTO book (name, author, genre)
-        VALUES (#{name}, #{author}, #{genre});
+        INSERT INTO book (idx, name, author, genre)
+        VALUES (#{idx}, #{name}, #{author}, #{genre});
     </insert>
     
     <select id="insertNoDup" parameterType="com.team4.bookreview.vo.BookVO"  resultType ="int" >
-        INSERT INTO book (name, author)
-		 SELECT #{name}, #{author} FROM DUAL 
-		 WHERE NOT EXISTS (SELECT idx FROM book WHERE name=#{name} AND author=#{author})
-
+        INSERT IGNORE INTO book (idx, name, author)
+		VALUES (#{idx}, #{name}, #{author});
     </select>
 
     <update id="delete" parameterType="int">
