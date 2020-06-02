@@ -22,7 +22,7 @@ public class BrAuthController {
 	@Autowired
 	BrAuth auth;
 	
-	@RequestMapping(value="/BrAuth", method = RequestMethod.GET)
+	@RequestMapping(value="/BrAuth", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	public String authenticate(Model model) {
 		
 		List<UserVO> res = user.selectAll();
@@ -34,7 +34,7 @@ public class BrAuthController {
 	}	
 	
 	
-	@RequestMapping(value="/BrAuth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/BrAuth", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public String authenticate(HttpServletRequest req, Model model) throws JsonProcessingException {
 
 		int id = Integer.parseInt(req.getParameter("id"));

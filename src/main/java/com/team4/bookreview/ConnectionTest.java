@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ConnectionTest {
 	private static final Logger logger = LoggerFactory.getLogger(ConnectionTest.class);
 	
-	@RequestMapping(value = "/ConnectionTest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/ConnectionTest", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String home(Locale locale, Model model) throws JsonProcessingException {
 		logger.info("DB Connection Test! The client locale is {}.", locale);

@@ -30,7 +30,7 @@ public class MyPageController {
 		return resJson;
 	}
 	
-	@RequestMapping(value="/mypage/changeNick", method=RequestMethod.POST)
+	@RequestMapping(value="/mypage/changeNick", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String changeNick(@RequestParam String data)
 	{

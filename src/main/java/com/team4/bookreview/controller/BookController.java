@@ -16,7 +16,7 @@ public class BookController {
     @Autowired
 	private BookQueryResRenderer renderer;
 	 	
-	@RequestMapping(value="/book/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/insert", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String bookInsert(@RequestParam String data)  {
         System.out.println("=========== [/book/insert] request ==========");
@@ -25,7 +25,7 @@ public class BookController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/book/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/get", method = RequestMethod.GET, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelect() {
         System.out.println("=========== [/book/get] request ==========");
@@ -34,7 +34,7 @@ public class BookController {
         return JSONValue;
 	}
 	
-	@RequestMapping(value="/book/getone", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/getone", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
         System.out.println("=========== [/book/getone] request ==========");
@@ -43,7 +43,7 @@ public class BookController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/book/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewDelete(@RequestParam String data)  {
         System.out.println("=========== [/book/delete] request ==========");
@@ -53,7 +53,7 @@ public class BookController {
 		
 	}
 
-	@RequestMapping(value="/book/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewUpdate(@RequestParam String data)  {
         System.out.println("=========== [/book/update] request ==========");
@@ -62,7 +62,7 @@ public class BookController {
 		return JSONValue;
 	}
 
-	@RequestMapping(value="/book/search/author", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/search/author", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String searchByAuthor(@RequestParam String data)  {
         System.out.println("=========== [/book/search/author] request ==========");
@@ -71,7 +71,7 @@ public class BookController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/book/search/name", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/book/search/name", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String searchByBookName(@RequestParam String data)  {
         System.out.println("=========== [/book/search/name] request ==========");
@@ -79,7 +79,7 @@ public class BookController {
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
-	@RequestMapping(value="/recommend/user/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/recommend/user/review", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String getUserReviewBasedRecommend(@RequestParam String data)  {
         System.out.println("=========== [/recommend/user/review] request ==========");
@@ -88,7 +88,7 @@ public class BookController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/recommend/user/history", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/recommend/user/history", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String getUserHistoryBasedRecommend(@RequestParam String data)  {
         System.out.println("=========== [/recommend/user/history] request ==========");

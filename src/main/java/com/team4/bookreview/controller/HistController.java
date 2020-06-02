@@ -14,7 +14,7 @@ public class HistController {
 	@Autowired
 	private HistoryQueryResRenderer renderer;
 	
-	@RequestMapping(value="/hist/showAll", method=RequestMethod.POST)
+	@RequestMapping(value="/hist/showAll", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String ShowAllByUser(@RequestParam String data) {
 		System.out.println("=============[/hist/showAll] request ===============");
@@ -26,7 +26,7 @@ public class HistController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/hist/insert", method=RequestMethod.POST)
+	@RequestMapping(value="/hist/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String HistInsert(@RequestParam String data) {
 		System.out.println("=============[/hist/HistInsert] request ===============");
@@ -38,7 +38,7 @@ public class HistController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/hist/delete", method=RequestMethod.POST)
+	@RequestMapping(value="/hist/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String HistDelete(@RequestParam String data) {
 		System.out.println("=============[/hist/HistDelete] request ===============");

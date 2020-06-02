@@ -17,7 +17,7 @@ public class PostController {
 	@Autowired
 	private PostQueryResRenderer renderer;
 
-    @RequestMapping(value="/post/get", method=RequestMethod.GET)
+    @RequestMapping(value="/post/get", method=RequestMethod.GET, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postsSelect() {
         System.out.println("=========== [/post/get] request ==========");
@@ -26,7 +26,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/getone", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/post/getone", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSelect(@RequestParam String data) {
         System.out.println("=========== [/post/getOne] request ==========");
@@ -35,7 +35,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/insert", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/post/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postInsert(@RequestParam String data) {
         System.out.println("=========== [/post/insert] request ==========");
@@ -44,7 +44,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/delete", method=RequestMethod.POST)
+    @RequestMapping(value="/post/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postDelete(@RequestParam String data) {
         System.out.println("=========== [/post/delete] request ==========");
@@ -53,7 +53,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/update", method=RequestMethod.POST)
+    @RequestMapping(value="/post/update", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postUpdate(@RequestParam String data) {
         System.out.println("=========== [/post/update] request ==========");
@@ -62,7 +62,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/search/writer", method=RequestMethod.POST)
+    @RequestMapping(value="/post/search/writer", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSearchByWriter(@RequestParam String data) {
         System.out.println("=========== [/post/search/writer] request ==========");
@@ -71,7 +71,7 @@ public class PostController {
         return JSONValue;
     }
 
-    @RequestMapping(value="/post/search/title", method=RequestMethod.POST)
+    @RequestMapping(value="/post/search/title", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSearchByTitle(@RequestParam String data) {
         System.out.println("=========== [/post/search/title] request ==========");

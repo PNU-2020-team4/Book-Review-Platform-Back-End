@@ -12,11 +12,10 @@ import com.team4.bookreview.util.ReviewQueryResRenderer;
 
 @Controller
 public class reviewController {
-	
 	@Autowired
 	private ReviewQueryResRenderer renderer;
 	 	
-	@RequestMapping(value="/review/insert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/review/insert", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewInsert(@RequestParam String data) {
         System.out.println("=========== [/review/insert] request ==========");
@@ -27,7 +26,7 @@ public class reviewController {
 
 
 	
-	@RequestMapping(value="/review/get", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
 		System.out.println("=========== [/review/get] request ==========");
@@ -36,7 +35,7 @@ public class reviewController {
 		return JSONValue;
 	}
 	
-	@RequestMapping(value="/review/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/review/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewDelete(@RequestParam String data)  {
         System.out.println("=========== [/review/delete] request ==========");
@@ -46,7 +45,7 @@ public class reviewController {
 		
 	}
 
-	@RequestMapping(value="/review/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/review/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewUpdate(@RequestParam String data)  {
         System.out.println("=========== [/review/update] request ==========");
