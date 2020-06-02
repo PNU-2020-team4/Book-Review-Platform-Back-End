@@ -37,7 +37,6 @@ public class Response {
     }    
 
     
-    
     public String toJsonString() {
         try {
         	System.out.println("MAKE RESULT INTO JSON...");

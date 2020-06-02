@@ -14,7 +14,7 @@ public class CommentController {
 	@Autowired
 	private CommentQueryResRenderer renderer;
 	
-	@RequestMapping(value="/comment/insert", method=RequestMethod.POST)
+	@RequestMapping(value="/comment/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String writeComment(@RequestParam String data) {
 
@@ -26,7 +26,7 @@ public class CommentController {
 		return resJson;
 	}
 	
-	@RequestMapping(value="/comment/update", method=RequestMethod.POST)
+	@RequestMapping(value="/comment/update", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String updateComment(@RequestParam String data) {
 
@@ -52,7 +52,7 @@ public class CommentController {
 		
 	}
 	
-	@RequestMapping(value="/comment/delete", method=RequestMethod.POST)
+	@RequestMapping(value="/comment/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteComment(@RequestParam String data) {
 

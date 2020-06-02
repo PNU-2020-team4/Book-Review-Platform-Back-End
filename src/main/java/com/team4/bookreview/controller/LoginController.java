@@ -21,7 +21,7 @@ public class LoginController {
 		
 	private String apiResult = null;
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/login", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
 		
