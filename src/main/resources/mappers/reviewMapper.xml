@@ -12,7 +12,7 @@
 		ON A.book = C.idx
     </select>
     
-    <select id="selectByWriter" parameterType="int" resultType="ReviewVO">
+    <select id="selectByWriter" parameterType="int" resultType="ReviewExpandVO">
     	SELECT A.idx, A.writer, B.nickname, A.content, A.star, A.book, C.name bookName, C.author bookAuthor, C.genre bookGenre, A.date 
         FROM review A 
 		LEFT JOIN user B
