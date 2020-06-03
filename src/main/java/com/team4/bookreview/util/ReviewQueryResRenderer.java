@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.daoImpl.ReviewDAOImpl;
 import com.team4.bookreview.model.Response;
-import com.team4.bookreview.vo.ReviewExpandVO;
+//import com.team4.bookreview.vo.ReviewExpandVO;
 import com.team4.bookreview.vo.ReviewVO;
 @Service
 public class ReviewQueryResRenderer implements DBQueryResRenderer {
@@ -112,7 +112,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		}
 
 		System.out.println("Received data : " + writer);
-		List<ReviewExpandVO> result;
+		List<ReviewVO> result;
 		
 		try {
 			if (writer == -1) {

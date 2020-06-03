@@ -40,7 +40,6 @@ public class HistController {
 	public String HistInsert(@RequestParam String data) {
 		System.out.println("=============[/hist/insert] request ===============");
 		System.out.println("data : " + data);
-		String JSONValue;
 		ObjectMapper obj = new ObjectMapper();
 		String name;
 		String author;
@@ -50,7 +49,7 @@ public class HistController {
 		try {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
 			idx = node.get("idx").asInt();
-			name = node.get("name").asText();
+			name = node.get("title").asText();
 			author = node.get("author").asText();
 			userId = node.get("id").asInt();
 		} catch (Exception e) {
@@ -74,21 +73,13 @@ public class HistController {
 		System.out.println("Book Insert Result : " + bookInsertResult);
 		if(bookInsertResult == 0) 	System.out.println(name + " " + author + " is Already Exist In br.book");
 	
-		int bookId = brenderer.getIndexByNameAndAuthorRes(name, author);
-		System.out.println("Book Indx : " + bookId);
+		HistoryVO hv= new HistoryVO();
+	
+		hv.setBook(idx);
+		hv.setUser(userId);
+		String JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
+		System.out.println("Return : " + JSONValue);
 
-		//data : userid, bookidx, date
-		if(bookId == -1) {
-			JSONValue = new Response().toJsonString(); // ERROR
-		}
-		else{
-			HistoryVO hv= new HistoryVO();
-		
-			hv.setBook(bookId);
-			hv.setUser(userId);
-			JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
-			System.out.println("Return : " + JSONValue);
-		}
 		return JSONValue;
 	}
 	

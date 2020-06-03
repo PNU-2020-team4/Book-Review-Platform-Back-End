@@ -85,7 +85,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		
 		case 1:
 			r.setResultCode(100);
-			r.setData(hv);
+			r.setDataObject(hv);
 			System.out.println("Inserted");
 			break;
 			
