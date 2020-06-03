@@ -38,17 +38,18 @@ public class HistController {
 	@RequestMapping(value="/hist/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String HistInsert(@RequestParam String data) {
-		System.out.println("=============[/hist/HistInsert] request ===============");
+		System.out.println("=============[/hist/insert] request ===============");
 		System.out.println("data : " + data);
-		String JSONValue;
 		ObjectMapper obj = new ObjectMapper();
 		String name;
 		String author;
+		int idx;
 		int userId; 
 		
 		try {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
-			name = node.get("name").asText();
+			idx = node.get("idx").asInt();
+			name = node.get("title").asText();
 			author = node.get("author").asText();
 			userId = node.get("id").asInt();
 		} catch (Exception e) {
@@ -57,12 +58,14 @@ public class HistController {
 			return new Response().toJsonString();
 		} 
 		
+		System.out.println("Book IDX : " + idx);
 		System.out.println("Book Name : " + name);
 		System.out.println("Book Author : " + author);
 		System.out.println("User ID : " + userId);
 		
 		
 		BookVO bv = new BookVO();
+		bv.setIdx(idx);
 		bv.setAuthor(author);
 		bv.setName(name);
 		int bookInsertResult = brenderer.getInsertNoDup(bv); 
@@ -70,21 +73,13 @@ public class HistController {
 		System.out.println("Book Insert Result : " + bookInsertResult);
 		if(bookInsertResult == 0) 	System.out.println(name + " " + author + " is Already Exist In br.book");
 	
-		int bookId = brenderer.getIndexByNameAndAuthorRes(name, author);
-		System.out.println("Book Indx : " + bookId);
+		HistoryVO hv= new HistoryVO();
+	
+		hv.setBook(idx);
+		hv.setUser(userId);
+		String JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
+		System.out.println("Return : " + JSONValue);
 
-		//data : userid, bookidx, date
-		if(bookId == -1) {
-			JSONValue = new Response().toJsonString(); // ERROR
-		}
-		else{
-			HistoryVO hv= new HistoryVO();
-		
-			hv.setBook(bookId);
-			hv.setUser(userId);
-			JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
-			System.out.println("Return : " + JSONValue);
-		}
 		return JSONValue;
 	}
 	
