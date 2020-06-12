@@ -89,4 +89,25 @@
 		GROUP BY idx ORDER BY star DESC
 		LIMIT 5;
     </select>
+    
+    
+        <select id="getDataBasedRecommend" parameterType = "int" resultType = "com.team4.bookreview.vo.BookwithstarVO">
+			  select * from br.book
+		where idx in
+		(select * from 
+			(select book from 
+			(
+				(select book, date as newdate
+				 from br.history 
+				 where user = #{writer}  order by newdate Desc limit 3) 
+				UNION ALL
+				(select book, DATE_ADD(date, INTERVAL 7 DAY) as newdate
+				 from br.review 
+				 where writer = #{writer} order by newdate Desc limit 3) 
+				ORDER BY 1
+			) recent 
+			order by newdate desc  limit 3)  books 
+		group by book) 
+
+    </select>
 </mapper>

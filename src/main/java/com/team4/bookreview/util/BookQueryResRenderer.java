@@ -338,4 +338,50 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 		return r.toJsonString();
 	}
+
+
+	public String getSearchByData(String data) {
+		// TODO Auto-generated method stub
+		System.out.println("----- getSearchByData -----");
+
+		Response r = new Response();
+		int writer = 0;
+		try {
+			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
+			writer = nodes.get("writer").asInt();
+		} catch (Exception e) {
+			e.printStackTrace();
+			writer = 0;
+		}
+		
+		if(writer != 0){
+			System.out.println("[GET RECOMMENDATION BASED ON DATA]");
+			List<BookwithstarVO> result;
+
+			try {
+				result = bookDAOImpl.getDataBasedUserHistory(writer);
+			} catch (Exception e) {
+				e.printStackTrace();
+				r.setResultCode(200);
+				r.setMessage("Something's wrong");
+				return r.toJsonString();
+			} 
+			
+			if(result == null) {
+				r.setResultCode(400);
+				r.setMessage("DB Selection Failure");
+			} else {
+				System.out.println("Queried data : " + result.size());
+				r.setResultCode(100);
+				r.setDataList(result);
+				System.out.println("Success");			
+			}
+		}
+		else {
+			r.setResultCode(210);
+			r.setMessage("Wrong Request");
+		}
+
+		return r.toJsonString();
+	}
 }
