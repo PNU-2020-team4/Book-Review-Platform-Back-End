@@ -68,7 +68,9 @@ public class BookDAOImpl implements BookDAO {
 	public List<BookwithstarVO> getRecommendBasedUserHistory(int writer){
 		return sqlSession.selectList(namespace + ".getUserHistoryBasedRecommend", writer);
 	}
-	
+	public List<BookwithstarVO> getDataBasedUserHistory(int writer){
+		return sqlSession.selectList(namespace + ".getDataBasedRecommend", writer);
+	}
 	public int getIndexByAuthorAndName(String author, String name) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("author", author);

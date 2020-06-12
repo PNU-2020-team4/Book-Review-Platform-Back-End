@@ -96,4 +96,13 @@ public class BookController {
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
+	
+	@RequestMapping(value="/recommend/database", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String getDataBasedRecommend(@RequestParam String data) {
+        System.out.println("=========== [/recommend/database] request ==========");
+		String JSONValue = renderer.getSearchByData(data);
+		System.out.println(JSONValue);
+		return JSONValue;
+	}
 }
