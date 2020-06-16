@@ -31,13 +31,13 @@ public class LoginController {
 		return JSONValue;
 	}
 
-	@RequestMapping(value="/withdraw", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping(value="/user/withdrawal", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String withdraw(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("=========== [/withdraw] request ==========");
+	public String withdrawal(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("=========== [/user/withdrawal] request ==========");
 		System.out.println("data : " + data);
 
-		String JSONValue = renderer.getWithdrawRes(data);
+		String JSONValue = renderer.getWithdrawalRes(data);
 		System.out.println("Return : " + JSONValue);
 		return JSONValue;
 	}

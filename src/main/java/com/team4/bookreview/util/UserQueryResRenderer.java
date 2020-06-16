@@ -100,7 +100,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		System.out.println(user);
 		
 		System.out.println(user.toString());
-		user.setWithdraw(false);
+		user.setWithdrawal(false);
 		user.setHist_cnt(0);
 		int result = 0;
 		
@@ -132,18 +132,18 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	public String getWithdrawRes(String data) { 
+	public String getWithdrawalRes(String data) { 
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 
 		System.out.println(user);
 		
 		System.out.println(user.toString());
-		user.setWithdraw(true);
+		user.setWithdrawal(true);
 
 		int result = 0;
 		try {
-			result = userDaoImpl.updateWithdraw(user);
+			result = userDaoImpl.updateWithdrawal(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			r.setResultCode(500);

@@ -45,8 +45,8 @@ public class UserDAOImpl implements UserDAO{
 		return res;
 	}
 
-	public int updateWithdraw(UserVO uv) {
-		int res = sqlSession.update(namespace+".withdraw", uv);
+	public int updateWithdrawal(UserVO uv) {
+		int res = sqlSession.update(namespace+".withdrawal", uv);
 		return res;
 	}
 }
