@@ -17,7 +17,7 @@
     </select>
     
     <insert id="updateUser" parameterType="UserVO" >
-    	insert into user(id, email, name, nickname, age, gender, hist_cnt, birthday, profile_image, withdraw) values(#{id}, #{email}, #{name}, #{nickname}, #{age}, #{gender}, #{hist_cnt}, #{birthday}, #{profile_image}, #{withdrawal})
+    	insert into user(id, email, name, nickname, age, gender, hist_cnt, birthday, profile_image, withdrawal) values(#{id}, #{email}, #{name}, #{nickname}, #{age}, #{gender}, #{hist_cnt}, #{birthday}, #{profile_image}, #{withdrawal})
     	on duplicate key update age=#{age}, withdrawal=#{withdrawal}
     </insert>
     
