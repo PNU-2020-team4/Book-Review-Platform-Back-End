@@ -19,8 +19,6 @@ public class LoginController {
 	@Autowired
 	private UserQueryResRenderer renderer;
 		
-	private String apiResult = null;
-	
 	@RequestMapping(value="/login", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
@@ -31,6 +29,18 @@ public class LoginController {
 		String JSONValue = renderer.getUpdateRes(data);
 		System.out.println("Return : " + JSONValue);
 		return JSONValue;
-
 	}
+
+	@RequestMapping(value="/withdraw", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String withdraw(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("=========== [/withdraw] request ==========");
+		System.out.println("data : " + data);
+
+		String JSONValue = renderer.getWithdrawRes(data);
+		System.out.println("Return : " + JSONValue);
+		return JSONValue;
+	}
+
+	
 }

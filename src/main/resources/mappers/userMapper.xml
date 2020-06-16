@@ -17,11 +17,15 @@
     </select>
     
     <insert id="updateUser" parameterType="UserVO" >
-    	insert into user(id, email, name, nickname, age, gender, hist_cnt, birthday, profile_image) values(#{id}, #{email}, #{name}, #{nickname}, #{age}, #{gender}, #{hist_cnt}, #{birthday}, #{profile_image})
-    	on duplicate key update age=#{age}
+    	insert into user(id, email, name, nickname, age, gender, hist_cnt, birthday, profile_image, withdraw) values(#{id}, #{email}, #{name}, #{nickname}, #{age}, #{gender}, #{hist_cnt}, #{birthday}, #{profile_image}, #{withdraw})
+    	on duplicate key update age=#{age}, withdraw=#{withdraw}
     </insert>
     
     <update id="updateNick" parameterType="UserVO" >
     	update user set nickname=#{nickname} where id=#{id}
+    </update>
+
+    <update id="withdraw" parameterType="UserVO">
+        update user set withdraw=#{withdraw} where id=#{id}
     </update>
 </mapper>

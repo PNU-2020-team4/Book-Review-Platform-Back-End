@@ -97,11 +97,10 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	public String getUpdateRes(String data) {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
-		
 		System.out.println(user);
 		
 		System.out.println(user.toString());
-	
+		user.setWithdraw(false);
 		user.setHist_cnt(0);
 		int result = 0;
 		
@@ -133,6 +132,42 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
+	public String getWithdrawRes(String data) { 
+		Response r = new Response();
+		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 
+		System.out.println(user);
+		
+		System.out.println(user.toString());
+		user.setWithdraw(true);
+
+		int result = 0;
+		try {
+			result = userDaoImpl.updateWithdraw(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setResultCode(500);
+			r.setMessage("Data not satisfied");
+			return r.toJsonString();
+		}
+		
+		switch(result) {
+		case 1:
+			r.setResultCode(100);
+			r.setDataObject(user);
+			System.out.println("Success");
+			break;
+		case 0:
+			r.setResultCode(400);
+			r.setMessage("DB Insertion Error");
+			break;
+		default:
+			r.setResultCode(400);
+			r.setMessage("Internal Error");
+			System.out.println("Return value is not 0 or 1");
+		}
+
+		return r.toJsonString();
+	}
 
 }

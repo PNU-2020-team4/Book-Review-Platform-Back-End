@@ -12,8 +12,9 @@ public class UserVO extends DataVO implements Serializable {
 	String profile_image;
 	String gender;
 	int hist_cnt;
-	
+	boolean withdraw;
 	String birthday;
+
 	public int getId() {
 		return id;
 	}
@@ -70,10 +71,20 @@ public class UserVO extends DataVO implements Serializable {
 	}
 
 
+	public boolean isWithdraw() {
+		return withdraw;
+	}
+
+	public void setWithdraw(boolean withdraw) {
+		this.withdraw = withdraw;
+	}
 
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", email=" + email + ", name=" + name + ", nickname=" + nickname + ", age=" + age
-				+ ", gender=" + gender + ", hist_cnt=" + hist_cnt + ", birthday=" + birthday + "]";
+		return "UserVO [age=" + age + ", birthday=" + birthday + ", email=" + email + ", gender=" + gender
+				+ ", hist_cnt=" + hist_cnt + ", id=" + id + ", name=" + name + ", nickname=" + nickname
+				+ ", profile_image=" + profile_image + ", withdraw=" + withdraw + "]";
 	}
+
+	
 }
