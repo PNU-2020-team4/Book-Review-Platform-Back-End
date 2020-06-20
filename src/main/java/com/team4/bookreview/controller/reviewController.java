@@ -23,8 +23,6 @@ public class reviewController {
 		return JSONValue;
 	}
 
-
-	
 	@RequestMapping(value="/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
@@ -33,6 +31,15 @@ public class reviewController {
 		System.out.println(JSONValue);
 		return JSONValue;
 	}
+	@RequestMapping(value="/book/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String reviewSelectByBook(@RequestParam String data)  {
+		System.out.println("=========== [/book/review/get] request ==========");
+		String JSONValue = renderer.getReviewByBookRes(data);
+		System.out.println(JSONValue);
+		return JSONValue;
+	}
+
 	
 	@RequestMapping(value="/review/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody

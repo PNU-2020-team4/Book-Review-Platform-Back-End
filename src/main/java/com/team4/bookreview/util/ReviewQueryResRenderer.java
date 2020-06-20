@@ -142,6 +142,37 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	}
 
 
+	public String getReviewByBookRes(String data) {
+		Response r = new Response();
+		int bookID = -1;
+		
+		List<ReviewExpandVO> result;
+		try {
+			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
+			bookID = nodes.get("bookID").asInt();
+			result = (reviewDAOImpl.selectByBook(bookID));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setResultCode(200);
+			r.setMessage("Data not satisfied");
+			System.out.println("Return : " + r.toJsonString());
+			return r.toJsonString();
+		}
+
+		if(result == null) {
+			r.setResultCode(400);
+			r.setMessage("DB Selection Failure");
+		} else {
+			System.out.println("Queried data : " + result.size());
+			r.setResultCode(100);
+			r.setDataList(result);
+			System.out.println("Success");			
+		}
+		System.out.println("Return : " + r.toJsonString());
+		return r.toJsonString();
+	}
+
 	@Override
 	public String getUpdateRes(String data) {
 		// update content, date

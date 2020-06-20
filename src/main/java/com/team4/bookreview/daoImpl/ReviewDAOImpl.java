@@ -43,8 +43,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.update("com.team4.bookreview.reviewMapper.update", rv);
 	}
 
-
-	
-	
-
+	@Override
+	public List<ReviewExpandVO> selectByBook(int book) {
+		return sqlSession.selectList("com.team4.bookreview.reviewMapper.selectByBook", book);
+	}
 }
