@@ -11,7 +11,7 @@ public class ReviewVO extends DataVO {
 	int idx;
 	int writer;
 	String content;
-	int star;
+	double star;
 	int book;
 	Date date;
 	
@@ -65,11 +65,11 @@ public class ReviewVO extends DataVO {
 		this.content = content;
 	}
 
-	public int getStar() {
+	public double getStar() {
 		return star;
 	}
 
-	public void setStar(int star) {
+	public void setStar(double star) {
 		this.star = star;
 	}
 
