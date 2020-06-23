@@ -58,7 +58,7 @@ public class Response {
         try {
             Response r = new Response();
             r.resultCode = 400;
-            r.message = "Unknown Error";
+            r.message = ErrorMsg.ERROR_UNKNOWN;
             return obj.writeValueAsString(r);
         } catch (Exception e) {
             logger.error(ErrorMsg.ERROR_STRING, e);
