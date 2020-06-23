@@ -132,7 +132,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result_cnt = commentDaoImpl.updateComment(to_Update_Comment);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(500);
 			r.setMessage("Some Error occur while updating comment");
 			return r.toJsonString();

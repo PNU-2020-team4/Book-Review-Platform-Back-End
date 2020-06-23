@@ -30,7 +30,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -68,7 +68,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -110,7 +110,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			res = historyDaoImpl.deleteHistory(hv);
 			logger.info(res + "");
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -157,7 +157,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataList(result);
 		} catch(Exception e){
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());

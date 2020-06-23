@@ -42,7 +42,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			selected_user = userDaoImpl.select(user.getId());
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(500);
 			r.setMessage("Can not select Data");
 			return r.toJsonString();
@@ -71,7 +71,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateNick(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 		}
@@ -110,7 +110,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 			return r.toJsonString();
@@ -148,7 +148,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateWithdrawal(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 			return r.toJsonString();

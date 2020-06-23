@@ -47,7 +47,7 @@ public class Response {
         	logger.info("MAKE RESULT INTO JSON...");
             return obj.writeValueAsString(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error", e);
             return createDummy();
         }
     }
@@ -59,7 +59,7 @@ public class Response {
             r.message = "Unknown Error";
             return obj.writeValueAsString(r);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error", e);
             return "";
         }
     }
@@ -68,7 +68,7 @@ public class Response {
         try {
 			return obj.readValue(data, valueType);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			return new DataVO();
 		}
 	}

@@ -57,7 +57,7 @@ public class HistController {
 			userId = node.get("id").asInt();
 		} catch (Exception e) {
 			logger.info("Request Failed");
-			e.printStackTrace();
+			logger.error("Error", e);
 			return new Response().toJsonString();
 		} 
 		

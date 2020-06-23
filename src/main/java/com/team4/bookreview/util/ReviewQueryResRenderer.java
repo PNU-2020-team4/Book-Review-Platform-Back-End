@@ -31,7 +31,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = reviewDAOImpl.insert(record);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error("Data not satisfied");
@@ -67,7 +67,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
 			idx = node.get("idx").asInt();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			idx = -1;
 		} 
 		logger.info("Received data : " + idx);
@@ -76,7 +76,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = reviewDAOImpl.delete(idx);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -111,7 +111,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
 			writer = nodes.get("writer").asInt();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			writer = -1;
 		}
 
@@ -125,7 +125,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 				result = (reviewDAOImpl.selectByWriter(writer));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -157,7 +157,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			result = (reviewDAOImpl.selectByBook(bookID));
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -187,7 +187,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = reviewDAOImpl.update(record);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());

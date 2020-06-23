@@ -35,7 +35,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataObject(post);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -57,7 +57,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(300);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -76,7 +76,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				idx = node.get("idx").asInt();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			idx = 0;
 		} 
 
@@ -88,7 +88,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(100);
 				r.setDataList(result);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("Error", e);
 				r.setResultCode(200);
 				r.setMessage("Something's wrong");
 			} 
@@ -104,7 +104,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setDataObject(result);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -121,7 +121,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			result = postDAOImpl.update(post.getIdx(), post);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -140,7 +140,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -160,7 +160,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error", e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
