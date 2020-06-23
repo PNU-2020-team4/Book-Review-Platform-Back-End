@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.team4.bookreview.util.ReviewQueryResRenderer;
 
 @Controller
-public class reviewController {
-	private static final Logger logger = LoggerFactory.getLogger(reviewController.class);
+public class ReviewController {
+	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 	@Autowired
 	private ReviewQueryResRenderer renderer;
@@ -64,9 +64,4 @@ public class reviewController {
 		return jsonValue;
 		
 	}
-	
-	// public Timestamp getTimestamp(String str){
-	// 	return Timestamp.valueOf(str);
-	// }
-	
 }
