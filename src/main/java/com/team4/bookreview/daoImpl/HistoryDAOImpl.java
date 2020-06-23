@@ -20,7 +20,7 @@ public class HistoryDAOImpl implements HistoryDAO {
 	
 	@Override
 	public List<HistoryVO> selectAll() {
-		return null;
+		return new List<HistoryVO>();
 	}
 
 	@Override
@@ -31,13 +31,11 @@ public class HistoryDAOImpl implements HistoryDAO {
 	@Override
 	public int insertHistory(HistoryVO hv) {
 		return sqlSession.update(namespace+".insertHistory", hv);
-		return res;
 	}
 
 	@Override
 	public int deleteHistory(HistoryVO hv) {
 		return sqlSession.update(namespace+".deleteHistory", hv);
-		return res;
 	}
 
 }
