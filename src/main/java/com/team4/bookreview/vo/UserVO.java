@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class UserVO extends DataVO implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	int id;
 	String email;
 	String name;
