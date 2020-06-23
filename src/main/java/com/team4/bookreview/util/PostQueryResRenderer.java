@@ -5,35 +5,40 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.team4.bookreview.daoImpl.PostDAOImpl;
+import com.team4.bookreview.daoimpl.PostDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.PostVO;
 
 
 @Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(PostQueryResRenderer.class);
+	
+
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
 	private PostDAOImpl postDAOImpl;
 
 	@Override
 	public String getInsertRes(String data) {
-		System.out.println("----- getInsertRes -----");
+		logger.info("----- getInsertRes -----");
 		Response r = new Response();
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
 		int result;
 		try {
 			// result would be idx of new row
 			result = postDAOImpl.insert(post);
-			System.out.println("Idx of new Row : " + result);
+			logger.info("Idx of new Row : " + result);
 			r.setResultCode(100);
 			r.setDataObject(post);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
@@ -41,7 +46,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getDeleteRes(String data) {
-		System.out.println("----- getDeleteRes -----");
+		logger.info("----- getDeleteRes -----");
 		Response r = new Response();
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
 		int result;
@@ -53,9 +58,9 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(300);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
@@ -63,7 +68,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getSelectRes(String data) {
-		System.out.println("----- getSelectRes -----");
+		logger.info("----- getSelectRes -----");
 		Response r = new Response();
 		int idx = 0;
 		try {
@@ -72,26 +77,26 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				idx = node.get("idx").asInt();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			idx = 0;
 		} 
 
 		if(idx == 0) {
-			System.out.println("[SELECT ALL POST]");
+			logger.info("[SELECT ALL POST]");
 			List<PostVO> result;
 			try {
 				result = postDAOImpl.selectAll();
 				r.setResultCode(100);
 				r.setDataList(result);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 			} 
 			return r.toJsonString();
 		}
 
-		System.out.println("[SELECT ONE POST]");
+		logger.info("[SELECT ONE POST]");
 		PostVO result = null;
 		try {
 			result = postDAOImpl.select(idx);
@@ -100,32 +105,31 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setDataObject(result);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 		return r.toJsonString();
 	}
 
 	@Override
 	public String getUpdateRes(String data) {
-		System.out.println("----- getUpdateRes -----");
+		logger.info("----- getUpdateRes -----");
 		Response r = new Response();
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
-		int result;
 		try {
-			result = postDAOImpl.update(post.getIdx(), post);
+			postDAOImpl.update(post.getIdx(), post);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 		return r.toJsonString();
 	}
 
 	public String getSearchByWriterRes(String data){
-		System.out.println("----- getSearchByWriterRes -----");
+		logger.info("----- getSearchByWriterRes -----");
 		Response r = new Response();	
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
 		List<PostVO> result;
@@ -136,16 +140,16 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
 	}
 
 	public String getSearchByTitleRes(String data){
-		System.out.println("----- getSearchByTitleRes -----");
+		logger.info("----- getSearchByTitleRes -----");
 		Response r = new Response();	
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
 		List<PostVO> result;
@@ -156,9 +160,9 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();

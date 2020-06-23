@@ -1,5 +1,7 @@
 package com.team4.bookreview.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,31 +13,27 @@ import com.team4.bookreview.util.CommentQueryResRenderer;
 
 @Controller
 public class CommentController {
+	private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 	@Autowired
 	private CommentQueryResRenderer renderer;
 	
 	@RequestMapping(value="/comment/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String writeComment(@RequestParam String data) {
-
-		System.out.println("=============/comment/insert=============");
-		System.out.println("data" + data);
+		logger.info("=============/comment/insert=============");
+		logger.info(data);
 		String resJson = renderer.getInsertRes(data);
-
-		System.out.println("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	
 	@RequestMapping(value="/comment/update", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String updateComment(@RequestParam String data) {
-
-		System.out.println("=============/comment/update=============");
-		System.out.println("data : " + data);
-
+		logger.info("=============/comment/update=============");
+		logger.info(data);
 		String resJson = renderer.getUpdateRes(data);
-		
-		System.out.println("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	
@@ -43,10 +41,10 @@ public class CommentController {
 	@ResponseBody
 	public String showComments() {
 
-		System.out.println("=============/comment=============");
+		logger.info("=============/comment=============");
 		String resJson = renderer.getAllSelectRes();
 		
-		System.out.println("result : " + resJson);
+		logger.info(resJson);
 
 		return resJson;
 		
@@ -55,12 +53,10 @@ public class CommentController {
 	@RequestMapping(value="/comment/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteComment(@RequestParam String data) {
-
-		System.out.println("=============/comment/delete=============");
-		System.out.println("data : " + data);
+		logger.info("=============/comment/delete=============");
+		logger.info(data);
 		String resJson = renderer.getDeleteRes(data);
-		
-		System.out.println("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	

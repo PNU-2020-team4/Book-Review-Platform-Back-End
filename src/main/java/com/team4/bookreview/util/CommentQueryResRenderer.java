@@ -6,47 +6,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
-import com.team4.bookreview.daoImpl.CommentDAOImpl;
+import com.team4.bookreview.daoimpl.CommentDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.CommentVO;
 @Service
 public class CommentQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(CommentQueryResRenderer.class);
+	
 
 	@Autowired
 	private CommentDAOImpl commentDaoImpl;
 	
 	@Override
 	public String getInsertRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Insert_Comment = gson.fromJson(data,  CommentVO.class);
 		to_Insert_Comment.setDate(new Date());
-		System.out.println(to_Insert_Comment.toString());
+		logger.info(to_Insert_Comment.toString());
 		int result_cnt = 0;
 		
 		try {
 			result_cnt = commentDaoImpl.insertComment(to_Insert_Comment);
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while inserting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			return r.toJsonString();
 		}
 		
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insert Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		case 1:
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataObject(to_Insert_Comment);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
 		}
 		
 		return r.toJsonString();
@@ -54,7 +57,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getDeleteRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Delete_Comment = gson.fromJson(data, CommentVO.class);
@@ -64,24 +66,24 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			result_cnt = commentDaoImpl.deleteComment(to_Delete_Comment);
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while deleting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 			return r.toJsonString();
 		}
-		System.out.println(result_cnt);
+		logger.info(result_cnt + "");
 		
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insert Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		case 1:
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataObject(to_Delete_Comment);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
 		}
 		
 		return r.toJsonString();
@@ -89,7 +91,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getSelectRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -101,17 +102,17 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			list_Comment = commentDaoImpl.selectAll();
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while deleting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 			return r.toJsonString();
 		}
 		
 		if(list_Comment != null) {
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataList(list_Comment);
 		} else {
 			r.setResultCode(400);
-			r.setMessage("DB Select Error");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		}
 		
 		return r.toJsonString();
@@ -119,7 +120,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getUpdateRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Update_Comment = gson.fromJson(data,  CommentVO.class);
@@ -129,26 +129,26 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result_cnt = commentDaoImpl.updateComment(to_Update_Comment);
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while updating comment");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			return r.toJsonString();
 		}
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Update Error");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			break;
 		
 		case 1:
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataObject(commentDaoImpl.select(to_Update_Comment));
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		return r.toJsonString();

@@ -1,5 +1,7 @@
 package com.team4.bookreview.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +13,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.util.BookQueryResRenderer;
+import com.team4.bookreview.util.ErrorMsg;
 import com.team4.bookreview.util.HistoryQueryResRenderer;
 import com.team4.bookreview.vo.BookVO;
 import com.team4.bookreview.vo.HistoryVO;
 
 @Controller
 public class HistController {
+	private static final Logger logger = LoggerFactory.getLogger(HistController.class);
+	
 	@Autowired
 	private HistoryQueryResRenderer renderer;
 	@Autowired
@@ -24,21 +29,21 @@ public class HistController {
 	
 	@RequestMapping(value="/hist/showAll", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String ShowAllByUser(@RequestParam String data) {
-		System.out.println("=============[/hist/showAll] request ===============");
-		System.out.println("data : " + data);
+	public String showAllByUser(@RequestParam String data) {
+		logger.info("=============[/hist/showAll] request ===============");
+		logger.info(data);
 		
-		String JSONValue = renderer.getSelectAllByUserRes(data);
-		System.out.println("Return : " + JSONValue);
+		String jsonValue = renderer.getSelectAllByUserRes(data);
+		logger.info(jsonValue);
 		
-		return JSONValue;
+		return jsonValue;
 	}
 	
 	@RequestMapping(value="/hist/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String HistInsert(@RequestParam String data) {
-		System.out.println("=============[/hist/insert] request ===============");
-		System.out.println("data : " + data);
+	public String histInsert(@RequestParam String data) {
+		logger.info("=============[/hist/insert] request ===============");
+		logger.info(data);
 		ObjectMapper obj = new ObjectMapper();
 		String name;
 		String author;
@@ -52,15 +57,15 @@ public class HistController {
 			author = node.get("author").asText();
 			userId = node.get("id").asInt();
 		} catch (Exception e) {
-			System.out.println("Request Failed");
-			e.printStackTrace();
+			logger.info("Request Failed");
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			return new Response().toJsonString();
 		} 
 		
-		System.out.println("Book IDX : " + idx);
-		System.out.println("Book Name : " + name);
-		System.out.println("Book Author : " + author);
-		System.out.println("User ID : " + userId);
+		logger.info("Book IDX : " + idx);
+		logger.info("Book Name : " + name);
+		logger.info("Book Author : " + author);
+		logger.info("User ID : " + userId);
 		
 		
 		BookVO bv = new BookVO();
@@ -69,29 +74,27 @@ public class HistController {
 		bv.setName(name);
 		int bookInsertResult = brenderer.getInsertNoDup(bv); 
 		
-		System.out.println("Book Insert Result : " + bookInsertResult);
-		if(bookInsertResult == 0) 	System.out.println(name + " " + author + " is Already Exist In br.book");
+		logger.info("Book Insert Result : " + bookInsertResult);
+		if(bookInsertResult == 0) 	logger.info(name + " " + author + " is Already Exist In br.book");
 	
 		HistoryVO hv= new HistoryVO();
 	
 		hv.setBook(idx);
 		hv.setUser(userId);
-		String JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
-		System.out.println("Return : " + JSONValue);
+		String jsonValue = renderer.getInsertResByRecord(hv); 
+		logger.info(jsonValue);
 
-		return JSONValue;
+		return jsonValue;
 	}
 	
 	@RequestMapping(value="/hist/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String HistDelete(@RequestParam String data) {
-		System.out.println("=============[/hist/HistDelete] request ===============");
-		System.out.println("data : " + data);
-		
-		String JSONValue = renderer.getDeleteRes(data);
-		System.out.println("Return : " + JSONValue);
-		
-		return JSONValue;
+	public String histDelete(@RequestParam String data) {
+		logger.info("=============[/hist/delete] request ===============");
+		logger.info(data);
+		String jsonValue = renderer.getDeleteRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 	
 }

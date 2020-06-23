@@ -1,8 +1,6 @@
-package com.team4.bookreview.daoImpl;
+package com.team4.bookreview.daoimpl;
 
-import java.util.HashMap;
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,36 +19,26 @@ public class CommentDAOImpl implements CommentDAO{
 	private String namespace = "com.team4.bookreview.dao.CommentDAO";
 	
 	public List<CommentVO> selectAll() {
-		List<CommentVO> listComment = sqlSession.selectList(namespace+".selectAll");
-		return listComment;
+		return sqlSession.selectList(namespace+".selectAll");
 	}
 
 	@Override
 	public CommentVO select(CommentVO cmt) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int insertComment(CommentVO cmt) {
-		// TODO Auto-generated method stub
-		int res = sqlSession.insert(namespace+".insertComment", cmt);
-		return res;
+		return sqlSession.insert(namespace+".insertComment", cmt);
 	}
 
 	@Override
 	public int updateComment(CommentVO cmt) {
-		// TODO Auto-generated method stub
-		int res = sqlSession.update(namespace+".updateComment", cmt);
-		System.out.println(res);
-		return res;
+		return sqlSession.update(namespace+".updateComment", cmt);
 	}
 
 	@Override
 	public int deleteComment(CommentVO cmt) {
-		// TODO Auto-generated method stub
-		int res = sqlSession.update(namespace+".deleteComment", cmt);
-		System.out.println(res);
-		return res;
+		return sqlSession.update(namespace+".deleteComment", cmt);
 	}
 }

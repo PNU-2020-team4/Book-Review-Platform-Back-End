@@ -1,10 +1,9 @@
-package com.team4.bookreview.daoImpl;
+package com.team4.bookreview.daoimpl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,14 +37,8 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	public int insertNoDup(BookVO book){
-		System.out.println("BOOK INFO");
-		
-		System.out.println(book.getAuthor());
-		System.out.println(book.getName());
-		
 		int result = 0;
-		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result =-1;
-		System.out.println(result);
+		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result = -1;
 		return result;
 	}
 	

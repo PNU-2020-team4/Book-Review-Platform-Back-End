@@ -1,5 +1,6 @@
 package com.team4.bookreview.controller;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.team4.bookreview.util.UserQueryResRenderer;
 
 @Controller
 public class MyPageController {
+	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	
 	@Autowired
 	private UserQueryResRenderer renderer;
@@ -20,12 +22,12 @@ public class MyPageController {
 	@ResponseBody
 	public String seeMyPage(@RequestParam String data) throws JsonProcessingException {
 
-		System.out.println("=============/mypage=============");
-		System.out.println("data : " + data);
+		logger.info("=============/mypage=============");
+		logger.info(data);
 
 		String resJson = renderer.getSelectRes(data);
 		
-		System.out.println("result : " + resJson);
+		logger.info("result : " + resJson);
 
 		return resJson;
 	}
@@ -34,12 +36,12 @@ public class MyPageController {
 	@ResponseBody
 	public String changeNick(@RequestParam String data)
 	{
-		System.out.println("=============/mypage/changeNick=============");
-		System.out.println("data : " + data);
+		logger.info("=============/mypage/changeNick=============");
+		logger.info(data);
 
 		String resJson = renderer.getUpdateNickRes(data);
 		
-		System.out.println("result : " + resJson);
+		logger.info("result : " + resJson);
 
 		return resJson;
 	}

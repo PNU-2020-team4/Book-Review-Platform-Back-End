@@ -5,6 +5,7 @@ public class ReviewExpandVO extends ReviewVO {
     String bookName;
     String bookAuthor;
     String bookGenre;
+    String img;
 
     public String getNickname() {
         return nickname;
@@ -36,6 +37,14 @@ public class ReviewExpandVO extends ReviewVO {
 
     public void setBookGenre(String bookGenre) {
         this.bookGenre = bookGenre;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     

@@ -3,9 +3,16 @@ package com.team4.bookreview.model;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team4.bookreview.util.ErrorMsg;
 import com.team4.bookreview.vo.DataVO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Response {
+    private static final Logger logger = LoggerFactory.getLogger(Response.class);
+    
+
     private static ObjectMapper obj = new ObjectMapper();
     int resultCode = 500;
     String message = "";
@@ -39,10 +46,10 @@ public class Response {
     
     public String toJsonString() {
         try {
-        	System.out.println("MAKE RESULT INTO JSON...");
+        	logger.info("MAKE RESULT INTO JSON...");
             return obj.writeValueAsString(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(ErrorMsg.ERROR_STRING, e);
             return createDummy();
         }
     }
@@ -51,10 +58,10 @@ public class Response {
         try {
             Response r = new Response();
             r.resultCode = 400;
-            r.message = "Unknown Error";
+            r.message = ErrorMsg.ERROR_UNKNOWN;
             return obj.writeValueAsString(r);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(ErrorMsg.ERROR_STRING, e);
             return "";
         }
     }
@@ -63,7 +70,7 @@ public class Response {
         try {
 			return obj.readValue(data, valueType);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			return new DataVO();
 		}
 	}

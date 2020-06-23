@@ -3,33 +3,34 @@ package com.team4.bookreview.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
-import com.team4.bookreview.daoImpl.UserDAOImpl;
+import com.team4.bookreview.daoimpl.UserDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.UserVO;
 
 
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
+	
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
 	
 	@Override
 	public String getInsertRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getDeleteRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getSelectRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		UserVO user = gson.fromJson(data,  UserVO.class);
@@ -39,20 +40,20 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			selected_user = userDaoImpl.select(user.getId());
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
-			r.setMessage("Can not select Data");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			return r.toJsonString();
 		}
 		
 		if(selected_user != null) {
 			r.setResultCode(100);
 			r.setDataObject(selected_user);
-			r.setMessage("Success");
-			System.out.println("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
+			logger.info(SuccessMsg.SUCCESS_STRING);
 		} else {
 			r.setResultCode(400);
-			r.setMessage("Some Error occur while selecting");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		}
 		return r.toJsonString();
 	}
@@ -62,32 +63,32 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		UserVO user = gson.fromJson(data,  UserVO.class);
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		int result = 0;
 		
 		try {
 			result = userDaoImpl.updateNick(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
 		
 		switch(result) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Update Error");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			break;
 		
 		case 1:
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataObject(userDaoImpl.select(user.getId()));
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		return r.toJsonString();
@@ -97,9 +98,9 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	public String getUpdateRes(String data) {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
-		System.out.println(user);
+		logger.info(user.toString());
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		user.setWithdrawal(false);
 		user.setHist_cnt(0);
 		int result = 0;
@@ -107,9 +108,9 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
 		}
 		
@@ -117,16 +118,16 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			System.out.println("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		return r.toJsonString();
@@ -136,18 +137,18 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 
-		System.out.println(user);
+		logger.info(user.toString());
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		user.setWithdrawal(true);
 
 		int result = 0;
 		try {
 			result = userDaoImpl.updateWithdrawal(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
 		}
 		
@@ -155,16 +156,16 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			System.out.println("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		return r.toJsonString();
