@@ -40,21 +40,13 @@ public class bookQueryTest {
 		= MockMvcBuilders
 		.webAppContextSetup(this.ctx).build();
 	}
-	
-//	@Test
-//	public void testBookController() throws Exception{
-//		RequestBuilder reqBuilder = MockMvcRequestBuilders.get("/book/get").contentType(MediaType.APPLICATION_JSON);
-//		ResultMatcher matcher = MockMvcResultMatchers.status().isOk();
-//		ResultHandler handler = MockMvcResultHandlers.print();
-//		mockMvc.perform(reqBuilder).andExpect(matcher).andDo(handler);
-//	}
 
-		@Test
-		public void test() throws Exception{
-			 this.mockMvc.perform(get("/book/get"))
-		                .andDo(print())
-		                .andExpect(status().isOk());
+	@Test
+	public void test() throws Exception{
+		 this.mockMvc.perform(get("/book/get"))
+	                .andDo(print())
+	                .andExpect(status().isOk());
 
-		}
+	}
 	
 }
