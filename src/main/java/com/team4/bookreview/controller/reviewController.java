@@ -12,6 +12,8 @@ import com.team4.bookreview.util.ReviewQueryResRenderer;
 
 @Controller
 public class reviewController {
+	private static final Logger logger = LoggerFactory.getLogger(reviewController.class);
+
 	@Autowired
 	private ReviewQueryResRenderer renderer;
 	 	

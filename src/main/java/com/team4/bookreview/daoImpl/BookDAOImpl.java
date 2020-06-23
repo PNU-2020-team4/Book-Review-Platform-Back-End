@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,14 +37,8 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	public int insertNoDup(BookVO book){
-		logger.info("BOOK INFO");
-		
-		logger.info(book.getAuthor());
-		logger.info(book.getName());
-		
 		int result = 0;
 		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result =-1;
-		logger.info(result);
 		return result;
 	}
 	

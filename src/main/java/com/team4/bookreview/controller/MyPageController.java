@@ -13,6 +13,7 @@ import com.team4.bookreview.util.UserQueryResRenderer;
 
 @Controller
 public class MyPageController {
+	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	
 	@Autowired
 	private UserQueryResRenderer renderer;
