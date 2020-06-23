@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(BookQueryResRenderer.class);
-	private static final String ERROR = "Error";
+	private static final String WRITER  = "writer";
 
 	private ObjectMapper obj = new ObjectMapper();
 
@@ -34,7 +34,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		try{
 			result = bookDAOImpl.insert(record);
 		} catch(Exception e){
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.info(r.toJsonString());
@@ -73,7 +73,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			result = bookDAOImpl.insertNoDup(record);
 		
 		} catch(Exception e){
-			logger.error(ERROR, e);		
+			logger.error(ErrorMsg.ERROR_STRING, e);		
 		}
  
 		logger.info(result + "");
@@ -90,7 +90,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			ObjectNode node = obj.readValue(data, ObjectNode.class);
 			idx = node.get("idx").asInt();
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			idx = -1;
 		} 
 		logger.info("Received data : " + idx);
@@ -99,7 +99,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = bookDAOImpl.delete(idx);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -134,7 +134,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
 			idx = nodes.get("idx").asInt();
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			idx = 0;
 		}
 
@@ -146,7 +146,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			try {
 				result = bookDAOImpl.selectAll();
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
@@ -168,7 +168,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			try {
 				result = bookDAOImpl.select(idx);
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
@@ -208,7 +208,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataList(result);
 		} catch(Exception e){
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -231,7 +231,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataList(result);
 		} catch(Exception e){
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -249,7 +249,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			index = bookDAOImpl.getIndexByAuthorAndName(author, name);
 		} catch(Exception e){
 			logger.error(ErrorMsg.ERROR_DB_SELECTION);
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 		}
 
 		return index;
@@ -262,9 +262,9 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		int writer = 0;
 		try {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
-			writer = nodes.get("writer").asInt();
+			writer = nodes.get(WRITER).asInt();
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			writer = 0;
 		}
 		
@@ -274,7 +274,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			try {
 				result = bookDAOImpl.getRecommendBasedUserReview(writer);
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
@@ -306,9 +306,9 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		int writer = 0;
 		try {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
-			writer = nodes.get("writer").asInt();
+			writer = nodes.get(WRITER).asInt();
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			writer = 0;
 		}
 		
@@ -318,7 +318,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			try {
 				result = bookDAOImpl.getRecommendBasedUserHistory(writer);
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
@@ -350,9 +350,9 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		int writer = 0;
 		try {
 			ObjectNode nodes = obj.readValue(data, ObjectNode.class);
-			writer = nodes.get("writer").asInt();
+			writer = nodes.get(WRITER).asInt();
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			writer = 0;
 		}
 		
@@ -363,7 +363,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			try {
 				result = bookDAOImpl.getDataBasedUserHistory(writer);
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();

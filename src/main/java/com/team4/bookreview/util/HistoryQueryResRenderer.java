@@ -15,7 +15,7 @@ import com.team4.bookreview.vo.HistoryVO;
 @Service
 public class HistoryQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(HistoryQueryResRenderer.class);
-	private static final String ERROR = "Error";
+	
 
 	@Autowired
 	private HistoryDAOImpl historyDaoImpl;
@@ -31,7 +31,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -69,7 +69,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -111,7 +111,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			res = historyDaoImpl.deleteHistory(hv);
 			logger.info(res + "");
 		} catch(Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
@@ -158,7 +158,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataList(result);
 		} catch(Exception e){
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());

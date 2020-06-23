@@ -17,7 +17,7 @@ import com.team4.bookreview.vo.PostVO;
 @Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(PostQueryResRenderer.class);
-	private static final String ERROR = "Error";
+	
 
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
@@ -36,7 +36,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataObject(post);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
@@ -58,7 +58,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(300);
 			}
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
@@ -77,7 +77,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				idx = node.get("idx").asInt();
 			}
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			idx = 0;
 		} 
 
@@ -89,7 +89,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(100);
 				r.setDataList(result);
 			} catch (Exception e) {
-				logger.error(ERROR, e);
+				logger.error(ErrorMsg.ERROR_STRING, e);
 				r.setResultCode(200);
 				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 			} 
@@ -105,7 +105,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setDataObject(result);
 			}
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
@@ -122,7 +122,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			result = postDAOImpl.update(post.getIdx(), post);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
@@ -141,7 +141,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
@@ -161,7 +161,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(200);
 			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}

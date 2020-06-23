@@ -15,7 +15,7 @@ import com.team4.bookreview.vo.CommentVO;
 @Service
 public class CommentQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(CommentQueryResRenderer.class);
-	private static final String ERROR = "Error";
+	
 
 	@Autowired
 	private CommentDAOImpl commentDaoImpl;
@@ -129,7 +129,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result_cnt = commentDaoImpl.updateComment(to_Update_Comment);
 		} catch(Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
 			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			return r.toJsonString();

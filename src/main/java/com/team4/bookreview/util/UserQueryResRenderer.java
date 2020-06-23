@@ -14,7 +14,7 @@ import com.team4.bookreview.vo.UserVO;
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
-	private static final String ERROR = "Error";
+	
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
@@ -40,7 +40,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			selected_user = userDaoImpl.select(user.getId());
 		} catch(Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
 			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			return r.toJsonString();
@@ -69,7 +69,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateNick(user);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
@@ -108,7 +108,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
@@ -146,7 +146,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateWithdrawal(user);
 		} catch (Exception e) {
-			logger.error(ERROR, e);
+			logger.error(ErrorMsg.ERROR_STRING, e);
 			r.setResultCode(500);
 			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
