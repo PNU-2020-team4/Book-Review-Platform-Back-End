@@ -16,7 +16,7 @@ import com.team4.bookreview.vo.ReviewVO;
 @Service
 public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewQueryResRenderer.class);
-	private static final ERROR = "Error";
+	private static final String ERROR = "Error";
 
 	private ObjectMapper obj = new ObjectMapper();
 

@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class Response {
     private static final Logger logger = LoggerFactory.getLogger(Response.class);
-    private static final ERROR = "Error";
+    private static final String ERROR = "Error";
 
     private static ObjectMapper obj = new ObjectMapper();
     int resultCode = 500;

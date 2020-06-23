@@ -15,7 +15,7 @@ import com.team4.bookreview.vo.HistoryVO;
 @Service
 public class HistoryQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(HistoryQueryResRenderer.class);
-	private static final ERROR = "Error";
+	private static final String ERROR = "Error";
 
 	@Autowired
 	private HistoryDAOImpl historyDaoImpl;

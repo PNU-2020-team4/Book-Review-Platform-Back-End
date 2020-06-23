@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(BookQueryResRenderer.class);
-	private static final ERROR = "Error";
+	private static final String ERROR = "Error";
 
 	private ObjectMapper obj = new ObjectMapper();
 

@@ -14,7 +14,7 @@ import com.team4.bookreview.vo.UserVO;
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
-	private static final ERROR = "Error";
+	private static final String ERROR = "Error";
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
