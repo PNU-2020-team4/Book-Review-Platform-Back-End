@@ -117,9 +117,8 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		logger.info("----- getUpdateRes -----");
 		Response r = new Response();
 		PostVO post = (PostVO) r.readValue(data, PostVO.class);
-		int result;
 		try {
-			result = postDAOImpl.update(post.getIdx(), post);
+			postDAOImpl.update(post.getIdx(), post);
 			r.setResultCode(100);
 		} catch (Exception e) {
 			logger.error(ErrorMsg.ERROR_STRING, e);

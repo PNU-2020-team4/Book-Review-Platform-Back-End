@@ -44,7 +44,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(record);
-			System.out.println(SuccessMsg.SUCCESS_STRING);
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
