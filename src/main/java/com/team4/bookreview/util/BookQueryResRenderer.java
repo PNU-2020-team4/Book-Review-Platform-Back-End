@@ -45,7 +45,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(record);
-			logger.info("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -109,7 +109,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 			case 1:
 				r.setResultCode(100);
-				logger.info("Success");
+				logger.info(SuccessMsg.SUCCESS_STRING);
 				break;
 			case 0:
 				r.setResultCode(400);
@@ -159,7 +159,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				logger.info("Success");			
+				logger.info(SuccessMsg.SUCCESS_STRING);			
 			}
 		}
 		else {
@@ -180,7 +180,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				logger.info("Queried data");
 				r.setResultCode(100);
 				r.setDataObject(result);
-				logger.info("Success");			
+				logger.info(SuccessMsg.SUCCESS_STRING);			
 			}
 			
 		}
@@ -287,7 +287,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				logger.info("Success");			
+				logger.info(SuccessMsg.SUCCESS_STRING);			
 			}
 		}
 		else {
@@ -331,7 +331,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				logger.info("Success");			
+				logger.info(SuccessMsg.SUCCESS_STRING);			
 			}
 		}
 		else {
@@ -376,7 +376,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				logger.info("Success");			
+				logger.info(SuccessMsg.SUCCESS_STRING);			
 			}
 		}
 		else {

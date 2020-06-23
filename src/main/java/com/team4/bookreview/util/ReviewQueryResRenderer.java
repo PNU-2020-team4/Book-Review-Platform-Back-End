@@ -44,7 +44,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(record);
-			System.out.println("Success");
+			System.out.println(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -87,7 +87,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 			case 1:
 				r.setResultCode(100);
-				logger.info("Success");
+				logger.info(SuccessMsg.SUCCESS_STRING);
 				break;
 			case 0:
 				r.setResultCode(400);
@@ -140,7 +140,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			logger.info("Queried data : " + result.size());
 			r.setResultCode(100);
 			r.setDataList(result);
-			logger.info("Success");			
+			logger.info(SuccessMsg.SUCCESS_STRING);			
 		}
 		logger.info(r.toJsonString());
 		return r.toJsonString();
@@ -172,7 +172,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			logger.info("Queried data : " + result.size());
 			r.setResultCode(100);
 			r.setDataList(result);
-			logger.info("Success");			
+			logger.info(SuccessMsg.SUCCESS_STRING);			
 		}
 		logger.info(r.toJsonString());
 		return r.toJsonString();
@@ -199,7 +199,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(record);
-			logger.info("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);

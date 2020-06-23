@@ -11,8 +11,6 @@ public class ErrorMsg {
     public static final String ERROR_RETURN_VALUE_NOT_0_1 = "Return Value is NOT 0 or 1";
     public static final String ERROR_UNKNOWN = "Unknown Error";
 
-    
-
     private ErrorMsg() {
         throw new IllegalStateException("Error class");
     }

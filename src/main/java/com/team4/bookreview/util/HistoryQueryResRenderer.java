@@ -47,7 +47,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(hv);
-			logger.info("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 			
 		default:
@@ -127,8 +127,8 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(hv);
-			r.setMessage("Success");
-			logger.info("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 			
 		default:

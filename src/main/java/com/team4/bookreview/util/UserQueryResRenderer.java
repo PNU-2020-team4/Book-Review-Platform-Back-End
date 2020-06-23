@@ -49,8 +49,8 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		if(selected_user != null) {
 			r.setResultCode(100);
 			r.setDataObject(selected_user);
-			r.setMessage("Success");
-			logger.info("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
+			logger.info(SuccessMsg.SUCCESS_STRING);
 		} else {
 			r.setResultCode(400);
 			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
@@ -82,7 +82,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		
 		case 1:
 			r.setResultCode(100);
-			r.setMessage("Success");
+			r.setMessage(SuccessMsg.SUCCESS_STRING);
 			r.setDataObject(userDaoImpl.select(user.getId()));
 			break;
 		default:
@@ -118,7 +118,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			logger.info("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -156,7 +156,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			logger.info("Success");
+			logger.info(SuccessMsg.SUCCESS_STRING);
 			break;
 		case 0:
 			r.setResultCode(400);
