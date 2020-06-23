@@ -80,7 +80,8 @@ public class HistController {
 	
 		hv.setBook(idx);
 		hv.setUser(userId);
-		String jsonValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
+		// if(new book & user):insert , else : update Date
+		String jsonValue = renderer.getInsertResByRecord(hv); 
 		logger.info(jsonValue);
 
 		return jsonValue;
