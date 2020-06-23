@@ -3,6 +3,7 @@ package com.team4.bookreview.model;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team4.bookreview.util.ErrorMsg;
 import com.team4.bookreview.vo.DataVO;
 
 import org.slf4j.Logger;

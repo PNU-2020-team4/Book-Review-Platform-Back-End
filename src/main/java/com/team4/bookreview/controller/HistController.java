@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.util.BookQueryResRenderer;
+import com.team4.bookreview.util.ErrorMsg;
 import com.team4.bookreview.util.HistoryQueryResRenderer;
 import com.team4.bookreview.vo.BookVO;
 import com.team4.bookreview.vo.HistoryVO;
