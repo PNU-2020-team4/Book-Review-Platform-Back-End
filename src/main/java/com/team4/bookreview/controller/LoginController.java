@@ -18,7 +18,6 @@ import com.team4.bookreview.util.UserQueryResRenderer;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-
 	@Autowired
 	private UserQueryResRenderer renderer;
 		

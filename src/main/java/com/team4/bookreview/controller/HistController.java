@@ -89,7 +89,7 @@ public class HistController {
 	@RequestMapping(value="/hist/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String histDelete(@RequestParam String data) {
-		logger.info("=============[/hist/HistDelete] request ===============");
+		logger.info("=============[/hist/delete] request ===============");
 		logger.info(data);
 		String jsonValue = renderer.getDeleteRes(data);
 		logger.info(jsonValue);
