@@ -15,7 +15,7 @@ import com.team4.bookreview.vo.CommentVO;
 @Service
 public class CommentQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(CommentQueryResRenderer.class);
-	final String ERROR = "Error";
+	private static final ERROR = "Error";
 
 	@Autowired
 	private CommentDAOImpl commentDaoImpl;

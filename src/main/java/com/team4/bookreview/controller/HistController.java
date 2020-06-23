@@ -20,7 +20,7 @@ import com.team4.bookreview.vo.HistoryVO;
 @Controller
 public class HistController {
 	private static final Logger logger = LoggerFactory.getLogger(HistController.class);
-	final String ERROR = "Error";
+	private static final String ERROR = "Error";
 	@Autowired
 	private HistoryQueryResRenderer renderer;
 	@Autowired
@@ -80,7 +80,6 @@ public class HistController {
 	
 		hv.setBook(idx);
 		hv.setUser(userId);
-		// if(new book & user):insert , else : update Date
 		String jsonValue = renderer.getInsertResByRecord(hv); 
 		logger.info(jsonValue);
 

@@ -17,7 +17,7 @@ import com.team4.bookreview.vo.PostVO;
 @Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(PostQueryResRenderer.class);
-	final String ERROR = "Error";
+	private static final ERROR = "Error";
 
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
