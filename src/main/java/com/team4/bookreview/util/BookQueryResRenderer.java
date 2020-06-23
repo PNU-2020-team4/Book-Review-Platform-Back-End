@@ -156,7 +156,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
-				logger.info("Queried data : " + result.size());
+				logger.info( + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
 				logger.info(SuccessMsg.SUCCESS_STRING);			
@@ -284,7 +284,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
-				logger.info("Queried data : " + result.size());
+				logger.info( + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
 				logger.info(SuccessMsg.SUCCESS_STRING);			
@@ -328,7 +328,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
-				logger.info("Queried data : " + result.size());
+				logger.info( + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
 				logger.info(SuccessMsg.SUCCESS_STRING);			
@@ -373,7 +373,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
-				logger.info("Queried data : " + result.size());
+				logger.info( + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
 				logger.info(SuccessMsg.SUCCESS_STRING);			
