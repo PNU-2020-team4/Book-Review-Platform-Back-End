@@ -36,7 +36,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e){
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.info(r.toJsonString());
 			return r.toJsonString();			
 		}
@@ -49,12 +49,12 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(300);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		logger.error(r.toJsonString());
@@ -101,7 +101,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -113,12 +113,12 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				break;
 			case 0:
 				r.setResultCode(400);
-				r.setMessage("DB Deletion error");
+				r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 				break;
 			default:
 				r.setResultCode(300);
-				r.setMessage("Internal Error");
-				logger.error("Return value is not 0 or 1");
+				r.setMessage(ErrorMsg.ERROR_INTERNAL);
+				logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		logger.error(r.toJsonString());
 		return r.toJsonString();
@@ -148,13 +148,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
 			} 
 			
 			if(result == null) {
 				r.setResultCode(400);
-				r.setMessage("DB Selection Failure");
+				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
@@ -170,12 +170,12 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
 			}
 			if(result == null) {
 				r.setResultCode(400);
-				r.setMessage("DB Selection Failure");
+				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
 				logger.info("Queried data");
 				r.setResultCode(100);
@@ -192,7 +192,6 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	public String getUpdateRes(String data){
 		logger.info("----- getUpdateRes -----");
 
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -211,7 +210,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e){
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}
@@ -234,7 +233,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e){
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}
@@ -249,7 +248,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		try{
 			index = bookDAOImpl.getIndexByAuthorAndName(author, name);
 		} catch(Exception e){
-			logger.error("Search Error With Author And Name.");
+			logger.error(ErrorMsg.ERROR_DB_SELECTION);
 			logger.error(ERROR, e);
 		}
 
@@ -277,13 +276,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
 			} 
 			
 			if(result == null) {
 				r.setResultCode(400);
-				r.setMessage("DB Selection Failure");
+				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
@@ -293,7 +292,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		else {
 			r.setResultCode(210);
-			r.setMessage("Wrong Request");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
 
 		return r.toJsonString();
@@ -321,13 +320,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
 			} 
 			
 			if(result == null) {
 				r.setResultCode(400);
-				r.setMessage("DB Selection Failure");
+				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
@@ -337,7 +336,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		else {
 			r.setResultCode(210);
-			r.setMessage("Wrong Request");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
 
 		return r.toJsonString();
@@ -345,7 +344,6 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 
 	public String getSearchByData(String data) {
-		// TODO Auto-generated method stub
 		logger.info("----- getSearchByData -----");
 
 		Response r = new Response();
@@ -367,13 +365,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 				return r.toJsonString();
 			} 
 			
 			if(result == null) {
 				r.setResultCode(400);
-				r.setMessage("DB Selection Failure");
+				r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			} else {
 				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
@@ -383,7 +381,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		else {
 			r.setResultCode(210);
-			r.setMessage("Wrong Request");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
 
 		return r.toJsonString();

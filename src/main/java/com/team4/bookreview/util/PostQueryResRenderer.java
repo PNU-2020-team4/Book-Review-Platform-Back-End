@@ -38,7 +38,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
@@ -60,7 +60,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
@@ -91,7 +91,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			} catch (Exception e) {
 				logger.error(ERROR, e);
 				r.setResultCode(200);
-				r.setMessage("Something's wrong");
+				r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 			} 
 			return r.toJsonString();
 		}
@@ -107,7 +107,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 		return r.toJsonString();
 	}
@@ -124,7 +124,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 		return r.toJsonString();
 	}
@@ -143,7 +143,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();
@@ -163,7 +163,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Something's wrong");
+			r.setMessage(ErrorMsg.ERROR_UNKNOWN);
 		}
 
 		return r.toJsonString();

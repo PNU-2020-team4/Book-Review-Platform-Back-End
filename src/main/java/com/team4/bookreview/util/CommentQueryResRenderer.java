@@ -22,7 +22,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 	
 	@Override
 	public String getInsertRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Insert_Comment = gson.fromJson(data,  CommentVO.class);
@@ -34,14 +33,14 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			result_cnt = commentDaoImpl.insertComment(to_Insert_Comment);
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while inserting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			return r.toJsonString();
 		}
 		
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insert Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		case 1:
 			r.setResultCode(100);
@@ -50,7 +49,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
 		}
 		
 		return r.toJsonString();
@@ -58,7 +57,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getDeleteRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Delete_Comment = gson.fromJson(data, CommentVO.class);
@@ -68,7 +66,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			result_cnt = commentDaoImpl.deleteComment(to_Delete_Comment);
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while deleting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 			return r.toJsonString();
 		}
 		logger.info(result_cnt + "");
@@ -76,7 +74,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insert Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		case 1:
 			r.setResultCode(100);
@@ -85,7 +83,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
 		}
 		
 		return r.toJsonString();
@@ -93,7 +91,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getSelectRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -105,7 +102,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			list_Comment = commentDaoImpl.selectAll();
 		} catch(Exception e) {
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while deleting comment");
+			r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 			return r.toJsonString();
 		}
 		
@@ -115,7 +112,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(list_Comment);
 		} else {
 			r.setResultCode(400);
-			r.setMessage("DB Select Error");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		}
 		
 		return r.toJsonString();
@@ -123,7 +120,6 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getUpdateRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		CommentVO to_Update_Comment = gson.fromJson(data,  CommentVO.class);
@@ -135,13 +131,13 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(500);
-			r.setMessage("Some Error occur while updating comment");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			return r.toJsonString();
 		}
 		switch(result_cnt) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Update Error");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			break;
 		
 		case 1:
@@ -151,8 +147,8 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		return r.toJsonString();

@@ -34,8 +34,8 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
-			logger.error("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
+			logger.error(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -48,12 +48,12 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(300);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		logger.info(r.toJsonString());
@@ -79,7 +79,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -91,12 +91,12 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 				break;
 			case 0:
 				r.setResultCode(400);
-				r.setMessage("DB Deletion error");
+				r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 				break;
 			default:
 				r.setResultCode(300);
-				r.setMessage("Internal Error");
-				logger.error("Return value is not 0 or 1");
+				r.setMessage(ErrorMsg.ERROR_INTERNAL);
+				logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		logger.info(r.toJsonString());
 		return r.toJsonString();
@@ -128,14 +128,14 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
 		if(result == null) {
 			r.setResultCode(400);
-			r.setMessage("DB Selection Failure");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		} else {
 			logger.info("Queried data : " + result.size());
 			r.setResultCode(100);
@@ -160,14 +160,14 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
 		if(result == null) {
 			r.setResultCode(400);
-			r.setMessage("DB Selection Failure");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		} else {
 			logger.info("Queried data : " + result.size());
 			r.setResultCode(100);
@@ -190,7 +190,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -203,13 +203,13 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Update error");
-			logger.error("DB Update error");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
+			logger.error(ErrorMsg.ERROR_DB_UPDATE);
 			break;
 		default:
 			r.setResultCode(300);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		logger.info(r.toJsonString());
 		return r.toJsonString();

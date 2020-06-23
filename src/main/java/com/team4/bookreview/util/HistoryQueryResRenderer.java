@@ -33,7 +33,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -41,7 +41,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		
 		case 1:
@@ -52,8 +52,8 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			
 		default:
 			r.setResultCode(300);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		logger.info(r.toJsonString());
@@ -71,7 +71,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -79,7 +79,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		switch(result) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		
 		case 1:
@@ -113,7 +113,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
@@ -121,7 +121,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		switch(res) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Deletion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_DELETION);
 			break;
 		
 		case 1:
@@ -133,8 +133,8 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			
 		default:
 			r.setResultCode(300);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		logger.info(r.toJsonString());
@@ -160,7 +160,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e){
 			logger.error(ERROR, e);
 			r.setResultCode(200);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}

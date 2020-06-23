@@ -21,19 +21,16 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	
 	@Override
 	public String getInsertRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getDeleteRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getSelectRes(String data) {
-		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		Response r = new Response();
 		UserVO user = gson.fromJson(data,  UserVO.class);
@@ -45,7 +42,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		} catch(Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(500);
-			r.setMessage("Can not select Data");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 			return r.toJsonString();
 		}
 		
@@ -56,7 +53,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			logger.info("Success");
 		} else {
 			r.setResultCode(400);
-			r.setMessage("Some Error occur while selecting");
+			r.setMessage(ErrorMsg.ERROR_DB_SELECTION);
 		}
 		return r.toJsonString();
 	}
@@ -74,13 +71,13 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 		}
 		
 		switch(result) {
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Update Error");
+			r.setMessage(ErrorMsg.ERROR_DB_UPDATE);
 			break;
 		
 		case 1:
@@ -90,8 +87,8 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 		
 		return r.toJsonString();
@@ -113,7 +110,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
 		}
 		
@@ -125,12 +122,12 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		return r.toJsonString();
@@ -151,7 +148,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		} catch (Exception e) {
 			logger.error(ERROR, e);
 			r.setResultCode(500);
-			r.setMessage("Data not satisfied");
+			r.setMessage(ErrorMsg.ERROR_DATA_NOT_SATISFIED);
 			return r.toJsonString();
 		}
 		
@@ -163,12 +160,12 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			break;
 		case 0:
 			r.setResultCode(400);
-			r.setMessage("DB Insertion Error");
+			r.setMessage(ErrorMsg.ERROR_DB_INSERTION);
 			break;
 		default:
 			r.setResultCode(400);
-			r.setMessage("Internal Error");
-			logger.error("Return value is not 0 or 1");
+			r.setMessage(ErrorMsg.ERROR_INTERNAL);
+			logger.error(ErrorMsg.ERROR_RETURN_VALUE_NOT_0_1);
 		}
 
 		return r.toJsonString();
