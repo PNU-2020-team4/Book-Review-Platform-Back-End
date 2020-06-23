@@ -23,21 +23,17 @@ public class CommentController {
 		logger.info("=============/comment/insert=============");
 		logger.info("data" + data);
 		String resJson = renderer.getInsertRes(data);
-
-		logger.info("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	
 	@RequestMapping(value="/comment/update", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String updateComment(@RequestParam String data) {
-
 		logger.info("=============/comment/update=============");
 		logger.info("data : " + data);
-
 		String resJson = renderer.getUpdateRes(data);
-		
-		logger.info("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	
@@ -48,7 +44,7 @@ public class CommentController {
 		logger.info("=============/comment=============");
 		String resJson = renderer.getAllSelectRes();
 		
-		logger.info("result : " + resJson);
+		logger.info(resJson);
 
 		return resJson;
 		
@@ -57,12 +53,10 @@ public class CommentController {
 	@RequestMapping(value="/comment/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String deleteComment(@RequestParam String data) {
-
 		logger.info("=============/comment/delete=============");
 		logger.info("data : " + data);
 		String resJson = renderer.getDeleteRes(data);
-		
-		logger.info("result : " + resJson);
+		logger.info(resJson);
 		return resJson;
 	}
 	
