@@ -32,7 +32,7 @@ public class BookController {
 	public String reviewSelect() {
         logger.info("=========== [/book/get] request ==========");
         String jsonValue = renderer.getSelectRes("");
-        logger.info("Return : " + jsonValue);
+        logger.info(jsonValue);
         return jsonValue;
 	}
 	

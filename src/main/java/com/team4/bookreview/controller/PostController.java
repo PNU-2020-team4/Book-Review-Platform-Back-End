@@ -22,63 +22,63 @@ public class PostController {
     @ResponseBody
     public String postsSelect() {
         logger.info("=========== [/post/get] request ==========");
-        String JSONValue = renderer.getSelectRes("");
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getSelectRes("");
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/getone", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSelect(@RequestParam String data) {
         logger.info("=========== [/post/getOne] request ==========");
-        String JSONValue = renderer.getSelectRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getSelectRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postInsert(@RequestParam String data) {
         logger.info("=========== [/post/insert] request ==========");
-        String JSONValue = renderer.getInsertRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getInsertRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postDelete(@RequestParam String data) {
         logger.info("=========== [/post/delete] request ==========");
-        String JSONValue = renderer.getDeleteRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getDeleteRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/update", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postUpdate(@RequestParam String data) {
         logger.info("=========== [/post/update] request ==========");
-        String JSONValue = renderer.getUpdateRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getUpdateRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/search/writer", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSearchByWriter(@RequestParam String data) {
         logger.info("=========== [/post/search/writer] request ==========");
-        String JSONValue = renderer.getSearchByWriterRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getSearchByWriterRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
     @RequestMapping(value="/post/search/title", method=RequestMethod.POST, produces = "application/json; charset=utf8")
     @ResponseBody
     public String postSearchByTitle(@RequestParam String data) {
         logger.info("=========== [/post/search/title] request ==========");
-        String JSONValue = renderer.getSearchByTitleRes(data);
-        logger.info("Return : " + JSONValue);
-        return JSONValue;
+        String jsonValue = renderer.getSearchByTitleRes(data);
+        logger.info(jsonValue);
+        return jsonValue;
     }
 
 

@@ -27,22 +27,22 @@ public class LoginController {
 	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
 		
 		logger.info("=========== [/login] request ==========");
-		logger.info("data : " + data);
+		logger.info(data);
 
-		String JSONValue = renderer.getUpdateRes(data);
-		logger.info("Return : " + JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getUpdateRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 
 	@RequestMapping(value="/user/withdrawal", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String withdrawal(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
 		logger.info("=========== [/user/withdrawal] request ==========");
-		logger.info("data : " + data);
+		logger.info(data);
 
-		String JSONValue = renderer.getWithdrawalRes(data);
-		logger.info("Return : " + JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getWithdrawalRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 
 	

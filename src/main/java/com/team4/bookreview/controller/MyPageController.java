@@ -23,7 +23,7 @@ public class MyPageController {
 	public String seeMyPage(@RequestParam String data) throws JsonProcessingException {
 
 		logger.info("=============/mypage=============");
-		logger.info("data : " + data);
+		logger.info(data);
 
 		String resJson = renderer.getSelectRes(data);
 		
@@ -37,7 +37,7 @@ public class MyPageController {
 	public String changeNick(@RequestParam String data)
 	{
 		logger.info("=============/mypage/changeNick=============");
-		logger.info("data : " + data);
+		logger.info(data);
 
 		String resJson = renderer.getUpdateNickRes(data);
 		

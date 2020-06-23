@@ -28,21 +28,21 @@ public class HistController {
 	
 	@RequestMapping(value="/hist/showAll", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String ShowAllByUser(@RequestParam String data) {
+	public String showAllByUser(@RequestParam String data) {
 		logger.info("=============[/hist/showAll] request ===============");
-		logger.info("data : " + data);
+		logger.info(data);
 		
-		String JSONValue = renderer.getSelectAllByUserRes(data);
-		logger.info("Return : " + JSONValue);
+		String jsonValue = renderer.getSelectAllByUserRes(data);
+		logger.info(jsonValue);
 		
-		return JSONValue;
+		return jsonValue;
 	}
 	
 	@RequestMapping(value="/hist/insert", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String HistInsert(@RequestParam String data) {
+	public String histInsert(@RequestParam String data) {
 		logger.info("=============[/hist/insert] request ===============");
-		logger.info("data : " + data);
+		logger.info(data);
 		ObjectMapper obj = new ObjectMapper();
 		String name;
 		String author;
@@ -80,22 +80,20 @@ public class HistController {
 	
 		hv.setBook(idx);
 		hv.setUser(userId);
-		String JSONValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
-		logger.info("Return : " + JSONValue);
+		String jsonValue = renderer.getInsertResByRecord(hv); // if(new book & user):insert , else : update Date
+		logger.info(jsonValue);
 
-		return JSONValue;
+		return jsonValue;
 	}
 	
 	@RequestMapping(value="/hist/delete", method=RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String HistDelete(@RequestParam String data) {
+	public String histDelete(@RequestParam String data) {
 		logger.info("=============[/hist/HistDelete] request ===============");
-		logger.info("data : " + data);
-		
-		String JSONValue = renderer.getDeleteRes(data);
-		logger.info("Return : " + JSONValue);
-		
-		return JSONValue;
+		logger.info(data);
+		String jsonValue = renderer.getDeleteRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 	
 }

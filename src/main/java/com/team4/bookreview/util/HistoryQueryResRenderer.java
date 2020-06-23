@@ -33,7 +33,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -55,7 +55,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			logger.error("Return value is not 0 or 1");
 		}
 		
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 
@@ -71,7 +71,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -93,7 +93,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			logger.info("Update Date Of History Item");
 		}
 		
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 	
@@ -113,7 +113,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -136,7 +136,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			logger.error("Return value is not 0 or 1");
 		}
 		
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		
 		return r.toJsonString();
 	}
@@ -160,7 +160,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}
 

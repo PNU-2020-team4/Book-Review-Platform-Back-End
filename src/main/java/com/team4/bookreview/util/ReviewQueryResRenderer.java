@@ -35,7 +35,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -55,7 +55,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			logger.error("Return value is not 0 or 1");
 		}
 
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return  r.toJsonString();
 	}
 
@@ -79,7 +79,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
@@ -97,7 +97,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 				r.setMessage("Internal Error");
 				logger.error("Return value is not 0 or 1");
 		}
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 
@@ -128,7 +128,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
@@ -141,7 +141,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			logger.info("Success");			
 		}
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 
@@ -160,7 +160,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
@@ -173,7 +173,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			logger.info("Success");			
 		}
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 
@@ -190,7 +190,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 				
@@ -210,7 +210,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 			r.setMessage("Internal Error");
 			logger.error("Return value is not 0 or 1");
 		}
-		logger.info("Return : " + r.toJsonString());
+		logger.info(r.toJsonString());
 		return r.toJsonString();
 	}
 

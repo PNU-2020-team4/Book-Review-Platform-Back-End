@@ -21,7 +21,7 @@ public class CommentController {
 	@ResponseBody
 	public String writeComment(@RequestParam String data) {
 		logger.info("=============/comment/insert=============");
-		logger.info("data" + data);
+		logger.info(data);
 		String resJson = renderer.getInsertRes(data);
 		logger.info(resJson);
 		return resJson;
@@ -31,7 +31,7 @@ public class CommentController {
 	@ResponseBody
 	public String updateComment(@RequestParam String data) {
 		logger.info("=============/comment/update=============");
-		logger.info("data : " + data);
+		logger.info(data);
 		String resJson = renderer.getUpdateRes(data);
 		logger.info(resJson);
 		return resJson;
@@ -54,7 +54,7 @@ public class CommentController {
 	@ResponseBody
 	public String deleteComment(@RequestParam String data) {
 		logger.info("=============/comment/delete=============");
-		logger.info("data : " + data);
+		logger.info(data);
 		String resJson = renderer.getDeleteRes(data);
 		logger.info(resJson);
 		return resJson;

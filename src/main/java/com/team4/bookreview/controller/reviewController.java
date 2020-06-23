@@ -21,9 +21,9 @@ public class reviewController {
 	@ResponseBody
 	public String reviewInsert(@RequestParam String data) {
         logger.info("=========== [/review/insert] request ==========");
-		String JSONValue = renderer.getInsertRes(data);
-		logger.info(JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getInsertRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 
 	
@@ -31,17 +31,17 @@ public class reviewController {
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
 		logger.info("=========== [/review/get] request ==========");
-		String JSONValue = renderer.getSelectRes(data);
-		logger.info(JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getSelectRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 	@RequestMapping(value="/book/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelectByBook(@RequestParam String data)  {
 		logger.info("=========== [/book/review/get] request ==========");
-		String JSONValue = renderer.getReviewByBookRes(data);
-		logger.info(JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getReviewByBookRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 	}
 
 	
@@ -49,9 +49,9 @@ public class reviewController {
 	@ResponseBody
 	public String reviewDelete(@RequestParam String data)  {
         logger.info("=========== [/review/delete] request ==========");
-		String JSONValue = renderer.getDeleteRes(data);
-		logger.info(JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getDeleteRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 		
 	}
 
@@ -59,9 +59,9 @@ public class reviewController {
 	@ResponseBody
 	public String reviewUpdate(@RequestParam String data)  {
         logger.info("=========== [/review/update] request ==========");
-		String JSONValue = renderer.getUpdateRes(data);
-		logger.info(JSONValue);
-		return JSONValue;
+		String jsonValue = renderer.getUpdateRes(data);
+		logger.info(jsonValue);
+		return jsonValue;
 		
 	}
 	

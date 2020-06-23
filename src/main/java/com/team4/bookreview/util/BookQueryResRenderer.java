@@ -36,7 +36,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.info("Return : " + r.toJsonString());
+			logger.info(r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -56,7 +56,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			logger.error("Return value is not 0 or 1");
 		}
 
-		logger.error("Return : " + r.toJsonString());
+		logger.error(r.toJsonString());
 		return  r.toJsonString();
 	}
 
@@ -75,7 +75,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();		
 		}
  
-		logger.info("Return : " + result);
+		logger.info(result);
 		return result;
 	}
 	
@@ -101,7 +101,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();
 		}
 
@@ -119,7 +119,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setMessage("Internal Error");
 				logger.error("Return value is not 0 or 1");
 		}
-		logger.error("Return : " + r.toJsonString());
+		logger.error(r.toJsonString());
 		return r.toJsonString();
 	}
 
@@ -211,7 +211,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -234,7 +234,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			logger.error("Return : " + r.toJsonString());
+			logger.error(r.toJsonString());
 			return r.toJsonString();			
 		}
 
