@@ -75,7 +75,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();		
 		}
  
-		logger.info(result);
+		logger.info(result + "");
 		return result;
 	}
 	
