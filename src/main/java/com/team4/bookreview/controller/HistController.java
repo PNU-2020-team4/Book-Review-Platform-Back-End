@@ -20,7 +20,7 @@ import com.team4.bookreview.vo.HistoryVO;
 @Controller
 public class HistController {
 	private static final Logger logger = LoggerFactory.getLogger(HistController.class);
-	
+	final String ERROR = "Error";
 	@Autowired
 	private HistoryQueryResRenderer renderer;
 	@Autowired
@@ -57,7 +57,7 @@ public class HistController {
 			userId = node.get("id").asInt();
 		} catch (Exception e) {
 			logger.info("Request Failed");
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			return new Response().toJsonString();
 		} 
 		

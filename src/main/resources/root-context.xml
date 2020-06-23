@@ -46,7 +46,7 @@
 	
 	<context:component-scan base-package="com.team4.bookreview" />
 	<context:component-scan base-package="com.team4.bookreview.dao" />
-	<context:component-scan base-package="com.team4.bookreview.daoImpl" />
+	<context:component-scan base-package="com.team4.bookreview.daoimpl" />
 	<context:component-scan base-package="com.team4.bookreview.test" />
 	<context:component-scan base-package="com.team4.bookreview.vo" />
 	<context:component-scan base-package="com.team4.bookreview.api" />

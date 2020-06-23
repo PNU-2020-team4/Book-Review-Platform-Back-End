@@ -19,11 +19,6 @@ public class HistoryDAOImpl implements HistoryDAO {
 	private String namespace = "com.team4.bookreview.dao.HistoryDAO";
 	
 	@Override
-	public List<HistoryVO> selectAll() {
-		return new List<HistoryVO>();
-	}
-
-	@Override
 	public List<HistoryVO> selectAllbyUser(HistoryVO hv) {
 		return sqlSession.selectList(namespace+".selectAllbyUser", hv);
 	}

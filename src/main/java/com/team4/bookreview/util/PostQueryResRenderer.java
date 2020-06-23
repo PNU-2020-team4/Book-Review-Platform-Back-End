@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.team4.bookreview.daoImpl.PostDAOImpl;
+import com.team4.bookreview.daoimpl.PostDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.PostVO;
 
@@ -17,6 +17,7 @@ import com.team4.bookreview.vo.PostVO;
 @Service
 public class PostQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(PostQueryResRenderer.class);
+	final String ERROR = "Error";
 
 	private ObjectMapper obj = new ObjectMapper();
 	@Autowired
@@ -35,7 +36,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataObject(post);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -57,7 +58,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(300);
 			}
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -76,7 +77,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				idx = node.get("idx").asInt();
 			}
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			idx = 0;
 		} 
 
@@ -88,7 +89,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(100);
 				r.setDataList(result);
 			} catch (Exception e) {
-				logger.error("Error", e);
+				logger.error(ERROR, e);
 				r.setResultCode(200);
 				r.setMessage("Something's wrong");
 			} 
@@ -104,7 +105,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 				r.setDataObject(result);
 			}
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -121,7 +122,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			result = postDAOImpl.update(post.getIdx(), post);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -140,7 +141,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}
@@ -160,7 +161,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 			r.setDataList(result);
 			r.setResultCode(100);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Something's wrong");
 		}

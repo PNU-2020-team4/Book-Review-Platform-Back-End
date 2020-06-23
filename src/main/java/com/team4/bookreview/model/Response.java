@@ -9,7 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Response {
-	private static final Logger logger = LoggerFactory.getLogger(Response.class);
+    private static final Logger logger = LoggerFactory.getLogger(Response.class);
+    final String ERROR = "Error";
 
     private static ObjectMapper obj = new ObjectMapper();
     int resultCode = 500;
@@ -47,7 +48,7 @@ public class Response {
         	logger.info("MAKE RESULT INTO JSON...");
             return obj.writeValueAsString(this);
         } catch (Exception e) {
-            logger.error("Error", e);
+            logger.error(ERROR, e);
             return createDummy();
         }
     }
@@ -59,7 +60,7 @@ public class Response {
             r.message = "Unknown Error";
             return obj.writeValueAsString(r);
         } catch (Exception e) {
-            logger.error("Error", e);
+            logger.error(ERROR, e);
             return "";
         }
     }
@@ -68,7 +69,7 @@ public class Response {
         try {
 			return obj.readValue(data, valueType);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			return new DataVO();
 		}
 	}

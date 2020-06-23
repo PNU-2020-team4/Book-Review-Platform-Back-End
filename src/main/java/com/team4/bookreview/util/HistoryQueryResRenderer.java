@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.team4.bookreview.daoImpl.HistoryDAOImpl;
+import com.team4.bookreview.daoimpl.HistoryDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.HistoryVO;
 
 @Service
 public class HistoryQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(HistoryQueryResRenderer.class);
+	final String ERROR = "Error";
 
 	@Autowired
 	private HistoryDAOImpl historyDaoImpl;
@@ -30,7 +31,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -68,7 +69,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = historyDaoImpl.insertHistory(hv);
 		} catch(Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -110,7 +111,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			res = historyDaoImpl.deleteHistory(hv);
 			logger.info(res + "");
 		} catch(Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());
@@ -157,7 +158,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataList(result);
 		} catch(Exception e){
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
 			logger.error(r.toJsonString());

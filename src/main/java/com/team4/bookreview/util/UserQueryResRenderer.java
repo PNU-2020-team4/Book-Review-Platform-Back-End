@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
-import com.team4.bookreview.daoImpl.UserDAOImpl;
+import com.team4.bookreview.daoimpl.UserDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.UserVO;
 
@@ -14,6 +14,7 @@ import com.team4.bookreview.vo.UserVO;
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
+	final String ERROR = "Error";
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
@@ -42,7 +43,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			selected_user = userDaoImpl.select(user.getId());
 		} catch(Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(500);
 			r.setMessage("Can not select Data");
 			return r.toJsonString();
@@ -71,7 +72,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateNick(user);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 		}
@@ -110,7 +111,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateUser(user);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 			return r.toJsonString();
@@ -148,7 +149,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		try {
 			result = userDaoImpl.updateWithdrawal(user);
 		} catch (Exception e) {
-			logger.error("Error", e);
+			logger.error(ERROR, e);
 			r.setResultCode(500);
 			r.setMessage("Data not satisfied");
 			return r.toJsonString();

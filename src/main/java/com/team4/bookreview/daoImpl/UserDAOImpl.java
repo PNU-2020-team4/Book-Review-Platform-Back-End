@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	public String selectID(int id) {
-		String res = sqlSession.selectOne(namespace+".selectID", id);
+		return sqlSession.selectOne(namespace+".selectID", id);
 	}
 	
 	public int updateUser(UserVO uv) {
