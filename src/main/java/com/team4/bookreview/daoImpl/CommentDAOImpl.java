@@ -19,8 +19,7 @@ public class CommentDAOImpl implements CommentDAO{
 	private String namespace = "com.team4.bookreview.dao.CommentDAO";
 	
 	public List<CommentVO> selectAll() {
-		List<CommentVO> listComment = sqlSession.selectList(namespace+".selectAll");
-		return listComment;
+		return sqlSession.selectList(namespace+".selectAll");
 	}
 
 	@Override
@@ -30,19 +29,16 @@ public class CommentDAOImpl implements CommentDAO{
 
 	@Override
 	public int insertComment(CommentVO cmt) {
-		int res = sqlSession.insert(namespace+".insertComment", cmt);
-		return res;
+		return sqlSession.insert(namespace+".insertComment", cmt);
 	}
 
 	@Override
 	public int updateComment(CommentVO cmt) {
-		int res = sqlSession.update(namespace+".updateComment", cmt);
-		return res;
+		return sqlSession.update(namespace+".updateComment", cmt);
 	}
 
 	@Override
 	public int deleteComment(CommentVO cmt) {
-		int res = sqlSession.update(namespace+".deleteComment", cmt);
-		return res;
+		return sqlSession.update(namespace+".deleteComment", cmt);
 	}
 }

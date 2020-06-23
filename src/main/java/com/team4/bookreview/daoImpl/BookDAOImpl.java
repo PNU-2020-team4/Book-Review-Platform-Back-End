@@ -38,7 +38,7 @@ public class BookDAOImpl implements BookDAO {
 	
 	public int insertNoDup(BookVO book){
 		int result = 0;
-		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result =-1;
+		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result = -1;
 		return result;
 	}
 	

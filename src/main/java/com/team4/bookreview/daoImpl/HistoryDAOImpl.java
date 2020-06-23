@@ -30,13 +30,13 @@ public class HistoryDAOImpl implements HistoryDAO {
 	
 	@Override
 	public int insertHistory(HistoryVO hv) {
-		int res = sqlSession.update(namespace+".insertHistory", hv);
+		return sqlSession.update(namespace+".insertHistory", hv);
 		return res;
 	}
 
 	@Override
 	public int deleteHistory(HistoryVO hv) {
-		int res = sqlSession.update(namespace+".deleteHistory", hv);
+		return sqlSession.update(namespace+".deleteHistory", hv);
 		return res;
 	}
 
