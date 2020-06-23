@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.team4.bookreview.daoImpl.CommentDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.CommentVO;
 @Service
 public class CommentQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(CommentQueryResRenderer.class);
 
 	@Autowired
 	private CommentDAOImpl commentDaoImpl;
@@ -23,7 +26,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		CommentVO to_Insert_Comment = gson.fromJson(data,  CommentVO.class);
 		to_Insert_Comment.setDate(new Date());
-		System.out.println(to_Insert_Comment.toString());
+		logger.info(to_Insert_Comment.toString());
 		int result_cnt = 0;
 		
 		try {
@@ -67,7 +70,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			r.setMessage("Some Error occur while deleting comment");
 			return r.toJsonString();
 		}
-		System.out.println(result_cnt);
+		logger.info(result_cnt);
 		
 		switch(result_cnt) {
 		case 0:
@@ -148,7 +151,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		default:
 			r.setResultCode(400);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 		
 		return r.toJsonString();

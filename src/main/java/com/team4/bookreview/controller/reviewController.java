@@ -1,5 +1,6 @@
 package com.team4.bookreview.controller;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,9 @@ public class reviewController {
 	@RequestMapping(value="/review/insert", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewInsert(@RequestParam String data) {
-        System.out.println("=========== [/review/insert] request ==========");
+        logger.info("=========== [/review/insert] request ==========");
 		String JSONValue = renderer.getInsertRes(data);
-		System.out.println(JSONValue);
+		logger.info(JSONValue);
 		return JSONValue;
 	}
 
@@ -27,17 +28,17 @@ public class reviewController {
 	@RequestMapping(value="/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelect(@RequestParam String data)  {
-		System.out.println("=========== [/review/get] request ==========");
+		logger.info("=========== [/review/get] request ==========");
 		String JSONValue = renderer.getSelectRes(data);
-		System.out.println(JSONValue);
+		logger.info(JSONValue);
 		return JSONValue;
 	}
 	@RequestMapping(value="/book/review/get", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewSelectByBook(@RequestParam String data)  {
-		System.out.println("=========== [/book/review/get] request ==========");
+		logger.info("=========== [/book/review/get] request ==========");
 		String JSONValue = renderer.getReviewByBookRes(data);
-		System.out.println(JSONValue);
+		logger.info(JSONValue);
 		return JSONValue;
 	}
 
@@ -45,9 +46,9 @@ public class reviewController {
 	@RequestMapping(value="/review/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewDelete(@RequestParam String data)  {
-        System.out.println("=========== [/review/delete] request ==========");
+        logger.info("=========== [/review/delete] request ==========");
 		String JSONValue = renderer.getDeleteRes(data);
-		System.out.println(JSONValue);
+		logger.info(JSONValue);
 		return JSONValue;
 		
 	}
@@ -55,9 +56,9 @@ public class reviewController {
 	@RequestMapping(value="/review/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String reviewUpdate(@RequestParam String data)  {
-        System.out.println("=========== [/review/update] request ==========");
+        logger.info("=========== [/review/update] request ==========");
 		String JSONValue = renderer.getUpdateRes(data);
-		System.out.println(JSONValue);
+		logger.info(JSONValue);
 		return JSONValue;
 		
 	}

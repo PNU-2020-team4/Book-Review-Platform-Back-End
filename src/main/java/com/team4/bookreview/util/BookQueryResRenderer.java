@@ -9,10 +9,13 @@ import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.BookVO;
 import com.team4.bookreview.vo.BookwithstarVO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class BookQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(BookQueryResRenderer.class);
 
 	private ObjectMapper obj = new ObjectMapper();
 
@@ -21,7 +24,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getInsertRes(String data){
-		System.out.println("----- getInsertRes -----");
+		logger.info("----- getInsertRes -----");
 
 		Response r = new Response();
 		BookVO record = (BookVO)r.readValue(data, BookVO.class);
@@ -33,7 +36,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.info("Return : " + r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -41,7 +44,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(record);
-			System.out.println("Success");
+			logger.info("Success");
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -50,19 +53,19 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		default:
 			r.setResultCode(300);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 
-		System.out.println("Return : " + r.toJsonString());
+		logger.error("Return : " + r.toJsonString());
 		return  r.toJsonString();
 	}
 
 
 	public int getInsertNoDup(BookVO record){
-		System.out.println("----- getInsertNoDupResByRecord -----");
-		System.out.println("----- BOOK INFO-----");
-		System.out.println(record.getAuthor());
-		System.out.println(record.getName());
+		logger.info("----- getInsertNoDupResByRecord -----");
+		logger.info("----- BOOK INFO-----");
+		logger.info(record.getAuthor());
+		logger.info(record.getName());
 		
 		int result = 0; 
 		try{
@@ -72,13 +75,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();		
 		}
  
-		System.out.println("Return : " + result);
+		logger.info("Return : " + result);
 		return result;
 	}
 	
 	@Override
 	public String getDeleteRes(String data){
-		System.out.println("----- getDeleteRes -----");
+		logger.info("----- getDeleteRes -----");
 
 		Response r = new Response();
 		int idx = -1;
@@ -89,7 +92,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			idx = -1;
 		} 
-		System.out.println("Received data : " + idx);
+		logger.info("Received data : " + idx);
 
 		int result;
 		try {
@@ -98,14 +101,14 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();
 		}
 
 		switch(result) {
 			case 1:
 				r.setResultCode(100);
-				System.out.println("Success");
+				logger.info("Success");
 				break;
 			case 0:
 				r.setResultCode(400);
@@ -114,15 +117,15 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			default:
 				r.setResultCode(300);
 				r.setMessage("Internal Error");
-				System.out.println("Return value is not 0 or 1");
+				logger.error("Return value is not 0 or 1");
 		}
-		System.out.println("Return : " + r.toJsonString());
+		logger.error("Return : " + r.toJsonString());
 		return r.toJsonString();
 	}
 
 	@Override
 	public String getSelectRes(String data){
-		System.out.println("----- getSelectRes -----");
+		logger.info("----- getSelectRes -----");
 
 		Response r = new Response();
 		int idx = 0;
@@ -134,10 +137,10 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			idx = 0;
 		}
 
-		System.out.println("Received data : " + idx);
+		logger.info("Received data : " + idx);
 		
 		if(idx == 0){
-			System.out.println("[SELECT ALL BOOK]");
+			logger.info("[SELECT ALL BOOK]");
 			List<BookVO> result;
 			try {
 				result = bookDAOImpl.selectAll();
@@ -152,14 +155,14 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage("DB Selection Failure");
 			} else {
-				System.out.println("Queried data : " + result.size());
+				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				System.out.println("Success");			
+				logger.info("Success");			
 			}
 		}
 		else {
-			System.out.println("[SELECT ONE BOOK]");
+			logger.info("[SELECT ONE BOOK]");
 			BookVO result = null;
 			try {
 				result = bookDAOImpl.select(idx);
@@ -173,10 +176,10 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage("DB Selection Failure");
 			} else {
-				System.out.println("Queried data");
+				logger.info("Queried data");
 				r.setResultCode(100);
 				r.setDataObject(result);
-				System.out.println("Success");			
+				logger.info("Success");			
 			}
 			
 		}
@@ -186,14 +189,14 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getUpdateRes(String data){
-		System.out.println("----- getUpdateRes -----");
+		logger.info("----- getUpdateRes -----");
 
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String getSearchByAuthorRes(String data){
-		System.out.println("----- getSearchByAuthorRes -----");
+		logger.info("----- getSearchByAuthorRes -----");
 		Response r = new Response();
 		BookVO record = (BookVO)r.readValue(data, BookVO.class);
 		
@@ -208,7 +211,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -216,7 +219,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	}
 
 	public String getSearchByNameRes(String data){
-		System.out.println("----- getSearchByAuthorRes -----");
+		logger.info("----- getSearchByAuthorRes -----");
 
 		Response r = new Response();
 		BookVO record = (BookVO)r.readValue(data, BookVO.class);
@@ -231,7 +234,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -239,13 +242,13 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	}
 
 	public int getIndexByNameAndAuthorRes(String name, String author) {
-		System.out.println("----- getIndexByNameAndAuthorRes -----");
+		logger.info("----- getIndexByNameAndAuthorRes -----");
 		
 		int index = -1;
 		try{
 			index = bookDAOImpl.getIndexByAuthorAndName(author, name);
 		} catch(Exception e){
-			System.out.println("Search Error With Author And Name.");
+			logger.error("Search Error With Author And Name.");
 			e.printStackTrace();
 		}
 
@@ -253,7 +256,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	}
 	
 	public String getSearchByUserReview(String data) {
-		System.out.println("----- getSearchByUserReview -----");
+		logger.info("----- getSearchByUserReview -----");
 
 		Response r = new Response();
 		int writer = 0;
@@ -266,7 +269,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		
 		if(writer != 0){
-			System.out.println("[GET RECOMMENDATION BASED ON USER REVIEW]");
+			logger.info("[GET RECOMMENDATION BASED ON USER REVIEW]");
 			List<BookwithstarVO> result;
 			try {
 				result = bookDAOImpl.getRecommendBasedUserReview(writer);
@@ -281,10 +284,10 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage("DB Selection Failure");
 			} else {
-				System.out.println("Queried data : " + result.size());
+				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				System.out.println("Success");			
+				logger.info("Success");			
 			}
 		}
 		else {
@@ -297,7 +300,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	
 	
 	public String getSearchByUserHistory(String data) {
-		System.out.println("----- getSearchByUserHistory -----");
+		logger.info("----- getSearchByUserHistory -----");
 
 		Response r = new Response();
 		int writer = 0;
@@ -310,7 +313,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		
 		if(writer != 0){
-			System.out.println("[GET RECOMMENDATION BASED ON USER HISTORY]");
+			logger.info("[GET RECOMMENDATION BASED ON USER HISTORY]");
 			List<BookwithstarVO> result;
 			try {
 				result = bookDAOImpl.getRecommendBasedUserHistory(writer);
@@ -325,10 +328,10 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage("DB Selection Failure");
 			} else {
-				System.out.println("Queried data : " + result.size());
+				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				System.out.println("Success");			
+				logger.info("Success");			
 			}
 		}
 		else {
@@ -342,7 +345,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 	public String getSearchByData(String data) {
 		// TODO Auto-generated method stub
-		System.out.println("----- getSearchByData -----");
+		logger.info("----- getSearchByData -----");
 
 		Response r = new Response();
 		int writer = 0;
@@ -355,7 +358,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		}
 		
 		if(writer != 0){
-			System.out.println("[GET RECOMMENDATION BASED ON DATA]");
+			logger.info("[GET RECOMMENDATION BASED ON DATA]");
 			List<BookwithstarVO> result;
 
 			try {
@@ -371,10 +374,10 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 				r.setResultCode(400);
 				r.setMessage("DB Selection Failure");
 			} else {
-				System.out.println("Queried data : " + result.size());
+				logger.info("Queried data : " + result.size());
 				r.setResultCode(100);
 				r.setDataList(result);
-				System.out.println("Success");			
+				logger.info("Success");			
 			}
 		}
 		else {

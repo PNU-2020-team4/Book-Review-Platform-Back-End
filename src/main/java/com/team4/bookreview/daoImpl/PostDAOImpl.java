@@ -41,7 +41,6 @@ public class PostDAOImpl implements PostDAO {
 	// return idx
 	@Override
 	public int insert(PostVO post) {
-		System.out.println(post + "");
 		return sqlSession.insert(mapper + ".insert", post);
 	}
 

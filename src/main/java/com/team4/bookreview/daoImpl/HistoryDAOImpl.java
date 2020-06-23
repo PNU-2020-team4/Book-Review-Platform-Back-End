@@ -20,7 +20,6 @@ public class HistoryDAOImpl implements HistoryDAO {
 	
 	@Override
 	public List<HistoryVO> selectAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

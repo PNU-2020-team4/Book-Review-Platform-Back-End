@@ -5,7 +5,12 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team4.bookreview.vo.DataVO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Response {
+	private static final Logger logger = LoggerFactory.getLogger(Response.class);
+
     private static ObjectMapper obj = new ObjectMapper();
     int resultCode = 500;
     String message = "";
@@ -39,7 +44,7 @@ public class Response {
     
     public String toJsonString() {
         try {
-        	System.out.println("MAKE RESULT INTO JSON...");
+        	logger.info("MAKE RESULT INTO JSON...");
             return obj.writeValueAsString(this);
         } catch (Exception e) {
             e.printStackTrace();

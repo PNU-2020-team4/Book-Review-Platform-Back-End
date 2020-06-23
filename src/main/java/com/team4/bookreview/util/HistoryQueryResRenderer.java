@@ -6,23 +6,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.team4.bookreview.daoImpl.HistoryDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.HistoryVO;
 
 @Service
 public class HistoryQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(HistoryQueryResRenderer.class);
 
-	private ObjectMapper obj = new ObjectMapper();
-	
 	@Autowired
 	private HistoryDAOImpl historyDaoImpl;
 	
 	@Override
 	public String getInsertRes(String data) {
-		// TODO Auto-generated method stub
-		System.out.println("=======getInsertRes========");
+		logger.info("=======getInsertRes========");
 		Response r = new Response();
 		HistoryVO hv = (HistoryVO)r.readValue(data,  HistoryVO.class);
 		hv.setDate(new Date());
@@ -34,7 +33,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -47,22 +46,21 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(hv);
-			System.out.println("Success");
+			logger.info("Success");
 			break;
 			
 		default:
 			r.setResultCode(300);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 		
-		System.out.println("Return : " + r.toJsonString());
+		logger.info("Return : " + r.toJsonString());
 		return r.toJsonString();
 	}
 
 	public String getInsertResByRecord(HistoryVO hv) {
-		// TODO Auto-generated method stub
-		System.out.println("=======getInsertRes========");
+		logger.info("=======getInsertRes========");
 		Response r = new Response();
 		hv.setDate(new Date());
 		int result = 0;
@@ -73,7 +71,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -86,23 +84,22 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(hv);
-			System.out.println("Inserted");
+			logger.info("Inserted");
 			break;
 			
 		default:
 			r.setResultCode(300);
 			r.setMessage("Updated");
-			System.out.println("Update Date Of History Item");
+			logger.info("Update Date Of History Item");
 		}
 		
-		System.out.println("Return : " + r.toJsonString());
+		logger.info("Return : " + r.toJsonString());
 		return r.toJsonString();
 	}
 	
 	@Override
 	public String getDeleteRes(String data) {
-		// TODO Auto-generated method stub
-		System.out.println("=======getDeleteRes========");
+		logger.info("=======getDeleteRes========");
 		
 		Response r = new Response();
 		HistoryVO hv= (HistoryVO)r.readValue(data,  HistoryVO.class);
@@ -111,12 +108,12 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		
 		try {
 			res = historyDaoImpl.deleteHistory(hv);
-			System.out.println(res);
+			logger.info(res + "");
 		} catch(Exception e) {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();
 		}
 		
@@ -130,28 +127,27 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataObject(hv);
 			r.setMessage("Success");
-			System.out.println("Success");
+			logger.info("Success");
 			break;
 			
 		default:
 			r.setResultCode(300);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 		
-		System.out.println("Return : " + r.toJsonString());
+		logger.info("Return : " + r.toJsonString());
 		
 		return r.toJsonString();
 	}
 
 	@Override
 	public String getSelectRes(String data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	public String getSelectAllByUserRes(String data) {
-		System.out.println("=======getSelectAllByUserRes========");
+		logger.info("=======getSelectAllByUserRes========");
 		Response r = new Response();
 		HistoryVO hv = (HistoryVO)r.readValue(data, HistoryVO.class);
 		
@@ -164,7 +160,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 			e.printStackTrace();
 			r.setResultCode(200);
 			r.setMessage("Data not satisfied");
-			System.out.println("Return : " + r.toJsonString());
+			logger.error("Return : " + r.toJsonString());
 			return r.toJsonString();			
 		}
 
@@ -173,9 +169,6 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 
 	@Override
 	public String getUpdateRes(String data) {
-		// TODO Auto-generated method stub
-		
-		
 		return null;
 	}
 

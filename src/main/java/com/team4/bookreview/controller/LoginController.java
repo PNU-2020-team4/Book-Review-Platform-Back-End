@@ -1,7 +1,8 @@
 package com.team4.bookreview.controller;
 
 import java.io.IOException;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,22 +24,22 @@ public class LoginController {
 	@ResponseBody
 	public String login(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
 		
-		System.out.println("=========== [/login] request ==========");
-		System.out.println("data : " + data);
+		logger.info("=========== [/login] request ==========");
+		logger.info("data : " + data);
 
 		String JSONValue = renderer.getUpdateRes(data);
-		System.out.println("Return : " + JSONValue);
+		logger.info("Return : " + JSONValue);
 		return JSONValue;
 	}
 
 	@RequestMapping(value="/user/withdrawal", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String withdrawal(@RequestParam String data) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("=========== [/user/withdrawal] request ==========");
-		System.out.println("data : " + data);
+		logger.info("=========== [/user/withdrawal] request ==========");
+		logger.info("data : " + data);
 
 		String JSONValue = renderer.getWithdrawalRes(data);
-		System.out.println("Return : " + JSONValue);
+		logger.info("Return : " + JSONValue);
 		return JSONValue;
 	}
 

@@ -38,14 +38,14 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	public int insertNoDup(BookVO book){
-		System.out.println("BOOK INFO");
+		logger.info("BOOK INFO");
 		
-		System.out.println(book.getAuthor());
-		System.out.println(book.getName());
+		logger.info(book.getAuthor());
+		logger.info(book.getName());
 		
 		int result = 0;
 		if(sqlSession.selectOne(namespace + ".insertNoDup", book)==null) result =-1;
-		System.out.println(result);
+		logger.info(result);
 		return result;
 	}
 	

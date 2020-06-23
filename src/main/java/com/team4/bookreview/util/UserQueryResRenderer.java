@@ -3,6 +3,8 @@ package com.team4.bookreview.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.team4.bookreview.daoImpl.UserDAOImpl;
 import com.team4.bookreview.model.Response;
@@ -11,6 +13,7 @@ import com.team4.bookreview.vo.UserVO;
 
 @Service
 public class UserQueryResRenderer implements DBQueryResRenderer {
+	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
@@ -49,7 +52,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 			r.setResultCode(100);
 			r.setDataObject(selected_user);
 			r.setMessage("Success");
-			System.out.println("Success");
+			logger.info("Success");
 		} else {
 			r.setResultCode(400);
 			r.setMessage("Some Error occur while selecting");
@@ -62,7 +65,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		UserVO user = gson.fromJson(data,  UserVO.class);
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		int result = 0;
 		
 		try {
@@ -87,7 +90,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		default:
 			r.setResultCode(400);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 		
 		return r.toJsonString();
@@ -97,9 +100,9 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	public String getUpdateRes(String data) {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
-		System.out.println(user);
+		logger.info(user);
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		user.setWithdrawal(false);
 		user.setHist_cnt(0);
 		int result = 0;
@@ -117,7 +120,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			System.out.println("Success");
+			logger.info("Success");
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -126,7 +129,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		default:
 			r.setResultCode(400);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 
 		return r.toJsonString();
@@ -136,9 +139,9 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 
-		System.out.println(user);
+		logger.info(user);
 		
-		System.out.println(user.toString());
+		logger.info(user.toString());
 		user.setWithdrawal(true);
 
 		int result = 0;
@@ -155,7 +158,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		case 1:
 			r.setResultCode(100);
 			r.setDataObject(user);
-			System.out.println("Success");
+			logger.info("Success");
 			break;
 		case 0:
 			r.setResultCode(400);
@@ -164,7 +167,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		default:
 			r.setResultCode(400);
 			r.setMessage("Internal Error");
-			System.out.println("Return value is not 0 or 1");
+			logger.error("Return value is not 0 or 1");
 		}
 
 		return r.toJsonString();
