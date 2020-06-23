@@ -100,7 +100,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 	public String getUpdateRes(String data) {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
-		logger.info(user);
+		logger.info(user.toString());
 		
 		logger.info(user.toString());
 		user.setWithdrawal(false);
@@ -139,7 +139,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);
 
-		logger.info(user);
+		logger.info(user.toString());
 		
 		logger.info(user.toString());
 		user.setWithdrawal(true);

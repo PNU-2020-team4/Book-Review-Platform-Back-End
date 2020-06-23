@@ -70,7 +70,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 			r.setMessage("Some Error occur while deleting comment");
 			return r.toJsonString();
 		}
-		logger.info(result_cnt);
+		logger.info(result_cnt + "");
 		
 		switch(result_cnt) {
 		case 0:
