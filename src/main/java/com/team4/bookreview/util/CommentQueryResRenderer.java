@@ -13,14 +13,14 @@ import com.team4.bookreview.daoimpl.CommentDAOImpl;
 import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.CommentVO;
 @Service
-public class CommentQueryResRenderer implements DBQueryResRenderer {
+public class CommentQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(CommentQueryResRenderer.class);
 	
 
 	@Autowired
 	private CommentDAOImpl commentDaoImpl;
 	
-	@Override
+	
 	public String getInsertRes(String data) {
 		Gson gson = new Gson();
 		Response r = new Response();
@@ -55,7 +55,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getDeleteRes(String data) {
 		Gson gson = new Gson();
 		Response r = new Response();
@@ -89,7 +89,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getSelectRes(String data) {
 		return null;
 	}
@@ -118,7 +118,7 @@ public class CommentQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getUpdateRes(String data) {
 		Gson gson = new Gson();
 		Response r = new Response();

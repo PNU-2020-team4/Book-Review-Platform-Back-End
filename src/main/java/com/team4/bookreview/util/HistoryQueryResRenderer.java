@@ -13,14 +13,13 @@ import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.HistoryVO;
 
 @Service
-public class HistoryQueryResRenderer implements DBQueryResRenderer {
+public class HistoryQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(HistoryQueryResRenderer.class);
 	
 
 	@Autowired
 	private HistoryDAOImpl historyDaoImpl;
 	
-	@Override
 	public String getInsertRes(String data) {
 		logger.info("=======getInsertRes========");
 		Response r = new Response();
@@ -98,7 +97,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 	
-	@Override
+	
 	public String getDeleteRes(String data) {
 		logger.info("=======getDeleteRes========");
 		
@@ -142,10 +141,7 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
-	public String getSelectRes(String data) {
-		return null;
-	}
+	
 	
 	public String getSelectAllByUserRes(String data) {
 		logger.info("=======getSelectAllByUserRes========");
@@ -168,9 +164,6 @@ public class HistoryQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 		}
 
-	@Override
-	public String getUpdateRes(String data) {
-		return null;
-	}
+
 
 }

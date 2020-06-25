@@ -1,4 +1,4 @@
-package com.team4.bookreview.book;
+package com.team4.bookreview.test;
 
 import static org.junit.Assert.*;
 
@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.team4.bookreview.vo.BookVO;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;

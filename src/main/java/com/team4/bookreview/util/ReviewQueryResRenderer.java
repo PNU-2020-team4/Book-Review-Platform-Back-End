@@ -14,7 +14,7 @@ import com.team4.bookreview.model.Response;
 import com.team4.bookreview.vo.ReviewExpandVO;
 import com.team4.bookreview.vo.ReviewVO;
 @Service
-public class ReviewQueryResRenderer implements DBQueryResRenderer {
+public class ReviewQueryResRenderer  {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewQueryResRenderer.class);
 	
 
@@ -23,7 +23,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	@Autowired
 	ReviewDAOImpl reviewDAOImpl;
 	
-	@Override
+	
 	public String getInsertRes(String data) {
 		Response r = new Response();
 		ReviewVO record = (ReviewVO) r.readValue(data, ReviewVO.class);
@@ -60,7 +60,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		return  r.toJsonString();
 	}
 
-	@Override
+	
 	public String getDeleteRes(String data) {
 		Response r = new Response();
 		int idx = -1;
@@ -103,7 +103,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 	}
 
 
-	@Override
+	
 	public String getSelectRes(String data) {
 		Response r = new Response();
 		
@@ -178,7 +178,7 @@ public class ReviewQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getUpdateRes(String data) {
 		// update content, date
 		Response r = new Response();

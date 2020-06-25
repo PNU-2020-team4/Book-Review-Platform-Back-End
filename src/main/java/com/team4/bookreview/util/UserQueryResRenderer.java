@@ -12,24 +12,14 @@ import com.team4.bookreview.vo.UserVO;
 
 
 @Service
-public class UserQueryResRenderer implements DBQueryResRenderer {
+public class UserQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(UserQueryResRenderer.class);
 	
 	
 	@Autowired
 	UserDAOImpl userDaoImpl;
 	
-	@Override
-	public String getInsertRes(String data) {
-		return null;
-	}
-
-	@Override
-	public String getDeleteRes(String data) {
-		return null;
-	}
-
-	@Override
+	
 	public String getSelectRes(String data) {
 		Gson gson = new Gson();
 		Response r = new Response();
@@ -94,7 +84,7 @@ public class UserQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getUpdateRes(String data) {
 		Response r = new Response();
 		UserVO user = (UserVO) r.readValue(data, UserVO.class);

@@ -15,7 +15,7 @@ import com.team4.bookreview.vo.PostVO;
 
 
 @Service
-public class PostQueryResRenderer implements DBQueryResRenderer {
+public class PostQueryResRenderer  {
 	private static final Logger logger = LoggerFactory.getLogger(PostQueryResRenderer.class);
 	
 
@@ -23,7 +23,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 	@Autowired
 	private PostDAOImpl postDAOImpl;
 
-	@Override
+	
 	public String getInsertRes(String data) {
 		logger.info("----- getInsertRes -----");
 		Response r = new Response();
@@ -44,7 +44,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getDeleteRes(String data) {
 		logger.info("----- getDeleteRes -----");
 		Response r = new Response();
@@ -66,7 +66,6 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
 	public String getSelectRes(String data) {
 		logger.info("----- getSelectRes -----");
 		Response r = new Response();
@@ -112,7 +111,7 @@ public class PostQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getUpdateRes(String data) {
 		logger.info("----- getUpdateRes -----");
 		Response r = new Response();

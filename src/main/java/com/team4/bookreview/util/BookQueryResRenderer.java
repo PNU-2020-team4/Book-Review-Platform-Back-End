@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
-public class BookQueryResRenderer implements DBQueryResRenderer {
+public class BookQueryResRenderer {
 	private static final Logger logger = LoggerFactory.getLogger(BookQueryResRenderer.class);
 	private static final String WRITER  = "writer";
 
@@ -23,7 +23,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 	@Autowired
 	BookDAOImpl bookDAOImpl;
 
-	@Override
+	
 	public String getInsertRes(String data){
 		logger.info("----- getInsertRes -----");
 
@@ -80,7 +80,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		return result;
 	}
 	
-	@Override
+	
 	public String getDeleteRes(String data){
 		logger.info("----- getDeleteRes -----");
 
@@ -124,7 +124,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	@Override
+	
 	public String getSelectRes(String data){
 		logger.info("----- getSelectRes -----");
 
@@ -188,7 +188,7 @@ public class BookQueryResRenderer implements DBQueryResRenderer {
 
 	}
 
-	@Override
+	
 	public String getUpdateRes(String data){
 		logger.info("----- getUpdateRes -----");
 
