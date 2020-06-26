@@ -81,6 +81,9 @@ public class BookController {
 		logger.info(jsonValue);
 		return jsonValue;
 	}
+	
+
+	
 	@RequestMapping(value="/recommend/user/review", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String getUserReviewBasedRecommend(@RequestParam String data)  {

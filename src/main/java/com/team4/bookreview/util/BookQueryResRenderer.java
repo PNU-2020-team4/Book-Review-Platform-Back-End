@@ -241,19 +241,7 @@ public class BookQueryResRenderer {
 		return r.toJsonString();
 	}
 
-	public int getIndexByNameAndAuthorRes(String name, String author) {
-		logger.info("----- getIndexByNameAndAuthorRes -----");
-		
-		int index = -1;
-		try{
-			index = bookDAOImpl.getIndexByAuthorAndName(author, name);
-		} catch(Exception e){
-			logger.error(ErrorMsg.ERROR_DB_SELECTION);
-			logger.error(ErrorMsg.ERROR_STRING, e);
-		}
 
-		return index;
-	}
 	
 	public String getSearchByUserReview(String data) {
 		logger.info("----- getSearchByUserReview -----");

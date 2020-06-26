@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 "file:src/main/webapp/WEB-INF/spring/root-context.xml",
 }
 )
-public class reviewQueryTest {
+public class postQueryTest {
 
 	@Autowired
 	private WebApplicationContext ctx;
@@ -45,120 +45,142 @@ public class reviewQueryTest {
 		= MockMvcBuilders
 		.webAppContextSetup(this.ctx).build();
 	}
-	
-	@Test
-	public void reviewSelectTest() throws Exception{
-		 final String content = "{\"writer\":98939011}";
-		 
-		 this.mockMvc.perform(post("/review/get")
-				 .param("data", content)
-				 .contentType(MediaType.APPLICATION_JSON)
-				 .accept(MediaType.APPLICATION_JSON_VALUE))
-	                .andDo(print())
-	                .andExpect(status().isOk());
-	}
-	
-	@Test
-	public void reviewSelectAllTest() throws Exception{
-		 final String content = "{\"writer\":-1}";
-		 
-		 this.mockMvc.perform(post("/review/get")
-				 .param("data", content)
-				 .contentType(MediaType.APPLICATION_JSON)
-				 .accept(MediaType.APPLICATION_JSON_VALUE))
-	                .andDo(print())
-	                .andExpect(status().isOk());
-	}
-	
-	
-	
-	@Test
-	public void reviewSelectByBookTest() throws Exception{
-		 final String content = "{\"bookID\":16310640}";
-		 
-		 this.mockMvc.perform(post("/book/review/get")
-				 .param("data", content)
-				 .contentType(MediaType.APPLICATION_JSON)
-				 .accept(MediaType.APPLICATION_JSON_VALUE))
-	                .andDo(print())
-	                .andExpect(status().isOk());
-	}
-	
-	@Test
-	public void reviewInsertTest() throws Exception{
-		 final String sc = "{"
-			 		+ " \"writer\":\"0\","
-			 		+ " \"content\":\"CONTENTTEST1\","
-			 		+ " \"star\":\"5\","
-			 		+ " \"book\":\"1\"}";
-		 
-		 final String fc1 = "{"
 
-			 		+ " \"content\":\"CONTENTTEST2\","
-			 		+ " \"star\":\"5\","
-			 		+ " \"book\":\"1\"}";
-		 
-		 
-		 this.mockMvc.perform(post("/review/insert")
-				 .param("data", sc)
-				 .contentType(MediaType.APPLICATION_JSON)
-				 .accept(MediaType.APPLICATION_JSON_VALUE))
-	                .andDo(print())
-	                .andExpect(status().isOk());
-		 
-		 this.mockMvc.perform(post("/review/insert")
-				 .param("data", fc1)
-				 .contentType(MediaType.APPLICATION_JSON)
-				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	@Test
+	public void postSelectTest() throws Exception{
+		 this.mockMvc.perform(get("/post/get"))
 	                .andDo(print())
 	                .andExpect(status().isOk());
 
 	}
 	
 	@Test
-	public void reviewUpdateTest() throws Exception{
-		 final String sc = "{\"idx\":121,"
-			 		+ " \"content\":\"CONTENTUPDATETEST\","
-			 		+ " \"star\":\"3\"}";	
-		 final String fc = "{\"idx\":122,"
-			 		+ " \"content\":\"CONTENTUPDATETEST\","
-			 		+ " \"star\":\"3\"}";	
+	public void postSelectOneTest() throws Exception{
+		 final String sc = "{\"idx\":8}";
 		 
-		 this.mockMvc.perform(post("/review/update")
+		 this.mockMvc.perform(post("/post/getone")
 				 .param("data", sc)
 				 .contentType(MediaType.APPLICATION_JSON)
 				 .accept(MediaType.APPLICATION_JSON_VALUE))
 	                .andDo(print())
 	                .andExpect(status().isOk());
 		 
-		 this.mockMvc.perform(post("/review/update")
+		 final String fc = "{\"idx\":0}";
+		 
+		 this.mockMvc.perform(post("/post/getone")
 				 .param("data", fc)
 				 .contentType(MediaType.APPLICATION_JSON)
 				 .accept(MediaType.APPLICATION_JSON_VALUE))
 	                .andDo(print())
 	                .andExpect(status().isOk());
 	}
-
+	
+	
 	@Test
-	public void reviewDeleteTest() throws Exception{
-		 final String sc = "{\"idx\":121}";
-		 final String fc = "{\"idx\":-1}";
-
-		 this.mockMvc.perform(post("/review/delete")
+	public void postInsertTest() throws Exception{
+		 final String content = "{\"title\":\"TestTitle!\","
+		 		+ " \"writer\":\"12345\","
+		 		+ " \"content\" : \"TestContent\"}";
+		 
+		 this.mockMvc.perform(post("/post/insert")
+				 .param("data", content)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+	}
+	
+	@Test
+	public void postUpdateTest() throws Exception{
+		 final String sc = "{\"title\":\"TestTitleUpdate\","
+			 		+ " \"writer\":\"12345\","
+			 		+ " \"idx\" : 9,"
+			 		+ " \"content\" : \"TestContentUpdate\"}";
+		 final String fc = "{\"title\":\"TestTitleUpdate\","
+			 		+ " \"writer\":\"12345\","
+			 		+ " \"idx\" : 1,"
+			 		+ " \"content\" : \"TestContent\"}";;
+		 
+		 this.mockMvc.perform(post("/post/update")
 				 .param("data", sc)
 				 .contentType(MediaType.APPLICATION_JSON)
 				 .accept(MediaType.APPLICATION_JSON_VALUE))
 	                .andDo(print())
 	                .andExpect(status().isOk());
-		 
-
-		 
-		 this.mockMvc.perform(post("/review/delete")
+		 this.mockMvc.perform(post("/post/update")
 				 .param("data", fc)
 				 .contentType(MediaType.APPLICATION_JSON)
 				 .accept(MediaType.APPLICATION_JSON_VALUE))
 	                .andDo(print())
 	                .andExpect(status().isOk());
+	}
+	
+	@Test
+	public void postDeleteTest() throws Exception{
+		 final String successContent = "{\"idx\":9,"
+		 		+ " \"writer\": 12345}";
+		 
+		 this.mockMvc.perform(post("/post/delete")
+				 .param("data", successContent)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+		 
+		 
+		 final String failContent = "{\"idx\":1,"
+			 		+ " \"writer\": 12345}";
+			 
+			 this.mockMvc.perform(post("/post/delete")
+					 .param("data", failContent)
+					 .contentType(MediaType.APPLICATION_JSON)
+					 .accept(MediaType.APPLICATION_JSON_VALUE))
+		                .andDo(print())
+		                .andExpect(status().isOk());
+	}
+	
+
+	
+	@Test
+	public void postSearchByWriterTest() throws Exception{
+		 final String successContent = "{\"writer\":1}";
+		 final String failContent = "{\"writer\":0}";
+
+		 this.mockMvc.perform(post("/post/search/writer")
+				 .param("data", successContent)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+		 
+		 this.mockMvc.perform(post("/post/search/writer")
+				 .param("data", failContent)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+	}
+	
+		
+	@Test
+	public void postSearchByTitleTest() throws Exception{
+		 final String successContent = "{\"title\":\"T1\"}";
+		 final String failContent = "{\"title\":\"a\"}";
+		 
+		 this.mockMvc.perform(post("/post/search/title")
+				 .param("data", successContent)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+		 
+		 this.mockMvc.perform(post("/post/search/title")
+				 .param("data", failContent)
+				 .contentType(MediaType.APPLICATION_JSON)
+				 .accept(MediaType.APPLICATION_JSON_VALUE))
+	                .andDo(print())
+	                .andExpect(status().isOk());
+		 
 	}
 	
 
